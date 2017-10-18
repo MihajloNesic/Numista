@@ -100,8 +100,9 @@ namespace Numista
                 if (array.images != null)
                     reverse_photo = array.images.reverse.preview.ToString();
 
-                if (array.km != null)
-                    kmNum = array["km"][0];
+                if(array.km != null)
+                    if (array.km.ToString() != "[]")
+                        kmNum = array["km"][0];
 
                 if (array.years_range != null)
                 {
