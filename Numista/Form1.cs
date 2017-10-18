@@ -58,6 +58,7 @@ namespace Numista
 
             using (var webClient = new WebClient())
             {
+                // "/1" is to disable cache
                 var json = webClient.DownloadString("http://qmegas.info/numista-api/coin/" + coinID);
                 dynamic array = JsonConvert.DeserializeObject(json);
 
@@ -134,6 +135,7 @@ namespace Numista
         {
             using (var webClient = new WebClient())
             {
+                // "/1" is to disable cache
                 var json = webClient.DownloadString("http://qmegas.info/numista-api/user/" + profileID);
                 dynamic array = JsonConvert.DeserializeObject(json);
 
@@ -219,6 +221,31 @@ namespace Numista
         private void cmb_coin_years_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmb_coin_years.SelectedIndex = -1;
+        }
+
+        private void btn_cntr_getlist_Click(object sender, EventArgs e)
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("http://qmegas.info/numista-api/country/list/");
+                dynamic array = JsonConvert.DeserializeObject(json);
+
+                foreach (dynamic cntr in array["countries"])
+                    lsb_cntr_countrieslist.Items.Add(cntr["name"].ToString());
+                txb_output.Text = formatJson(json);
+            }
+            btn_cntr_copy.Enabled = true;
+            btn_cntr_getlist.Enabled = false;
+        }
+
+        private void btn_cntr_copy_Click(object sender, EventArgs e)
+        {
+            string temp = "";
+
+            foreach (object item in lsb_cntr_countrieslist.Items)
+                temp += item.ToString() + "\r\n";
+
+            Clipboard.SetText(temp);
         }
     }
  }

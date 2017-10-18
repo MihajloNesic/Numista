@@ -94,6 +94,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label24 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lsb_cntr_countrieslist = new System.Windows.Forms.ListBox();
+            this.btn_cntr_getlist = new System.Windows.Forms.Button();
+            this.btn_cntr_copy = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -105,6 +110,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_coin_reverse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_coin_obverse)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -125,7 +131,7 @@
             this.txb_output.Name = "txb_output";
             this.txb_output.ReadOnly = true;
             this.txb_output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txb_output.Size = new System.Drawing.Size(280, 550);
+            this.txb_output.Size = new System.Drawing.Size(280, 534);
             this.txb_output.TabIndex = 2;
             this.txb_output.TabStop = false;
             // 
@@ -159,6 +165,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 119);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -543,6 +550,7 @@
             this.label26.Size = new System.Drawing.Size(15, 13);
             this.label26.TabIndex = 32;
             this.label26.Text = "R";
+            this.tlt_tip1.SetToolTip(this.label26, "Reference number");
             // 
             // txb_coin_refnumber
             // 
@@ -820,11 +828,67 @@
             this.label24.TabIndex = 29;
             this.label24.Text = "JSON Output from server - http://qmegas.info/numista-api/";
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label28.Location = new System.Drawing.Point(276, 565);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(254, 13);
+            this.label28.TabIndex = 30;
+            this.label28.Text = "Note: At the moment, this data is cached for 30 days";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btn_cntr_copy);
+            this.tabPage3.Controls.Add(this.btn_cntr_getlist);
+            this.tabPage3.Controls.Add(this.lsb_cntr_countrieslist);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(250, 433);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Countries";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lsb_cntr_countrieslist
+            // 
+            this.lsb_cntr_countrieslist.FormattingEnabled = true;
+            this.lsb_cntr_countrieslist.Location = new System.Drawing.Point(3, 40);
+            this.lsb_cntr_countrieslist.Name = "lsb_cntr_countrieslist";
+            this.lsb_cntr_countrieslist.Size = new System.Drawing.Size(244, 355);
+            this.lsb_cntr_countrieslist.Sorted = true;
+            this.lsb_cntr_countrieslist.TabIndex = 0;
+            this.lsb_cntr_countrieslist.TabStop = false;
+            // 
+            // btn_cntr_getlist
+            // 
+            this.btn_cntr_getlist.Location = new System.Drawing.Point(3, 11);
+            this.btn_cntr_getlist.Name = "btn_cntr_getlist";
+            this.btn_cntr_getlist.Size = new System.Drawing.Size(244, 23);
+            this.btn_cntr_getlist.TabIndex = 1;
+            this.btn_cntr_getlist.TabStop = false;
+            this.btn_cntr_getlist.Text = "Get list of all countries (May take serval minutes)";
+            this.tlt_tip1.SetToolTip(this.btn_cntr_getlist, "May take serval minutes");
+            this.btn_cntr_getlist.UseVisualStyleBackColor = true;
+            this.btn_cntr_getlist.Click += new System.EventHandler(this.btn_cntr_getlist_Click);
+            // 
+            // btn_cntr_copy
+            // 
+            this.btn_cntr_copy.Enabled = false;
+            this.btn_cntr_copy.Location = new System.Drawing.Point(3, 401);
+            this.btn_cntr_copy.Name = "btn_cntr_copy";
+            this.btn_cntr_copy.Size = new System.Drawing.Size(244, 23);
+            this.btn_cntr_copy.TabIndex = 2;
+            this.btn_cntr_copy.Text = "Copy list to clipboard";
+            this.btn_cntr_copy.UseVisualStyleBackColor = true;
+            this.btn_cntr_copy.Click += new System.EventHandler(this.btn_cntr_copy_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 590);
+            this.Controls.Add(this.label28);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
@@ -852,6 +916,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_coin_reverse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_coin_obverse)).EndInit();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -922,6 +987,11 @@
         private System.Windows.Forms.TextBox txb_profile_forum;
         private System.Windows.Forms.CheckBox chb_profile_collectionvisible;
         private System.Windows.Forms.CheckBox chb_profile_swapcoins;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btn_cntr_getlist;
+        private System.Windows.Forms.ListBox lsb_cntr_countrieslist;
+        private System.Windows.Forms.Button btn_cntr_copy;
     }
 }
 
