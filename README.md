@@ -3,7 +3,7 @@ Windows software for browsing Numista.com using unofficial Numista API.
 
 Numist API provided by Migos (http://qmegas.info/numista-api/)
 
-Profile search by ID
+Profile search by ID \n
 ![Profile search](https://i.imgur.com/z5o7Sgi.png)
 
 Coin search by ID
