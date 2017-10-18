@@ -585,6 +585,8 @@
             this.cmb_coin_years.Size = new System.Drawing.Size(157, 21);
             this.cmb_coin_years.TabIndex = 7;
             this.cmb_coin_years.TabStop = false;
+            this.tlt_tip1.SetToolTip(this.cmb_coin_years, "Click to expand");
+            this.cmb_coin_years.SelectedIndexChanged += new System.EventHandler(this.cmb_coin_years_SelectedIndexChanged);
             // 
             // label23
             // 

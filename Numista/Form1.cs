@@ -214,5 +214,11 @@ namespace Numista
 
              }
          }
+
+        // Handle items to not be selectable in combobox
+        private void cmb_coin_years_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_coin_years.SelectedIndex = -1;
+        }
     }
  }
