@@ -14,6 +14,8 @@ namespace Numista
 {
     public partial class Form1 : Form
     {
+        private string accessToken;
+
         public Form1()
         {
             InitializeComponent();
@@ -246,6 +248,97 @@ namespace Numista
                 temp += item.ToString() + "\r\n";
 
             Clipboard.SetText(temp);
+        }
+
+        private void btn_log_login_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("I can ensure you, I am NOT stealing your account in any way.\nYou can check out source code for this software on GitHub. \nhttps://github.com/MihajloNesic/Numista", "Message from the developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            login(txb_log_user.Text, txb_log_pass.Text);
+
+            if (this.accessToken != "")
+            {
+                btn_log_login.Enabled = false;
+                btn_log_logout.Enabled = true;
+                txb_log_user.Text = "";
+                txb_log_pass.Text = "";
+                grb_log_account.Enabled = true;
+            }
+        }
+
+        private void btn_log_logout_Click(object sender, EventArgs e)
+        {
+            logout(this.accessToken);
+
+            btn_log_login.Enabled = true;
+            btn_log_logout.Enabled = false;
+            txb_log_user.Text = "";
+            txb_log_pass.Text = "";
+            grb_log_account.Enabled = false;
+            lsb_log_messages.Items.Clear();
+            lsv_log_messages.Items.Clear();
+        }
+
+        private void login(string user, string pass)
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("http://qmegas.info/numista-api/authorize?login="+user+"&password="+pass);
+                dynamic array = JsonConvert.DeserializeObject(json);
+
+                var accessToken = "";
+
+                if (array.access_token != null)
+                    accessToken = array.access_token.ToString();
+
+                txb_output.Text = formatJson(json);
+
+                this.accessToken = accessToken;
+            }
+        }
+
+        private void logout(String access_token)
+        {
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("http://qmegas.info/numista-api/authorize/destroy?access_token="+access_token);
+                txb_output.Text = formatJson(json);
+            }
+        }
+
+        private void btn_log_getmessages_Click(object sender, EventArgs e)
+        {
+            lsb_log_messages.Items.Clear();
+            using (var webClient = new WebClient())
+            {
+                var json = webClient.DownloadString("http://qmegas.info/numista-api/messages/inbox?access_token="+this.accessToken);
+                dynamic array = JsonConvert.DeserializeObject(json);
+                
+                foreach (dynamic message in array["messages"])
+                {
+                    lsb_log_messages.Items.Add(message["title"].ToString());
+                    lsb_log_messages.Items.Add(message["sender"]["name"].ToString());
+                    lsb_log_messages.Items.Add(message["time"].ToString());
+                    lsb_log_messages.Items.Add(message["is_new"].ToString());
+                    lsb_log_messages.Items.Add(message["is_replied"].ToString());
+                }
+                
+                txb_output.Text = formatJson(json);
+            }
+            addMessagesToList();
+        }
+
+        private void addMessagesToList()
+        {
+            for (int i = 0; i < (lsb_log_messages.Items.Count - 1); i += 5)
+            {
+                ListViewItem lvi = new ListViewItem(lsb_log_messages.Items[i].ToString());
+                lvi.SubItems.Add(lsb_log_messages.Items[i + 1].ToString());
+                lvi.SubItems.Add(lsb_log_messages.Items[i + 2].ToString());
+                lvi.SubItems.Add(lsb_log_messages.Items[i + 3].ToString());
+                lvi.SubItems.Add(lsb_log_messages.Items[i + 4].ToString());
+                lsv_log_messages.Items.Add(lvi);
+            }
         }
     }
  }

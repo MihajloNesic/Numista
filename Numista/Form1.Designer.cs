@@ -92,13 +92,30 @@
             this.txb_coin_metal = new System.Windows.Forms.TextBox();
             this.txb_coin_weight = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_cntr_copy = new System.Windows.Forms.Button();
+            this.btn_cntr_getlist = new System.Windows.Forms.Button();
+            this.lsb_cntr_countrieslist = new System.Windows.Forms.ListBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.grb_log_account = new System.Windows.Forms.GroupBox();
+            this.btn_log_logout = new System.Windows.Forms.Button();
+            this.btn_log_login = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txb_log_pass = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txb_log_user = new System.Windows.Forms.TextBox();
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.lsb_cntr_countrieslist = new System.Windows.Forms.ListBox();
-            this.btn_cntr_getlist = new System.Windows.Forms.Button();
-            this.btn_cntr_copy = new System.Windows.Forms.Button();
+            this.btn_log_getmessages = new System.Windows.Forms.Button();
+            this.lsb_log_messages = new System.Windows.Forms.ListBox();
+            this.lsv_log_messages = new System.Windows.Forms.ListView();
+            this.label31 = new System.Windows.Forms.Label();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -111,6 +128,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcb_coin_reverse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_coin_obverse)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            this.grb_log_account.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -166,7 +185,9 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 119);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(258, 459);
@@ -818,6 +839,134 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Metal";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.btn_cntr_copy);
+            this.tabPage3.Controls.Add(this.btn_cntr_getlist);
+            this.tabPage3.Controls.Add(this.lsb_cntr_countrieslist);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(250, 433);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Countries";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btn_cntr_copy
+            // 
+            this.btn_cntr_copy.Enabled = false;
+            this.btn_cntr_copy.Location = new System.Drawing.Point(3, 401);
+            this.btn_cntr_copy.Name = "btn_cntr_copy";
+            this.btn_cntr_copy.Size = new System.Drawing.Size(244, 23);
+            this.btn_cntr_copy.TabIndex = 2;
+            this.btn_cntr_copy.Text = "Copy list to clipboard";
+            this.btn_cntr_copy.UseVisualStyleBackColor = true;
+            this.btn_cntr_copy.Click += new System.EventHandler(this.btn_cntr_copy_Click);
+            // 
+            // btn_cntr_getlist
+            // 
+            this.btn_cntr_getlist.Location = new System.Drawing.Point(3, 11);
+            this.btn_cntr_getlist.Name = "btn_cntr_getlist";
+            this.btn_cntr_getlist.Size = new System.Drawing.Size(244, 23);
+            this.btn_cntr_getlist.TabIndex = 1;
+            this.btn_cntr_getlist.TabStop = false;
+            this.btn_cntr_getlist.Text = "Get list of all countries (May take serval minutes)";
+            this.tlt_tip1.SetToolTip(this.btn_cntr_getlist, "May take serval minutes");
+            this.btn_cntr_getlist.UseVisualStyleBackColor = true;
+            this.btn_cntr_getlist.Click += new System.EventHandler(this.btn_cntr_getlist_Click);
+            // 
+            // lsb_cntr_countrieslist
+            // 
+            this.lsb_cntr_countrieslist.FormattingEnabled = true;
+            this.lsb_cntr_countrieslist.Location = new System.Drawing.Point(3, 40);
+            this.lsb_cntr_countrieslist.Name = "lsb_cntr_countrieslist";
+            this.lsb_cntr_countrieslist.Size = new System.Drawing.Size(244, 355);
+            this.lsb_cntr_countrieslist.Sorted = true;
+            this.lsb_cntr_countrieslist.TabIndex = 0;
+            this.lsb_cntr_countrieslist.TabStop = false;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.grb_log_account);
+            this.tabPage4.Controls.Add(this.btn_log_logout);
+            this.tabPage4.Controls.Add(this.btn_log_login);
+            this.tabPage4.Controls.Add(this.label30);
+            this.tabPage4.Controls.Add(this.txb_log_pass);
+            this.tabPage4.Controls.Add(this.label29);
+            this.tabPage4.Controls.Add(this.txb_log_user);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(250, 433);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Account";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // grb_log_account
+            // 
+            this.grb_log_account.Controls.Add(this.label31);
+            this.grb_log_account.Controls.Add(this.lsv_log_messages);
+            this.grb_log_account.Controls.Add(this.btn_log_getmessages);
+            this.grb_log_account.Enabled = false;
+            this.grb_log_account.Location = new System.Drawing.Point(6, 94);
+            this.grb_log_account.Name = "grb_log_account";
+            this.grb_log_account.Size = new System.Drawing.Size(241, 336);
+            this.grb_log_account.TabIndex = 6;
+            this.grb_log_account.TabStop = false;
+            this.grb_log_account.Text = "Your account";
+            // 
+            // btn_log_logout
+            // 
+            this.btn_log_logout.Enabled = false;
+            this.btn_log_logout.Location = new System.Drawing.Point(64, 65);
+            this.btn_log_logout.Name = "btn_log_logout";
+            this.btn_log_logout.Size = new System.Drawing.Size(87, 23);
+            this.btn_log_logout.TabIndex = 5;
+            this.btn_log_logout.Text = "log out";
+            this.btn_log_logout.UseVisualStyleBackColor = true;
+            this.btn_log_logout.Click += new System.EventHandler(this.btn_log_logout_Click);
+            // 
+            // btn_log_login
+            // 
+            this.btn_log_login.Location = new System.Drawing.Point(154, 65);
+            this.btn_log_login.Name = "btn_log_login";
+            this.btn_log_login.Size = new System.Drawing.Size(87, 23);
+            this.btn_log_login.TabIndex = 4;
+            this.btn_log_login.Text = "log in";
+            this.btn_log_login.UseVisualStyleBackColor = true;
+            this.btn_log_login.Click += new System.EventHandler(this.btn_log_login_Click);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(9, 42);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(53, 13);
+            this.label30.TabIndex = 3;
+            this.label30.Text = "Password";
+            // 
+            // txb_log_pass
+            // 
+            this.txb_log_pass.Location = new System.Drawing.Point(64, 39);
+            this.txb_log_pass.Name = "txb_log_pass";
+            this.txb_log_pass.PasswordChar = '•';
+            this.txb_log_pass.Size = new System.Drawing.Size(177, 20);
+            this.txb_log_pass.TabIndex = 2;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(9, 16);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(55, 13);
+            this.label29.TabIndex = 1;
+            this.label29.Text = "Username";
+            // 
+            // txb_log_user
+            // 
+            this.txb_log_user.Location = new System.Drawing.Point(64, 13);
+            this.txb_log_user.Name = "txb_log_user";
+            this.txb_log_user.Size = new System.Drawing.Size(177, 20);
+            this.txb_log_user.TabIndex = 0;
+            // 
             // label24
             // 
             this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -838,50 +987,72 @@
             this.label28.TabIndex = 30;
             this.label28.Text = "Note: At the moment, this data is cached for 30 days";
             // 
-            // tabPage3
+            // btn_log_getmessages
             // 
-            this.tabPage3.Controls.Add(this.btn_cntr_copy);
-            this.tabPage3.Controls.Add(this.btn_cntr_getlist);
-            this.tabPage3.Controls.Add(this.lsb_cntr_countrieslist);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(250, 433);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Countries";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.btn_log_getmessages.Location = new System.Drawing.Point(6, 304);
+            this.btn_log_getmessages.Name = "btn_log_getmessages";
+            this.btn_log_getmessages.Size = new System.Drawing.Size(229, 23);
+            this.btn_log_getmessages.TabIndex = 0;
+            this.btn_log_getmessages.Text = "Get messages";
+            this.btn_log_getmessages.UseVisualStyleBackColor = true;
+            this.btn_log_getmessages.Click += new System.EventHandler(this.btn_log_getmessages_Click);
             // 
-            // lsb_cntr_countrieslist
+            // lsb_log_messages
             // 
-            this.lsb_cntr_countrieslist.FormattingEnabled = true;
-            this.lsb_cntr_countrieslist.Location = new System.Drawing.Point(3, 40);
-            this.lsb_cntr_countrieslist.Name = "lsb_cntr_countrieslist";
-            this.lsb_cntr_countrieslist.Size = new System.Drawing.Size(244, 355);
-            this.lsb_cntr_countrieslist.Sorted = true;
-            this.lsb_cntr_countrieslist.TabIndex = 0;
-            this.lsb_cntr_countrieslist.TabStop = false;
+            this.lsb_log_messages.FormattingEnabled = true;
+            this.lsb_log_messages.HorizontalScrollbar = true;
+            this.lsb_log_messages.Location = new System.Drawing.Point(293, 263);
+            this.lsb_log_messages.Name = "lsb_log_messages";
+            this.lsb_log_messages.Size = new System.Drawing.Size(71, 277);
+            this.lsb_log_messages.TabIndex = 1;
+            this.lsb_log_messages.Visible = false;
             // 
-            // btn_cntr_getlist
+            // lsv_log_messages
             // 
-            this.btn_cntr_getlist.Location = new System.Drawing.Point(3, 11);
-            this.btn_cntr_getlist.Name = "btn_cntr_getlist";
-            this.btn_cntr_getlist.Size = new System.Drawing.Size(244, 23);
-            this.btn_cntr_getlist.TabIndex = 1;
-            this.btn_cntr_getlist.TabStop = false;
-            this.btn_cntr_getlist.Text = "Get list of all countries (May take serval minutes)";
-            this.tlt_tip1.SetToolTip(this.btn_cntr_getlist, "May take serval minutes");
-            this.btn_cntr_getlist.UseVisualStyleBackColor = true;
-            this.btn_cntr_getlist.Click += new System.EventHandler(this.btn_cntr_getlist_Click);
+            this.lsv_log_messages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.lsv_log_messages.FullRowSelect = true;
+            this.lsv_log_messages.GridLines = true;
+            this.lsv_log_messages.Location = new System.Drawing.Point(6, 44);
+            this.lsv_log_messages.Name = "lsv_log_messages";
+            this.lsv_log_messages.Size = new System.Drawing.Size(229, 254);
+            this.lsv_log_messages.TabIndex = 32;
+            this.lsv_log_messages.TabStop = false;
+            this.lsv_log_messages.UseCompatibleStateImageBehavior = false;
+            this.lsv_log_messages.View = System.Windows.Forms.View.Details;
             // 
-            // btn_cntr_copy
+            // label31
             // 
-            this.btn_cntr_copy.Enabled = false;
-            this.btn_cntr_copy.Location = new System.Drawing.Point(3, 401);
-            this.btn_cntr_copy.Name = "btn_cntr_copy";
-            this.btn_cntr_copy.Size = new System.Drawing.Size(244, 23);
-            this.btn_cntr_copy.TabIndex = 2;
-            this.btn_cntr_copy.Text = "Copy list to clipboard";
-            this.btn_cntr_copy.UseVisualStyleBackColor = true;
-            this.btn_cntr_copy.Click += new System.EventHandler(this.btn_cntr_copy_Click);
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(6, 28);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(55, 13);
+            this.label31.TabIndex = 33;
+            this.label31.Text = "Messages";
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Title";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "From";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Time";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Seen";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Replied";
             // 
             // Form1
             // 
@@ -889,6 +1060,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 590);
             this.Controls.Add(this.label28);
+            this.Controls.Add(this.lsb_log_messages);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
@@ -899,7 +1071,7 @@
             this.MinimumSize = new System.Drawing.Size(584, 628);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista";
+            this.Text = "Numista v.1.2.0";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -917,6 +1089,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcb_coin_reverse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_coin_obverse)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.grb_log_account.ResumeLayout(false);
+            this.grb_log_account.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -992,6 +1168,23 @@
         private System.Windows.Forms.Button btn_cntr_getlist;
         private System.Windows.Forms.ListBox lsb_cntr_countrieslist;
         private System.Windows.Forms.Button btn_cntr_copy;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox txb_log_pass;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox txb_log_user;
+        private System.Windows.Forms.Button btn_log_logout;
+        private System.Windows.Forms.Button btn_log_login;
+        private System.Windows.Forms.GroupBox grb_log_account;
+        private System.Windows.Forms.ListBox lsb_log_messages;
+        private System.Windows.Forms.Button btn_log_getmessages;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ListView lsv_log_messages;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }
 
