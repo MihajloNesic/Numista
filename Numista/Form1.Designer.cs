@@ -66,6 +66,10 @@
             this.nud_coinID = new System.Windows.Forms.NumericUpDown();
             this.btn_randomcoin = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.llb_reverselink = new System.Windows.Forms.LinkLabel();
+            this.llb_obverselink = new System.Windows.Forms.LinkLabel();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txb_coin_shape = new System.Windows.Forms.TextBox();
             this.llb_coinlink = new System.Windows.Forms.LinkLabel();
             this.label26 = new System.Windows.Forms.Label();
             this.txb_coin_refnumber = new System.Windows.Forms.TextBox();
@@ -99,6 +103,7 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.grb_log_account = new System.Windows.Forms.GroupBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.lsb_log_messages = new System.Windows.Forms.ListBox();
             this.lsv_log_messages = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -115,11 +120,6 @@
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.lsb_log_messages = new System.Windows.Forms.ListBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.txb_coin_shape = new System.Windows.Forms.TextBox();
-            this.llb_obverselink = new System.Windows.Forms.LinkLabel();
-            this.llb_reverselink = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -583,6 +583,52 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Coin Information";
             // 
+            // llb_reverselink
+            // 
+            this.llb_reverselink.AutoSize = true;
+            this.llb_reverselink.Enabled = false;
+            this.llb_reverselink.Location = new System.Drawing.Point(153, 281);
+            this.llb_reverselink.Name = "llb_reverselink";
+            this.llb_reverselink.Size = new System.Drawing.Size(47, 13);
+            this.llb_reverselink.TabIndex = 31;
+            this.llb_reverselink.TabStop = true;
+            this.llb_reverselink.Text = "Reverse";
+            this.tlt_tip1.SetToolTip(this.llb_reverselink, "Click to view image");
+            this.llb_reverselink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_reverselink_LinkClicked);
+            // 
+            // llb_obverselink
+            // 
+            this.llb_obverselink.AutoSize = true;
+            this.llb_obverselink.Enabled = false;
+            this.llb_obverselink.Location = new System.Drawing.Point(40, 281);
+            this.llb_obverselink.Name = "llb_obverselink";
+            this.llb_obverselink.Size = new System.Drawing.Size(47, 13);
+            this.llb_obverselink.TabIndex = 35;
+            this.llb_obverselink.TabStop = true;
+            this.llb_obverselink.Text = "Obverse";
+            this.tlt_tip1.SetToolTip(this.llb_obverselink, "Click to view image");
+            this.llb_obverselink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_obverselink_LinkClicked);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(6, 230);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(38, 13);
+            this.label32.TabIndex = 34;
+            this.label32.Text = "Shape";
+            // 
+            // txb_coin_shape
+            // 
+            this.txb_coin_shape.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txb_coin_shape.Location = new System.Drawing.Point(72, 227);
+            this.txb_coin_shape.Name = "txb_coin_shape";
+            this.txb_coin_shape.ReadOnly = true;
+            this.txb_coin_shape.Size = new System.Drawing.Size(157, 20);
+            this.txb_coin_shape.TabIndex = 33;
+            this.txb_coin_shape.TabStop = false;
+            // 
             // llb_coinlink
             // 
             this.llb_coinlink.AutoSize = true;
@@ -936,6 +982,16 @@
             this.label31.TabIndex = 33;
             this.label31.Text = "Messages";
             // 
+            // lsb_log_messages
+            // 
+            this.lsb_log_messages.FormattingEnabled = true;
+            this.lsb_log_messages.HorizontalScrollbar = true;
+            this.lsb_log_messages.Location = new System.Drawing.Point(125, 11);
+            this.lsb_log_messages.Name = "lsb_log_messages";
+            this.lsb_log_messages.Size = new System.Drawing.Size(110, 30);
+            this.lsb_log_messages.TabIndex = 1;
+            this.lsb_log_messages.Visible = false;
+            // 
             // lsv_log_messages
             // 
             this.lsv_log_messages.BackColor = System.Drawing.SystemColors.Window;
@@ -1059,62 +1115,6 @@
             this.label28.TabIndex = 30;
             this.label28.Text = "Note: At the moment, this data is cached for 30 days";
             // 
-            // lsb_log_messages
-            // 
-            this.lsb_log_messages.FormattingEnabled = true;
-            this.lsb_log_messages.HorizontalScrollbar = true;
-            this.lsb_log_messages.Location = new System.Drawing.Point(125, 11);
-            this.lsb_log_messages.Name = "lsb_log_messages";
-            this.lsb_log_messages.Size = new System.Drawing.Size(110, 30);
-            this.lsb_log_messages.TabIndex = 1;
-            this.lsb_log_messages.Visible = false;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(6, 230);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(38, 13);
-            this.label32.TabIndex = 34;
-            this.label32.Text = "Shape";
-            // 
-            // txb_coin_shape
-            // 
-            this.txb_coin_shape.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txb_coin_shape.Location = new System.Drawing.Point(72, 227);
-            this.txb_coin_shape.Name = "txb_coin_shape";
-            this.txb_coin_shape.ReadOnly = true;
-            this.txb_coin_shape.Size = new System.Drawing.Size(157, 20);
-            this.txb_coin_shape.TabIndex = 33;
-            this.txb_coin_shape.TabStop = false;
-            // 
-            // llb_obverselink
-            // 
-            this.llb_obverselink.AutoSize = true;
-            this.llb_obverselink.Enabled = false;
-            this.llb_obverselink.Location = new System.Drawing.Point(40, 281);
-            this.llb_obverselink.Name = "llb_obverselink";
-            this.llb_obverselink.Size = new System.Drawing.Size(47, 13);
-            this.llb_obverselink.TabIndex = 35;
-            this.llb_obverselink.TabStop = true;
-            this.llb_obverselink.Text = "Obverse";
-            this.tlt_tip1.SetToolTip(this.llb_obverselink, "Click to view image");
-            this.llb_obverselink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_obverselink_LinkClicked);
-            // 
-            // llb_reverselink
-            // 
-            this.llb_reverselink.AutoSize = true;
-            this.llb_reverselink.Enabled = false;
-            this.llb_reverselink.Location = new System.Drawing.Point(153, 281);
-            this.llb_reverselink.Name = "llb_reverselink";
-            this.llb_reverselink.Size = new System.Drawing.Size(47, 13);
-            this.llb_reverselink.TabIndex = 31;
-            this.llb_reverselink.TabStop = true;
-            this.llb_reverselink.Text = "Reverse";
-            this.tlt_tip1.SetToolTip(this.llb_reverselink, "Click to view image");
-            this.llb_reverselink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_reverselink_LinkClicked);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1131,7 +1131,7 @@
             this.MinimumSize = new System.Drawing.Size(584, 628);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.2.1";
+            this.Text = "Numista v.1.2.2.";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);

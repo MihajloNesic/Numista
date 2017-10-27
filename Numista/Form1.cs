@@ -151,7 +151,7 @@ namespace Numista
                     yearsR = array.years_range.ToString();
                     foreach (dynamic year in array["years"])
                     {
-                        cmb_coin_years.Items.Add(year["year"].ToString());
+                        cmb_coin_years.Items.Add(year["year"].ToString()+ " " + year["remark"].ToString());
                     }
                 }
 
