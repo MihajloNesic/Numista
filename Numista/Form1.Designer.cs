@@ -98,6 +98,14 @@
             this.lsb_cntr_countrieslist = new System.Windows.Forms.ListBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.grb_log_account = new System.Windows.Forms.GroupBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.lsv_log_messages = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btn_log_getmessages = new System.Windows.Forms.Button();
             this.btn_log_logout = new System.Windows.Forms.Button();
             this.btn_log_login = new System.Windows.Forms.Button();
             this.label30 = new System.Windows.Forms.Label();
@@ -107,15 +115,9 @@
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.btn_log_getmessages = new System.Windows.Forms.Button();
             this.lsb_log_messages = new System.Windows.Forms.ListBox();
-            this.lsv_log_messages = new System.Windows.Forms.ListView();
-            this.label31 = new System.Windows.Forms.Label();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.llb_coinlink = new System.Windows.Forms.LinkLabel();
+            this.llb_profilelink = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -209,6 +211,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.llb_profilelink);
             this.groupBox2.Controls.Add(this.chb_profile_swapcoins);
             this.groupBox2.Controls.Add(this.chb_profile_collectionvisible);
             this.groupBox2.Controls.Add(this.label27);
@@ -529,6 +532,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.llb_coinlink);
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.txb_coin_refnumber);
             this.groupBox1.Controls.Add(this.label25);
@@ -913,6 +917,63 @@
             this.grb_log_account.TabStop = false;
             this.grb_log_account.Text = "Your account";
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(6, 28);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(55, 13);
+            this.label31.TabIndex = 33;
+            this.label31.Text = "Messages";
+            // 
+            // lsv_log_messages
+            // 
+            this.lsv_log_messages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.lsv_log_messages.FullRowSelect = true;
+            this.lsv_log_messages.GridLines = true;
+            this.lsv_log_messages.Location = new System.Drawing.Point(6, 44);
+            this.lsv_log_messages.Name = "lsv_log_messages";
+            this.lsv_log_messages.Size = new System.Drawing.Size(229, 254);
+            this.lsv_log_messages.TabIndex = 32;
+            this.lsv_log_messages.TabStop = false;
+            this.lsv_log_messages.UseCompatibleStateImageBehavior = false;
+            this.lsv_log_messages.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Title";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "From";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Time";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Seen";
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Replied";
+            // 
+            // btn_log_getmessages
+            // 
+            this.btn_log_getmessages.Location = new System.Drawing.Point(6, 304);
+            this.btn_log_getmessages.Name = "btn_log_getmessages";
+            this.btn_log_getmessages.Size = new System.Drawing.Size(229, 23);
+            this.btn_log_getmessages.TabIndex = 0;
+            this.btn_log_getmessages.Text = "Get messages";
+            this.btn_log_getmessages.UseVisualStyleBackColor = true;
+            this.btn_log_getmessages.Click += new System.EventHandler(this.btn_log_getmessages_Click);
+            // 
             // btn_log_logout
             // 
             this.btn_log_logout.Enabled = false;
@@ -987,72 +1048,39 @@
             this.label28.TabIndex = 30;
             this.label28.Text = "Note: At the moment, this data is cached for 30 days";
             // 
-            // btn_log_getmessages
-            // 
-            this.btn_log_getmessages.Location = new System.Drawing.Point(6, 304);
-            this.btn_log_getmessages.Name = "btn_log_getmessages";
-            this.btn_log_getmessages.Size = new System.Drawing.Size(229, 23);
-            this.btn_log_getmessages.TabIndex = 0;
-            this.btn_log_getmessages.Text = "Get messages";
-            this.btn_log_getmessages.UseVisualStyleBackColor = true;
-            this.btn_log_getmessages.Click += new System.EventHandler(this.btn_log_getmessages_Click);
-            // 
             // lsb_log_messages
             // 
             this.lsb_log_messages.FormattingEnabled = true;
             this.lsb_log_messages.HorizontalScrollbar = true;
-            this.lsb_log_messages.Location = new System.Drawing.Point(293, 263);
+            this.lsb_log_messages.Location = new System.Drawing.Point(292, 518);
             this.lsb_log_messages.Name = "lsb_log_messages";
-            this.lsb_log_messages.Size = new System.Drawing.Size(71, 277);
+            this.lsb_log_messages.Size = new System.Drawing.Size(110, 30);
             this.lsb_log_messages.TabIndex = 1;
             this.lsb_log_messages.Visible = false;
             // 
-            // lsv_log_messages
+            // llb_coinlink
             // 
-            this.lsv_log_messages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5});
-            this.lsv_log_messages.FullRowSelect = true;
-            this.lsv_log_messages.GridLines = true;
-            this.lsv_log_messages.Location = new System.Drawing.Point(6, 44);
-            this.lsv_log_messages.Name = "lsv_log_messages";
-            this.lsv_log_messages.Size = new System.Drawing.Size(229, 254);
-            this.lsv_log_messages.TabIndex = 32;
-            this.lsv_log_messages.TabStop = false;
-            this.lsv_log_messages.UseCompatibleStateImageBehavior = false;
-            this.lsv_log_messages.View = System.Windows.Forms.View.Details;
+            this.llb_coinlink.AutoSize = true;
+            this.llb_coinlink.Enabled = false;
+            this.llb_coinlink.Location = new System.Drawing.Point(164, 0);
+            this.llb_coinlink.Name = "llb_coinlink";
+            this.llb_coinlink.Size = new System.Drawing.Size(71, 13);
+            this.llb_coinlink.TabIndex = 31;
+            this.llb_coinlink.TabStop = true;
+            this.llb_coinlink.Text = "View on Web";
+            this.llb_coinlink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_coinlink_LinkClicked);
             // 
-            // label31
+            // llb_profilelink
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(6, 28);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(55, 13);
-            this.label31.TabIndex = 33;
-            this.label31.Text = "Messages";
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Title";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "From";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Time";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Seen";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Replied";
+            this.llb_profilelink.AutoSize = true;
+            this.llb_profilelink.Enabled = false;
+            this.llb_profilelink.Location = new System.Drawing.Point(173, 0);
+            this.llb_profilelink.Name = "llb_profilelink";
+            this.llb_profilelink.Size = new System.Drawing.Size(71, 13);
+            this.llb_profilelink.TabIndex = 31;
+            this.llb_profilelink.TabStop = true;
+            this.llb_profilelink.Text = "View on Web";
+            this.llb_profilelink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_profilelink_LinkClicked);
             // 
             // Form1
             // 
@@ -1185,6 +1213,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.LinkLabel llb_coinlink;
+        private System.Windows.Forms.LinkLabel llb_profilelink;
     }
 }
 

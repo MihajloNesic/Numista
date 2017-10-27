@@ -45,6 +45,7 @@ namespace Numista
         private void btn_profilesearch_Click(object sender, EventArgs e)
         {
             searchProfile(nud_profileID.Value.ToString());
+            llb_profilelink.Enabled = true;
         }
 
         private string formatJson(string json)
@@ -56,6 +57,7 @@ namespace Numista
 
         private void searchCoin(String coinID)
         {
+            llb_coinlink.Enabled = true;
             cmb_coin_years.Items.Clear();
 
             using (var webClient = new WebClient())
@@ -339,6 +341,18 @@ namespace Numista
                 lvi.SubItems.Add(lsb_log_messages.Items[i + 4].ToString());
                 lsv_log_messages.Items.Add(lvi);
             }
+        }
+
+        private void llb_coinlink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string link = "https://en.numista.com/catalogue/pieces" + nud_coinID.Value.ToString() + ".html";
+            System.Diagnostics.Process.Start(link);
+        }
+
+        private void llb_profilelink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string link = "https://en.numista.com/echanges/profil.php?id=" + nud_profileID.Value.ToString();
+            System.Diagnostics.Process.Start(link);
         }
     }
  }
