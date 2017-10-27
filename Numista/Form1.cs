@@ -15,6 +15,7 @@ namespace Numista
     public partial class Form1 : Form
     {
         private string accessToken;
+        private string obversePhotoUrl, reversePhotoUrl;
 
         public Form1()
         {
@@ -57,7 +58,6 @@ namespace Numista
 
         private void searchCoin(String coinID)
         {
-            llb_coinlink.Enabled = true;
             cmb_coin_years.Items.Clear();
 
             using (var webClient = new WebClient())
@@ -73,11 +73,14 @@ namespace Numista
                 var metal = "";
                 var orientation = "";
                 var thickness = "";
+                var shape = "";
                 var yearsR = "";
                 var kmNum = "";
 
                 var obverse_photo = "https://en.numista.com/catalogue/photos/no-obverse-en.png";
                 var reverse_photo = "https://en.numista.com/catalogue/photos/no-reverse-en.png";
+                obversePhotoUrl = obverse_photo.ToString();
+                reversePhotoUrl = reverse_photo.ToString();
 
                 if (array.title != null)
                     title = array.title.ToString();
@@ -97,15 +100,49 @@ namespace Numista
                 if (array.orientation != null)
                     orientation = array.orientation.ToString();
 
+                if (array.shape != null)
+                    shape = array.shape.ToString();
+
                 if (array.thickness != null)
                     thickness = array.thickness.ToString();
 
+
                 if (array.images != null)
+                {
                     obverse_photo = array.images.obverse.preview.ToString();
-                if (array.images != null)
+
+                    if (array.images.obverse.fullsize != "")
+                    {
+                        obversePhotoUrl = array.images.obverse.fullsize.ToString();
+                        llb_obverselink.Enabled = true;
+                    }
+                    else
+                    {
+                        obversePhotoUrl = obverse_photo.ToString();
+                        llb_obverselink.Enabled = false;
+                    }
+
                     reverse_photo = array.images.reverse.preview.ToString();
 
-                if(array.km != null)
+                    if (array.images.reverse.fullsize != "")
+                    {
+                        reversePhotoUrl = array.images.reverse.fullsize.ToString();
+                        llb_reverselink.Enabled = true;
+                    }
+                    else
+                    {
+                        reversePhotoUrl = reverse_photo.ToString();
+                        llb_reverselink.Enabled = false;
+                    }
+                }
+                else
+                {
+                    llb_obverselink.Enabled = false;
+                    llb_reverselink.Enabled = false;
+                }
+
+
+                if (array.km != null)
                     if (array.km.ToString() != "[]")
                         kmNum = array["km"][0];
 
@@ -127,12 +164,14 @@ namespace Numista
                 txb_coin_metal.Text = metal;
                 txb_coin_orient.Text = orientation;
                 txb_coin_thickness.Text = thickness;
+                txb_coin_shape.Text = shape;
                 txb_coin_yearsrange.Text = yearsR;
                 txb_coin_refnumber.Text = kmNum;
 
                 pcb_coin_obverse.Load(obverse_photo);
                 pcb_coin_reverse.Load(reverse_photo);
             }
+            llb_coinlink.Enabled = true;
         }
 
         private void searchProfile(string profileID)
@@ -353,6 +392,16 @@ namespace Numista
         {
             string link = "https://en.numista.com/echanges/profil.php?id=" + nud_profileID.Value.ToString();
             System.Diagnostics.Process.Start(link);
+        }
+
+        private void llb_obverselink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.obversePhotoUrl);
+        }
+
+        private void llb_reverselink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.reversePhotoUrl);
         }
     }
  }

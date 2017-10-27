@@ -37,6 +37,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.llb_profilelink = new System.Windows.Forms.LinkLabel();
             this.chb_profile_swapcoins = new System.Windows.Forms.CheckBox();
             this.chb_profile_collectionvisible = new System.Windows.Forms.CheckBox();
             this.label27 = new System.Windows.Forms.Label();
@@ -65,6 +66,7 @@
             this.nud_coinID = new System.Windows.Forms.NumericUpDown();
             this.btn_randomcoin = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.llb_coinlink = new System.Windows.Forms.LinkLabel();
             this.label26 = new System.Windows.Forms.Label();
             this.txb_coin_refnumber = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -82,11 +84,9 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txb_coin_orient = new System.Windows.Forms.TextBox();
             this.txb_coin_title = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.pcb_coin_reverse = new System.Windows.Forms.PictureBox();
             this.txb_coin_diameter = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pcb_coin_obverse = new System.Windows.Forms.PictureBox();
             this.txb_coin_metal = new System.Windows.Forms.TextBox();
@@ -116,8 +116,10 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.lsb_log_messages = new System.Windows.Forms.ListBox();
-            this.llb_coinlink = new System.Windows.Forms.LinkLabel();
-            this.llb_profilelink = new System.Windows.Forms.LinkLabel();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txb_coin_shape = new System.Windows.Forms.TextBox();
+            this.llb_obverselink = new System.Windows.Forms.LinkLabel();
+            this.llb_reverselink = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -152,7 +154,7 @@
             this.txb_output.Name = "txb_output";
             this.txb_output.ReadOnly = true;
             this.txb_output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txb_output.Size = new System.Drawing.Size(280, 534);
+            this.txb_output.Size = new System.Drawing.Size(280, 551);
             this.txb_output.TabIndex = 2;
             this.txb_output.TabStop = false;
             // 
@@ -192,7 +194,7 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(258, 459);
+            this.tabControl1.Size = new System.Drawing.Size(258, 476);
             this.tabControl1.TabIndex = 5;
             this.tabControl1.TabStop = false;
             // 
@@ -204,7 +206,7 @@
             this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(250, 433);
+            this.tabPage2.Size = new System.Drawing.Size(250, 450);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Profile";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -235,17 +237,29 @@
             this.groupBox2.Controls.Add(this.txb_profile_title);
             this.groupBox2.Location = new System.Drawing.Point(3, 41);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(244, 389);
+            this.groupBox2.Size = new System.Drawing.Size(244, 406);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Profile Information";
+            // 
+            // llb_profilelink
+            // 
+            this.llb_profilelink.AutoSize = true;
+            this.llb_profilelink.Enabled = false;
+            this.llb_profilelink.Location = new System.Drawing.Point(173, 0);
+            this.llb_profilelink.Name = "llb_profilelink";
+            this.llb_profilelink.Size = new System.Drawing.Size(71, 13);
+            this.llb_profilelink.TabIndex = 31;
+            this.llb_profilelink.TabStop = true;
+            this.llb_profilelink.Text = "View on Web";
+            this.llb_profilelink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_profilelink_LinkClicked);
             // 
             // chb_profile_swapcoins
             // 
             this.chb_profile_swapcoins.AutoSize = true;
             this.chb_profile_swapcoins.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chb_profile_swapcoins.Enabled = false;
-            this.chb_profile_swapcoins.Location = new System.Drawing.Point(125, 315);
+            this.chb_profile_swapcoins.Location = new System.Drawing.Point(125, 329);
             this.chb_profile_swapcoins.Name = "chb_profile_swapcoins";
             this.chb_profile_swapcoins.Size = new System.Drawing.Size(113, 17);
             this.chb_profile_swapcoins.TabIndex = 41;
@@ -257,7 +271,7 @@
             this.chb_profile_collectionvisible.AutoSize = true;
             this.chb_profile_collectionvisible.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chb_profile_collectionvisible.Enabled = false;
-            this.chb_profile_collectionvisible.Location = new System.Drawing.Point(4, 315);
+            this.chb_profile_collectionvisible.Location = new System.Drawing.Point(4, 329);
             this.chb_profile_collectionvisible.Name = "chb_profile_collectionvisible";
             this.chb_profile_collectionvisible.Size = new System.Drawing.Size(104, 17);
             this.chb_profile_collectionvisible.TabIndex = 40;
@@ -267,7 +281,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(5, 292);
+            this.label27.Location = new System.Drawing.Point(5, 306);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(64, 13);
             this.label27.TabIndex = 39;
@@ -275,7 +289,7 @@
             // 
             // txb_profile_forum
             // 
-            this.txb_profile_forum.Location = new System.Drawing.Point(81, 289);
+            this.txb_profile_forum.Location = new System.Drawing.Point(81, 303);
             this.txb_profile_forum.Name = "txb_profile_forum";
             this.txb_profile_forum.ReadOnly = true;
             this.txb_profile_forum.Size = new System.Drawing.Size(157, 20);
@@ -285,9 +299,9 @@
             // pcb_profile_avatar
             // 
             this.pcb_profile_avatar.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_profile_avatar.Location = new System.Drawing.Point(68, 19);
+            this.pcb_profile_avatar.Location = new System.Drawing.Point(56, 19);
             this.pcb_profile_avatar.Name = "pcb_profile_avatar";
-            this.pcb_profile_avatar.Size = new System.Drawing.Size(105, 105);
+            this.pcb_profile_avatar.Size = new System.Drawing.Size(122, 122);
             this.pcb_profile_avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcb_profile_avatar.TabIndex = 37;
             this.pcb_profile_avatar.TabStop = false;
@@ -295,7 +309,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(5, 366);
+            this.label17.Location = new System.Drawing.Point(5, 380);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(76, 13);
             this.label17.TabIndex = 36;
@@ -303,7 +317,7 @@
             // 
             // txb_profile_feedbackavg
             // 
-            this.txb_profile_feedbackavg.Location = new System.Drawing.Point(81, 363);
+            this.txb_profile_feedbackavg.Location = new System.Drawing.Point(81, 377);
             this.txb_profile_feedbackavg.Name = "txb_profile_feedbackavg";
             this.txb_profile_feedbackavg.ReadOnly = true;
             this.txb_profile_feedbackavg.Size = new System.Drawing.Size(157, 20);
@@ -313,7 +327,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(5, 340);
+            this.label18.Location = new System.Drawing.Point(5, 354);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(73, 13);
             this.label18.TabIndex = 34;
@@ -321,7 +335,7 @@
             // 
             // txb_profile_feedbackcount
             // 
-            this.txb_profile_feedbackcount.Location = new System.Drawing.Point(81, 337);
+            this.txb_profile_feedbackcount.Location = new System.Drawing.Point(81, 351);
             this.txb_profile_feedbackcount.Name = "txb_profile_feedbackcount";
             this.txb_profile_feedbackcount.ReadOnly = true;
             this.txb_profile_feedbackcount.Size = new System.Drawing.Size(157, 20);
@@ -331,7 +345,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(5, 266);
+            this.label19.Location = new System.Drawing.Point(5, 280);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(46, 13);
             this.label19.TabIndex = 32;
@@ -339,7 +353,7 @@
             // 
             // txb_profile_website
             // 
-            this.txb_profile_website.Location = new System.Drawing.Point(81, 263);
+            this.txb_profile_website.Location = new System.Drawing.Point(81, 277);
             this.txb_profile_website.Name = "txb_profile_website";
             this.txb_profile_website.ReadOnly = true;
             this.txb_profile_website.Size = new System.Drawing.Size(157, 20);
@@ -349,7 +363,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(5, 240);
+            this.label15.Location = new System.Drawing.Point(5, 254);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(73, 13);
             this.label15.TabIndex = 30;
@@ -357,7 +371,7 @@
             // 
             // txb_profile_coinstoswap
             // 
-            this.txb_profile_coinstoswap.Location = new System.Drawing.Point(81, 237);
+            this.txb_profile_coinstoswap.Location = new System.Drawing.Point(81, 251);
             this.txb_profile_coinstoswap.Name = "txb_profile_coinstoswap";
             this.txb_profile_coinstoswap.ReadOnly = true;
             this.txb_profile_coinstoswap.Size = new System.Drawing.Size(157, 20);
@@ -367,7 +381,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(5, 214);
+            this.label16.Location = new System.Drawing.Point(5, 228);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(73, 13);
             this.label16.TabIndex = 28;
@@ -375,7 +389,7 @@
             // 
             // txb_profile_membersince
             // 
-            this.txb_profile_membersince.Location = new System.Drawing.Point(81, 211);
+            this.txb_profile_membersince.Location = new System.Drawing.Point(81, 225);
             this.txb_profile_membersince.Name = "txb_profile_membersince";
             this.txb_profile_membersince.ReadOnly = true;
             this.txb_profile_membersince.Size = new System.Drawing.Size(157, 20);
@@ -385,7 +399,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(5, 136);
+            this.label11.Location = new System.Drawing.Point(5, 150);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(55, 13);
             this.label11.TabIndex = 26;
@@ -393,7 +407,7 @@
             // 
             // txb_profile_username
             // 
-            this.txb_profile_username.Location = new System.Drawing.Point(81, 133);
+            this.txb_profile_username.Location = new System.Drawing.Point(81, 147);
             this.txb_profile_username.Name = "txb_profile_username";
             this.txb_profile_username.ReadOnly = true;
             this.txb_profile_username.Size = new System.Drawing.Size(157, 20);
@@ -403,7 +417,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(5, 188);
+            this.label13.Location = new System.Drawing.Point(5, 202);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(48, 13);
             this.label13.TabIndex = 24;
@@ -411,7 +425,7 @@
             // 
             // txb_profile_location
             // 
-            this.txb_profile_location.Location = new System.Drawing.Point(81, 185);
+            this.txb_profile_location.Location = new System.Drawing.Point(81, 199);
             this.txb_profile_location.Name = "txb_profile_location";
             this.txb_profile_location.ReadOnly = true;
             this.txb_profile_location.Size = new System.Drawing.Size(157, 20);
@@ -421,7 +435,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(5, 162);
+            this.label14.Location = new System.Drawing.Point(5, 176);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(55, 13);
             this.label14.TabIndex = 22;
@@ -429,7 +443,7 @@
             // 
             // txb_profile_title
             // 
-            this.txb_profile_title.Location = new System.Drawing.Point(81, 159);
+            this.txb_profile_title.Location = new System.Drawing.Point(81, 173);
             this.txb_profile_title.Name = "txb_profile_title";
             this.txb_profile_title.ReadOnly = true;
             this.txb_profile_title.Size = new System.Drawing.Size(157, 20);
@@ -488,7 +502,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(250, 433);
+            this.tabPage1.Size = new System.Drawing.Size(250, 450);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Coin";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -532,6 +546,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.llb_reverselink);
+            this.groupBox1.Controls.Add(this.llb_obverselink);
+            this.groupBox1.Controls.Add(this.label32);
+            this.groupBox1.Controls.Add(this.txb_coin_shape);
             this.groupBox1.Controls.Add(this.llb_coinlink);
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.txb_coin_refnumber);
@@ -550,11 +568,9 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txb_coin_orient);
             this.groupBox1.Controls.Add(this.txb_coin_title);
-            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.pcb_coin_reverse);
             this.groupBox1.Controls.Add(this.txb_coin_diameter);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.pcb_coin_obverse);
             this.groupBox1.Controls.Add(this.txb_coin_metal);
@@ -562,10 +578,22 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(9, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 391);
+            this.groupBox1.Size = new System.Drawing.Size(235, 408);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Coin Information";
+            // 
+            // llb_coinlink
+            // 
+            this.llb_coinlink.AutoSize = true;
+            this.llb_coinlink.Enabled = false;
+            this.llb_coinlink.Location = new System.Drawing.Point(164, 0);
+            this.llb_coinlink.Name = "llb_coinlink";
+            this.llb_coinlink.Size = new System.Drawing.Size(71, 13);
+            this.llb_coinlink.TabIndex = 31;
+            this.llb_coinlink.TabStop = true;
+            this.llb_coinlink.Text = "View on Web";
+            this.llb_coinlink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_coinlink_LinkClicked);
             // 
             // label26
             // 
@@ -703,7 +731,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 230);
+            this.label5.Location = new System.Drawing.Point(6, 256);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 12;
@@ -722,7 +750,7 @@
             // 
             this.txb_coin_orient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txb_coin_orient.Location = new System.Drawing.Point(72, 227);
+            this.txb_coin_orient.Location = new System.Drawing.Point(72, 253);
             this.txb_coin_orient.Name = "txb_coin_orient";
             this.txb_coin_orient.ReadOnly = true;
             this.txb_coin_orient.Size = new System.Drawing.Size(157, 20);
@@ -740,21 +768,11 @@
             this.txb_coin_title.TabIndex = 19;
             this.txb_coin_title.TabStop = false;
             // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(153, 264);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 13);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Reverse";
-            // 
             // pcb_coin_reverse
             // 
             this.pcb_coin_reverse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pcb_coin_reverse.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_coin_reverse.Location = new System.Drawing.Point(124, 280);
+            this.pcb_coin_reverse.Location = new System.Drawing.Point(124, 297);
             this.pcb_coin_reverse.Name = "pcb_coin_reverse";
             this.pcb_coin_reverse.Size = new System.Drawing.Size(105, 105);
             this.pcb_coin_reverse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -781,15 +799,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Diameter";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(37, 264);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Obverse";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -805,7 +814,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pcb_coin_obverse.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_coin_obverse.Location = new System.Drawing.Point(9, 280);
+            this.pcb_coin_obverse.Location = new System.Drawing.Point(9, 297);
             this.pcb_coin_obverse.Name = "pcb_coin_obverse";
             this.pcb_coin_obverse.Size = new System.Drawing.Size(105, 105);
             this.pcb_coin_obverse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -850,7 +859,7 @@
             this.tabPage3.Controls.Add(this.lsb_cntr_countrieslist);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(250, 433);
+            this.tabPage3.Size = new System.Drawing.Size(250, 450);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Countries";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -858,7 +867,7 @@
             // btn_cntr_copy
             // 
             this.btn_cntr_copy.Enabled = false;
-            this.btn_cntr_copy.Location = new System.Drawing.Point(3, 401);
+            this.btn_cntr_copy.Location = new System.Drawing.Point(3, 424);
             this.btn_cntr_copy.Name = "btn_cntr_copy";
             this.btn_cntr_copy.Size = new System.Drawing.Size(244, 23);
             this.btn_cntr_copy.TabIndex = 2;
@@ -883,7 +892,7 @@
             this.lsb_cntr_countrieslist.FormattingEnabled = true;
             this.lsb_cntr_countrieslist.Location = new System.Drawing.Point(3, 40);
             this.lsb_cntr_countrieslist.Name = "lsb_cntr_countrieslist";
-            this.lsb_cntr_countrieslist.Size = new System.Drawing.Size(244, 355);
+            this.lsb_cntr_countrieslist.Size = new System.Drawing.Size(244, 381);
             this.lsb_cntr_countrieslist.Sorted = true;
             this.lsb_cntr_countrieslist.TabIndex = 0;
             this.lsb_cntr_countrieslist.TabStop = false;
@@ -899,7 +908,7 @@
             this.tabPage4.Controls.Add(this.txb_log_user);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(250, 433);
+            this.tabPage4.Size = new System.Drawing.Size(250, 450);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Account";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -907,12 +916,13 @@
             // grb_log_account
             // 
             this.grb_log_account.Controls.Add(this.label31);
+            this.grb_log_account.Controls.Add(this.lsb_log_messages);
             this.grb_log_account.Controls.Add(this.lsv_log_messages);
             this.grb_log_account.Controls.Add(this.btn_log_getmessages);
             this.grb_log_account.Enabled = false;
             this.grb_log_account.Location = new System.Drawing.Point(6, 94);
             this.grb_log_account.Name = "grb_log_account";
-            this.grb_log_account.Size = new System.Drawing.Size(241, 336);
+            this.grb_log_account.Size = new System.Drawing.Size(241, 353);
             this.grb_log_account.TabIndex = 6;
             this.grb_log_account.TabStop = false;
             this.grb_log_account.Text = "Your account";
@@ -928,6 +938,7 @@
             // 
             // lsv_log_messages
             // 
+            this.lsv_log_messages.BackColor = System.Drawing.SystemColors.Window;
             this.lsv_log_messages.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -938,7 +949,7 @@
             this.lsv_log_messages.GridLines = true;
             this.lsv_log_messages.Location = new System.Drawing.Point(6, 44);
             this.lsv_log_messages.Name = "lsv_log_messages";
-            this.lsv_log_messages.Size = new System.Drawing.Size(229, 254);
+            this.lsv_log_messages.Size = new System.Drawing.Size(229, 274);
             this.lsv_log_messages.TabIndex = 32;
             this.lsv_log_messages.TabStop = false;
             this.lsv_log_messages.UseCompatibleStateImageBehavior = false;
@@ -966,7 +977,7 @@
             // 
             // btn_log_getmessages
             // 
-            this.btn_log_getmessages.Location = new System.Drawing.Point(6, 304);
+            this.btn_log_getmessages.Location = new System.Drawing.Point(6, 324);
             this.btn_log_getmessages.Name = "btn_log_getmessages";
             this.btn_log_getmessages.Size = new System.Drawing.Size(229, 23);
             this.btn_log_getmessages.TabIndex = 0;
@@ -1042,7 +1053,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label28.Location = new System.Drawing.Point(276, 565);
+            this.label28.Location = new System.Drawing.Point(276, 578);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(254, 13);
             this.label28.TabIndex = 30;
@@ -1052,43 +1063,64 @@
             // 
             this.lsb_log_messages.FormattingEnabled = true;
             this.lsb_log_messages.HorizontalScrollbar = true;
-            this.lsb_log_messages.Location = new System.Drawing.Point(292, 518);
+            this.lsb_log_messages.Location = new System.Drawing.Point(125, 11);
             this.lsb_log_messages.Name = "lsb_log_messages";
             this.lsb_log_messages.Size = new System.Drawing.Size(110, 30);
             this.lsb_log_messages.TabIndex = 1;
             this.lsb_log_messages.Visible = false;
             // 
-            // llb_coinlink
+            // label32
             // 
-            this.llb_coinlink.AutoSize = true;
-            this.llb_coinlink.Enabled = false;
-            this.llb_coinlink.Location = new System.Drawing.Point(164, 0);
-            this.llb_coinlink.Name = "llb_coinlink";
-            this.llb_coinlink.Size = new System.Drawing.Size(71, 13);
-            this.llb_coinlink.TabIndex = 31;
-            this.llb_coinlink.TabStop = true;
-            this.llb_coinlink.Text = "View on Web";
-            this.llb_coinlink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_coinlink_LinkClicked);
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(6, 230);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(38, 13);
+            this.label32.TabIndex = 34;
+            this.label32.Text = "Shape";
             // 
-            // llb_profilelink
+            // txb_coin_shape
             // 
-            this.llb_profilelink.AutoSize = true;
-            this.llb_profilelink.Enabled = false;
-            this.llb_profilelink.Location = new System.Drawing.Point(173, 0);
-            this.llb_profilelink.Name = "llb_profilelink";
-            this.llb_profilelink.Size = new System.Drawing.Size(71, 13);
-            this.llb_profilelink.TabIndex = 31;
-            this.llb_profilelink.TabStop = true;
-            this.llb_profilelink.Text = "View on Web";
-            this.llb_profilelink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_profilelink_LinkClicked);
+            this.txb_coin_shape.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txb_coin_shape.Location = new System.Drawing.Point(72, 227);
+            this.txb_coin_shape.Name = "txb_coin_shape";
+            this.txb_coin_shape.ReadOnly = true;
+            this.txb_coin_shape.Size = new System.Drawing.Size(157, 20);
+            this.txb_coin_shape.TabIndex = 33;
+            this.txb_coin_shape.TabStop = false;
+            // 
+            // llb_obverselink
+            // 
+            this.llb_obverselink.AutoSize = true;
+            this.llb_obverselink.Enabled = false;
+            this.llb_obverselink.Location = new System.Drawing.Point(40, 281);
+            this.llb_obverselink.Name = "llb_obverselink";
+            this.llb_obverselink.Size = new System.Drawing.Size(47, 13);
+            this.llb_obverselink.TabIndex = 35;
+            this.llb_obverselink.TabStop = true;
+            this.llb_obverselink.Text = "Obverse";
+            this.tlt_tip1.SetToolTip(this.llb_obverselink, "Click to view image");
+            this.llb_obverselink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_obverselink_LinkClicked);
+            // 
+            // llb_reverselink
+            // 
+            this.llb_reverselink.AutoSize = true;
+            this.llb_reverselink.Enabled = false;
+            this.llb_reverselink.Location = new System.Drawing.Point(153, 281);
+            this.llb_reverselink.Name = "llb_reverselink";
+            this.llb_reverselink.Size = new System.Drawing.Size(47, 13);
+            this.llb_reverselink.TabIndex = 31;
+            this.llb_reverselink.TabStop = true;
+            this.llb_reverselink.Text = "Reverse";
+            this.tlt_tip1.SetToolTip(this.llb_reverselink, "Click to view image");
+            this.llb_reverselink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llb_reverselink_LinkClicked);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 590);
+            this.ClientSize = new System.Drawing.Size(568, 607);
             this.Controls.Add(this.label28);
-            this.Controls.Add(this.lsb_log_messages);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
@@ -1099,7 +1131,7 @@
             this.MinimumSize = new System.Drawing.Size(584, 628);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.2.0";
+            this.Text = "Numista v.1.2.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1145,9 +1177,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txb_coin_weight;
         private System.Windows.Forms.PictureBox pcb_coin_obverse;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pcb_coin_reverse;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txb_coin_title;
         private System.Windows.Forms.Label label10;
@@ -1215,6 +1245,10 @@
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.LinkLabel llb_coinlink;
         private System.Windows.Forms.LinkLabel llb_profilelink;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox txb_coin_shape;
+        private System.Windows.Forms.LinkLabel llb_reverselink;
+        private System.Windows.Forms.LinkLabel llb_obverselink;
     }
 }
 
