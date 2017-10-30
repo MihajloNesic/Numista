@@ -172,6 +172,10 @@ namespace Numista
                 pcb_coin_reverse.Load(reverse_photo);
             }
             llb_coinlink.Enabled = true;
+
+            if (cmb_coin_years.Items.Count != 0)
+                cmb_coin_years.DropDownWidth = DropDownWidth(cmb_coin_years) + 3;
+            else cmb_coin_years.DropDownWidth = 157;
         }
 
         private void searchProfile(string profileID)
@@ -380,6 +384,25 @@ namespace Numista
                 lvi.SubItems.Add(lsb_log_messages.Items[i + 4].ToString());
                 lsv_log_messages.Items.Add(lvi);
             }
+        }
+
+        private int DropDownWidth(ComboBox myCombo)
+        {
+            int maxWidth = 0;
+            int temp = 0;
+            Label label1 = new Label();
+
+            foreach (var obj in myCombo.Items)
+            {
+                label1.Text = obj.ToString();
+                temp = label1.PreferredWidth;
+                if (temp > maxWidth)
+                {
+                    maxWidth = temp;
+                }
+            }
+            label1.Dispose();
+            return maxWidth;
         }
 
         private void llb_coinlink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
