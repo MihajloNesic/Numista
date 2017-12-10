@@ -29,18 +29,15 @@ namespace Numista
 
         private void btn_coinsearch_Click(object sender, EventArgs e)
         {
-            //searchCoin(txb_coinid.Text);
-            searchCoin(nud_coinID.Value.ToString());
+            searchCoinOOP(nud_coinID.Value.ToString());
         }
 
         private void btn_randomcoin_Click(object sender, EventArgs e)
         {
             Random r = new Random();
-            int randID = r.Next(1, 100000);
-
-            //txb_coinid.Text = randID.ToString();
+            int randID = r.Next(1, 120000);
             nud_coinID.Value = randID;
-            searchCoin(Convert.ToString(randID));
+            searchCoinOOP(Convert.ToString(randID));
         }
 
         private void btn_profilesearch_Click(object sender, EventArgs e)
@@ -56,74 +53,69 @@ namespace Numista
             return f;
         }
 
-        private void searchCoin(String coinID)
+        private void searchCoinOOP(String coinID)
         {
             cmb_coin_years.Items.Clear();
+            cmb_coin_refnum.Items.Clear();
 
             using (var webClient = new WebClient())
             {
-                // "/1" is to disable cache
                 var json = webClient.DownloadString("http://qmegas.info/numista-api/coin/" + coinID);
                 dynamic array = JsonConvert.DeserializeObject(json);
 
-                var title = "";
-                var country = "";
-                var diameter = "";
-                var weight = "";
-                var metal = "";
-                var orientation = "";
-                var thickness = "";
-                var shape = "";
-                var yearsR = "";
-                var kmNum = "";
-
-                var obverse_photo = "https://en.numista.com/catalogue/photos/no-obverse-en.png";
-                var reverse_photo = "https://en.numista.com/catalogue/photos/no-reverse-en.png";
-                obversePhotoUrl = obverse_photo.ToString();
-                reversePhotoUrl = reverse_photo.ToString();
+                Coin coin = new Coin();
 
                 if (array.title != null)
-                    title = array.title.ToString();
-
+                    coin.setTitle(array.title.ToString());
                 if (array.country != null)
-                    country = array.country.ToString();
-
+                    coin.setCountry(array.country.ToString());
                 if (array.diameter != null)
-                    diameter = array.diameter.ToString();
-
+                    coin.setDiameter(array.diameter.ToString());
                 if (array.weight != null)
-                    weight = array.weight.ToString();
-
+                    coin.setWeight(array.weight.ToString());
                 if (array.metal != null)
-                    metal = array.metal.ToString();
-
+                    coin.setMetal(array.metal.ToString());
                 if (array.orientation != null)
-                    orientation = array.orientation.ToString();
-
-                if (array.shape != null)
-                    shape = array.shape.ToString();
-
+                    coin.setOrientation(array.orientation.ToString());
                 if (array.thickness != null)
-                    thickness = array.thickness.ToString();
-
-
-                if (array.images != null)
+                    coin.setThickness(array.thickness.ToString());
+                if (array.shape != null)
+                    coin.setShape(array.shape.ToString());
+                if (array.years_range != null)
                 {
-                    obverse_photo = array.images.obverse.preview.ToString();
+                    coin.setYearsRange(array.years_range.ToString());
+                    foreach (dynamic year in array["years"])
+                    {
+                        cmb_coin_years.Items.Add(year["year"].ToString() + " " + year["remark"].ToString());
+                    }
+                }
+                if (array.km != null)
+                {
+                    if (array.km.ToString() != "[]")
+                    {
+                        coin.setRefNumber(array["km"][0].ToString());
+                        foreach (dynamic refN in array["km"])
+                        {
+                            cmb_coin_refnum.Items.Add(refN.ToString());
+                        }
+                    }
+                }
 
-                    if (array.images.obverse.fullsize != "")
+                if(array.images != null)
+                {
+                    coin.setObversePhoto(array.images.obverse.preview.ToString());
+                    if(array.images.obverse.fullsize != "")
                     {
                         obversePhotoUrl = array.images.obverse.fullsize.ToString();
                         llb_obverselink.Enabled = true;
                     }
                     else
                     {
-                        obversePhotoUrl = obverse_photo.ToString();
+                        obversePhotoUrl = coin.getObversePhoto();
                         llb_obverselink.Enabled = false;
                     }
 
-                    reverse_photo = array.images.reverse.preview.ToString();
-
+                    coin.setReversePhoto(array.images.reverse.preview.ToString());
                     if (array.images.reverse.fullsize != "")
                     {
                         reversePhotoUrl = array.images.reverse.fullsize.ToString();
@@ -131,53 +123,37 @@ namespace Numista
                     }
                     else
                     {
-                        reversePhotoUrl = reverse_photo.ToString();
+                        reversePhotoUrl = coin.getReversePhoto();
                         llb_reverselink.Enabled = false;
                     }
                 }
-                else
-                {
-                    llb_obverselink.Enabled = false;
-                    llb_reverselink.Enabled = false;
-                }
 
-
-                if (array.km != null)
-                    if (array.km.ToString() != "[]")
-                        kmNum = array["km"][0];
-
-                if (array.years_range != null)
-                {
-                    yearsR = array.years_range.ToString();
-                    foreach (dynamic year in array["years"])
-                    {
-                        cmb_coin_years.Items.Add(year["year"].ToString()+ " " + year["remark"].ToString());
-                    }
-                }
+                txb_coin_title.Text = coin.getTitle();
+                txb_coin_country.Text = coin.getCountry();
+                txb_coin_diameter.Text = coin.getDiameter();
+                txb_coin_weight.Text = coin.getWeight();
+                txb_coin_metal.Text = coin.getMetal();
+                txb_coin_orient.Text = coin.getOrientation();
+                txb_coin_thickness.Text = coin.getThickness();
+                txb_coin_shape.Text = coin.getShape();
+                txb_coin_yearsrange.Text = coin.getYearsRange();
+                //txb_coin_refnumber.Text = coin.getRefNumber();
+                pcb_coin_obverse.Load(coin.getObversePhoto());
+                pcb_coin_reverse.Load(coin.getReversePhoto());
 
                 txb_output.Text = formatJson(json);
-
-                txb_coin_title.Text = title;
-                txb_coin_country.Text = country;
-                txb_coin_diameter.Text = diameter;
-                txb_coin_weight.Text = weight;
-                txb_coin_metal.Text = metal;
-                txb_coin_orient.Text = orientation;
-                txb_coin_thickness.Text = thickness;
-                txb_coin_shape.Text = shape;
-                txb_coin_yearsrange.Text = yearsR;
-                txb_coin_refnumber.Text = kmNum;
-
-                pcb_coin_obverse.Load(obverse_photo);
-                pcb_coin_reverse.Load(reverse_photo);
             }
             llb_coinlink.Enabled = true;
 
             if (cmb_coin_years.Items.Count != 0)
                 cmb_coin_years.DropDownWidth = DropDownWidth(cmb_coin_years) + 3;
             else cmb_coin_years.DropDownWidth = 157;
-        }
 
+            if (cmb_coin_refnum.Items.Count != 0)
+                cmb_coin_refnum.DropDownWidth = DropDownWidth(cmb_coin_refnum) + 3;
+            else cmb_coin_refnum.DropDownWidth = 62;
+        }
+        
         private void searchProfile(string profileID)
         {
             using (var webClient = new WebClient())
@@ -422,9 +398,40 @@ namespace Numista
             System.Diagnostics.Process.Start(this.obversePhotoUrl);
         }
 
+        private void cmb_coin_refnum_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_coin_refnum.SelectedIndex = -1;
+        }
+
         private void llb_reverselink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(this.reversePhotoUrl);
         }
+
+        /*private void btn_test_findnotpublished_Click(object sender, EventArgs e)
+        {
+            txb_output.Text = "=== Found used coin ID's ===" + Environment.NewLine;
+
+            using (var webClient = new WebClient())
+            {
+                // "/1" is to disable cache
+                for (int i = 89300; i < 89400; i++)
+                {
+                    var json = webClient.DownloadString("http://qmegas.info/numista-api/coin/" + i);
+                    dynamic array = JsonConvert.DeserializeObject(json);
+
+                    var error = "";
+
+                    if (array.error != null)
+                        error = array.error.ToString();
+
+                    if (error == "Coin not published")
+                        txb_test_notpublished.Text += i + Environment.NewLine;
+                    else if(error == "Coin not found")
+                        txb_test_notfound.Text += i + Environment.NewLine;
+                    else txb_output.Text += i + Environment.NewLine;
+                }
+            }
+        }*/
     }
  }

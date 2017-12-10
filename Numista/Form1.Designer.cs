@@ -72,7 +72,6 @@
             this.txb_coin_shape = new System.Windows.Forms.TextBox();
             this.llb_coinlink = new System.Windows.Forms.LinkLabel();
             this.label26 = new System.Windows.Forms.Label();
-            this.txb_coin_refnumber = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.txb_coin_yearsrange = new System.Windows.Forms.TextBox();
             this.cmb_coin_years = new System.Windows.Forms.ComboBox();
@@ -120,7 +119,7 @@
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.cmb_coin_refnum = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -495,6 +494,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cmb_coin_refnum);
             this.tabPage1.Controls.Add(this.nud_coinID);
             this.tabPage1.Controls.Add(this.btn_randomcoin);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -547,14 +547,12 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.llb_reverselink);
             this.groupBox1.Controls.Add(this.llb_obverselink);
             this.groupBox1.Controls.Add(this.label32);
             this.groupBox1.Controls.Add(this.txb_coin_shape);
             this.groupBox1.Controls.Add(this.llb_coinlink);
             this.groupBox1.Controls.Add(this.label26);
-            this.groupBox1.Controls.Add(this.txb_coin_refnumber);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.txb_coin_yearsrange);
             this.groupBox1.Controls.Add(this.cmb_coin_years);
@@ -652,18 +650,6 @@
             this.label26.TabIndex = 32;
             this.label26.Text = "R";
             this.tlt_tip1.SetToolTip(this.label26, "Reference number");
-            // 
-            // txb_coin_refnumber
-            // 
-            this.txb_coin_refnumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txb_coin_refnumber.Location = new System.Drawing.Point(164, 97);
-            this.txb_coin_refnumber.Name = "txb_coin_refnumber";
-            this.txb_coin_refnumber.ReadOnly = true;
-            this.txb_coin_refnumber.Size = new System.Drawing.Size(65, 20);
-            this.txb_coin_refnumber.TabIndex = 31;
-            this.txb_coin_refnumber.TabStop = false;
-            this.tlt_tip1.SetToolTip(this.txb_coin_refnumber, "Reference number");
             // 
             // label25
             // 
@@ -1117,16 +1103,19 @@
             this.label28.TabIndex = 30;
             this.label28.Text = "Note: At the moment, this data is cached for 30 days";
             // 
-            // label7
+            // cmb_coin_refnum
             // 
-            this.label7.AutoSize = true;
-            this.label7.Enabled = false;
-            this.label7.Location = new System.Drawing.Point(79, 74);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 31;
-            this.label7.Text = "label7";
-            this.label7.Visible = false;
+            this.cmb_coin_refnum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmb_coin_refnum.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_coin_refnum.FormattingEnabled = true;
+            this.cmb_coin_refnum.Location = new System.Drawing.Point(176, 132);
+            this.cmb_coin_refnum.Name = "cmb_coin_refnum";
+            this.cmb_coin_refnum.Size = new System.Drawing.Size(62, 21);
+            this.cmb_coin_refnum.TabIndex = 36;
+            this.cmb_coin_refnum.TabStop = false;
+            this.tlt_tip1.SetToolTip(this.cmb_coin_refnum, "Click to expand");
+            this.cmb_coin_refnum.SelectedIndexChanged += new System.EventHandler(this.cmb_coin_refnum_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -1144,7 +1133,7 @@
             this.MinimumSize = new System.Drawing.Size(584, 628);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.2.3.";
+            this.Text = "Numista v.1.3.0.";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1228,7 +1217,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox txb_coin_yearsrange;
-        private System.Windows.Forms.TextBox txb_coin_refnumber;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox txb_profile_forum;
@@ -1262,7 +1250,7 @@
         private System.Windows.Forms.TextBox txb_coin_shape;
         private System.Windows.Forms.LinkLabel llb_reverselink;
         private System.Windows.Forms.LinkLabel llb_obverselink;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cmb_coin_refnum;
     }
 }
 
