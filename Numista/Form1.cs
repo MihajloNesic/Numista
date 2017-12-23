@@ -42,7 +42,7 @@ namespace Numista
 
         private void btn_profilesearch_Click(object sender, EventArgs e)
         {
-            searchProfile(nud_profileID.Value.ToString());
+            searchProfileOOP(nud_profileID.Value.ToString());
             llb_profilelink.Enabled = true;
         }
 
@@ -81,6 +81,10 @@ namespace Numista
                     coin.setThickness(array.thickness.ToString());
                 if (array.shape != null)
                     coin.setShape(array.shape.ToString());
+                if (array.is_commemorative != null)
+                    coin.setCommemorative(array.is_commemorative.ToString());
+                if (array.commemorative_description != null)
+                    coin.setCommemorativeDescription(array.commemorative_description.ToString());
                 if (array.years_range != null)
                 {
                     coin.setYearsRange(array.years_range.ToString());
@@ -140,6 +144,16 @@ namespace Numista
                 //txb_coin_refnumber.Text = coin.getRefNumber();
                 pcb_coin_obverse.Load(coin.getObversePhoto());
                 pcb_coin_reverse.Load(coin.getReversePhoto());
+                if (coin.isItCommemorative())
+                {
+                    chb_coin_isCommemorative.Checked = true;
+                    txb_coin_commemorativedesc.Text = coin.getCommemorativeDescription();
+                }
+                else
+                {
+                    chb_coin_isCommemorative.Checked = false;
+                    txb_coin_commemorativedesc.Text = "";
+                }
 
                 txb_output.Text = formatJson(json);
             }
@@ -154,96 +168,83 @@ namespace Numista
             else cmb_coin_refnum.DropDownWidth = 62;
         }
         
-        private void searchProfile(string profileID)
+        private void searchProfileOOP(string profileID)
         {
+            cmb_profile_languages.Items.Clear();
+
             using (var webClient = new WebClient())
             {
-                // "/1" is to disable cache
                 var json = webClient.DownloadString("http://qmegas.info/numista-api/user/" + profileID);
                 dynamic array = JsonConvert.DeserializeObject(json);
 
-                var username = "";
-                var title = "";
-                var location = "";
-                var member = "";
-                var swap = "";
-                var web = "";
-                var forum = "";
-                var coll = false;
-                var swapC = false;
-                var feedbackN = "";
-                var feedbackA = "";
-
-                var avatar = "https://en.numista.com/echanges/avatar.png";
+                Profile profile = new Profile();
 
                 if (array.name != null)
-                    username = array.name.ToString();
-
+                    profile.setUsername(array.name.ToString());
                 if (array.special_status != null)
-                    title = array.special_status.ToString();
-
+                    profile.setTitle(array.special_status.ToString());
                 if (array.location != null)
-                    location = array.location.ToString();
-
+                    profile.setLocation(array.location.ToString());
                 if (array.member_since != null)
-                    member = array.member_since.ToString();
-
+                    profile.setMember(array.member_since.ToString());
                 if (array.exchange_coins_count != null)
-                    swap = array.exchange_coins_count.ToString();
-
+                    profile.setSwap(array.exchange_coins_count.ToString());
                 if (array.website != null)
-                    web = array.website.ToString();
-
+                    profile.setWeb(array.website.ToString());
                 if (array.forum_posts_count != null)
-                    forum = array.forum_posts_count.ToString();
-
-                if (array.is_collection_visible != null) {
-                    coll = array.is_collection_visible;
-                        if (coll == true)
-                            chb_profile_collectionvisible.Checked = true;
-                        else chb_profile_collectionvisible.Checked = false;
-                }
-
-                if (array.is_exchange_coins_visible != null)
-                {
-                    swapC = array.is_exchange_coins_visible;
-                    if (swapC == true)
-                        chb_profile_swapcoins.Checked = true;
-                    else chb_profile_swapcoins.Checked = false;
-                }
-
+                    profile.setForum(array.forum_posts_count.ToString());
                 if (array.feedback != null)
                 {
-                    feedbackN = array.feedback.count.ToString();
-                    feedbackA = array.feedback.average.ToString();
+                    profile.setFeedbackNumber(array.feedback.count.ToString());
+                    profile.setFeedbackAvg(array.feedback.average.ToString());
+                }
+                if (array.is_collection_visible != null)
+                    profile.setColl(array.is_collection_visible.ToString());
+                if (array.is_exchange_coins_visible != null)
+                    profile.setSwapColl(array.is_exchange_coins_visible.ToString());
+                if (array.image != null)
+                    profile.setAvatar(array.image.ToString());
+                if (array.languages != null)
+                {
+                    foreach (dynamic lang in array["languages"])
+                    {
+                        cmb_profile_languages.Items.Add(lang.ToString());
+                    }
                 }
 
-                if (array.image != null)
-                    avatar = array.image.ToString();
+                txb_profile_username.Text = profile.getUsername();
+                txb_profile_title.Text = profile.getTitle();
+                txb_profile_location.Text = profile.getLocation();
+                txb_profile_membersince.Text = profile.getMember();
+                txb_profile_coinstoswap.Text = profile.getSwap();
+                txb_profile_website.Text = profile.getWeb();
+                txb_profile_forum.Text = profile.getForum();
+                txb_profile_feedbackcount.Text = profile.getFeedbackNumber();
+                txb_profile_feedbackavg.Text = profile.getFeedbackAvg();
 
-                //var wants = array.user_notes.wants.ToString();
+                pcb_profile_avatar.Load(profile.getAvatar());
+
+                if (profile.isItColl())
+                    chb_profile_collectionvisible.Checked = true;
+                else chb_profile_collectionvisible.Checked = false;
+
+                if (profile.isItSwapColl())
+                    chb_profile_swapcoins.Checked = true;
+                else chb_profile_swapcoins.Checked = false;
 
                 txb_output.Text = formatJson(json);
-
-                txb_profile_username.Text = username;
-                txb_profile_title.Text = title;
-                txb_profile_location.Text = location;
-                txb_profile_membersince.Text = member;
-                txb_profile_coinstoswap.Text = swap;
-                txb_profile_website.Text = web;
-                txb_profile_forum.Text = forum;
-                txb_profile_feedbackcount.Text = feedbackN;
-                txb_profile_feedbackavg.Text = feedbackA;
-
-                pcb_profile_avatar.Load(avatar);
-
-             }
-         }
+            }
+        }
 
         // Handle items to not be selectable in combobox
         private void cmb_coin_years_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmb_coin_years.SelectedIndex = -1;
+        }
+
+        private void cmb_profile_languages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_profile_languages.SelectedIndex = -1;
         }
 
         private void btn_cntr_getlist_Click(object sender, EventArgs e)

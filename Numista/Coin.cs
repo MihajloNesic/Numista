@@ -11,6 +11,8 @@ namespace Numista
         private String title, country, metal, orientation, shape, yearsRange, refNumber;
         private String obversePhoto, reversePhoto;
         private String diameter, weight, thickness;
+        private bool isCommemorative;
+        private String commemorativeDescription;
 
         public Coin()
         {
@@ -24,12 +26,13 @@ namespace Numista
             this.shape = "";
             this.yearsRange = "";
             this.refNumber = "";
+            this.isCommemorative = false;
             this.obversePhoto = "https://en.numista.com/catalogue/photos/no-obverse-en.png";
             this.reversePhoto = "https://en.numista.com/catalogue/photos/no-reverse-en.png";
 
         }
 
-        public Coin(String title, String country, String diameter, String weight, String metal, String orientation, String thickness, String shape, String yearsRange, String refNumber)
+        public Coin(String title, String country, String diameter, String weight, String metal, String orientation, String thickness, String shape, String yearsRange, String refNumber, bool isCommemorative)
         {
             this.title = title;
             this.country = country;
@@ -41,6 +44,7 @@ namespace Numista
             this.shape = shape;
             this.yearsRange = yearsRange;
             this.refNumber = refNumber;
+            this.isCommemorative = isCommemorative;
         }
 
         public String getTitle()
@@ -141,6 +145,31 @@ namespace Numista
         public void setRefNumber(String refNumber)
         {
             this.refNumber = refNumber;
+        }
+
+        public bool isItCommemorative()
+        {
+            return this.isCommemorative;
+        }
+
+        public void setCommemorative(bool state)
+        {
+            this.isCommemorative = state;
+        }
+
+        public String getCommemorativeDescription()
+        {
+            return this.commemorativeDescription;
+        }
+
+        public void setCommemorativeDescription(String commemorativeDescription)
+        {
+            this.commemorativeDescription = commemorativeDescription;
+        }
+
+        public void setCommemorative(String state)
+        {
+            this.isCommemorative = Boolean.Parse(state);
         }
 
         public String getObversePhoto()
