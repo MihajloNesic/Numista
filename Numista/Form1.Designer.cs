@@ -124,6 +124,7 @@
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
+            this.link_lbl_apilink = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -152,7 +153,7 @@
             // txb_output
             // 
             this.txb_output.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txb_output.Location = new System.Drawing.Point(276, 28);
+            this.txb_output.Location = new System.Drawing.Point(283, 28);
             this.txb_output.Multiline = true;
             this.txb_output.Name = "txb_output";
             this.txb_output.ReadOnly = true;
@@ -217,8 +218,8 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.llb_profilelink);
             this.groupBox2.Controls.Add(this.chb_profile_swapcoins);
-            this.groupBox2.Controls.Add(this.chb_profile_collectionvisible);
             this.groupBox2.Controls.Add(this.label27);
+            this.groupBox2.Controls.Add(this.chb_profile_collectionvisible);
             this.groupBox2.Controls.Add(this.txb_profile_forum);
             this.groupBox2.Controls.Add(this.pcb_profile_avatar);
             this.groupBox2.Controls.Add(this.label17);
@@ -250,7 +251,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmb_profile_languages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_profile_languages.FormattingEnabled = true;
-            this.cmb_profile_languages.Location = new System.Drawing.Point(81, 356);
+            this.cmb_profile_languages.Location = new System.Drawing.Point(81, 333);
             this.cmb_profile_languages.Name = "cmb_profile_languages";
             this.cmb_profile_languages.Size = new System.Drawing.Size(157, 21);
             this.cmb_profile_languages.TabIndex = 42;
@@ -261,7 +262,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 359);
+            this.label7.Location = new System.Drawing.Point(5, 336);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 13);
             this.label7.TabIndex = 43;
@@ -284,7 +285,7 @@
             this.chb_profile_swapcoins.AutoSize = true;
             this.chb_profile_swapcoins.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chb_profile_swapcoins.Enabled = false;
-            this.chb_profile_swapcoins.Location = new System.Drawing.Point(125, 333);
+            this.chb_profile_swapcoins.Location = new System.Drawing.Point(123, 412);
             this.chb_profile_swapcoins.Name = "chb_profile_swapcoins";
             this.chb_profile_swapcoins.Size = new System.Drawing.Size(113, 17);
             this.chb_profile_swapcoins.TabIndex = 41;
@@ -296,7 +297,7 @@
             this.chb_profile_collectionvisible.AutoSize = true;
             this.chb_profile_collectionvisible.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chb_profile_collectionvisible.Enabled = false;
-            this.chb_profile_collectionvisible.Location = new System.Drawing.Point(4, 333);
+            this.chb_profile_collectionvisible.Location = new System.Drawing.Point(8, 412);
             this.chb_profile_collectionvisible.Name = "chb_profile_collectionvisible";
             this.chb_profile_collectionvisible.Size = new System.Drawing.Size(104, 17);
             this.chb_profile_collectionvisible.TabIndex = 40;
@@ -334,7 +335,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(5, 412);
+            this.label17.Location = new System.Drawing.Point(5, 389);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(76, 13);
             this.label17.TabIndex = 36;
@@ -342,7 +343,7 @@
             // 
             // txb_profile_feedbackavg
             // 
-            this.txb_profile_feedbackavg.Location = new System.Drawing.Point(81, 409);
+            this.txb_profile_feedbackavg.Location = new System.Drawing.Point(79, 386);
             this.txb_profile_feedbackavg.Name = "txb_profile_feedbackavg";
             this.txb_profile_feedbackavg.ReadOnly = true;
             this.txb_profile_feedbackavg.Size = new System.Drawing.Size(157, 20);
@@ -352,7 +353,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(5, 386);
+            this.label18.Location = new System.Drawing.Point(5, 363);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(73, 13);
             this.label18.TabIndex = 34;
@@ -360,7 +361,7 @@
             // 
             // txb_profile_feedbackcount
             // 
-            this.txb_profile_feedbackcount.Location = new System.Drawing.Point(81, 383);
+            this.txb_profile_feedbackcount.Location = new System.Drawing.Point(79, 360);
             this.txb_profile_feedbackcount.Name = "txb_profile_feedbackcount";
             this.txb_profile_feedbackcount.ReadOnly = true;
             this.txb_profile_feedbackcount.Size = new System.Drawing.Size(157, 20);
@@ -479,7 +480,7 @@
             // 
             this.nud_profileID.Location = new System.Drawing.Point(59, 15);
             this.nud_profileID.Maximum = new decimal(new int[] {
-            100000,
+            200000,
             0,
             0,
             0});
@@ -712,11 +713,11 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(147, 100);
+            this.label26.Location = new System.Drawing.Point(143, 100);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(15, 13);
+            this.label26.Size = new System.Drawing.Size(27, 13);
             this.label26.TabIndex = 32;
-            this.label26.Text = "R";
+            this.label26.Text = "Ref.";
             this.tlt_tip1.SetToolTip(this.label26, "Reference number");
             // 
             // label25
@@ -1155,28 +1156,40 @@
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(273, 12);
+            this.label24.Location = new System.Drawing.Point(280, 12);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(290, 13);
+            this.label24.Size = new System.Drawing.Size(129, 13);
             this.label24.TabIndex = 29;
-            this.label24.Text = "JSON Output from server - https://qmegas.info/numista-api/";
+            this.label24.Text = "JSON output from server -";
             // 
             // label28
             // 
             this.label28.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label28.AutoSize = true;
             this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label28.Location = new System.Drawing.Point(276, 610);
+            this.label28.Location = new System.Drawing.Point(283, 610);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(254, 13);
             this.label28.TabIndex = 30;
             this.label28.Text = "Note: At the moment, this data is cached for 30 days";
             // 
+            // link_lbl_apilink
+            // 
+            this.link_lbl_apilink.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.link_lbl_apilink.AutoSize = true;
+            this.link_lbl_apilink.Location = new System.Drawing.Point(406, 12);
+            this.link_lbl_apilink.Name = "link_lbl_apilink";
+            this.link_lbl_apilink.Size = new System.Drawing.Size(163, 13);
+            this.link_lbl_apilink.TabIndex = 31;
+            this.link_lbl_apilink.Text = "https://qmegas.info/numista-api/";
+            this.link_lbl_apilink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_apilink_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 639);
+            this.ClientSize = new System.Drawing.Size(576, 639);
+            this.Controls.Add(this.link_lbl_apilink);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
@@ -1184,11 +1197,11 @@
             this.Controls.Add(this.label24);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(584, 677);
-            this.MinimumSize = new System.Drawing.Size(290, 677);
+            this.MaximumSize = new System.Drawing.Size(592, 677);
+            this.MinimumSize = new System.Drawing.Size(296, 677);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.3.2.";
+            this.Text = "Numista v.1.3.3.";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
@@ -1310,6 +1323,7 @@
         private System.Windows.Forms.TextBox txb_coin_commemorativedesc;
         private System.Windows.Forms.ComboBox cmb_profile_languages;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.LinkLabel link_lbl_apilink;
     }
 }
 

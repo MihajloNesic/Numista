@@ -283,7 +283,7 @@
   <data name="btn_randomcoin.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgsAAAH7CAYAAABCJdxKAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsEAAA7BAbiRa+0AAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTnU1rJk
+        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTnU1rJk
         AABD1ElEQVR4Xu2dWXLkyBFE+zS6i06lm+hfpxwNeogZsFgo5BIeS+ZrM9rIRCyZDxEejkgA/PWLfxCA
         AAQgcEfgjz9/0fsDTQhAAAIQgAAEFiXQawpat18UF9OCAAQgAAEIrE2gtdBbb7c2VWYHAQhAAAIQKErA
         uuBbHa8oToYNAQhAAAIQqE3AqpB7Hqc2cUYPAQhAAAIQSEzAs6B7nCsxaoYGAQhAAAIQyE/Ao1hnOUf+
@@ -576,6 +576,9 @@
         z8d2EIAABCAAAQgUJ3BnHopPi+FDAAIQ8CHwfzs0q67ls1QUAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="tlt_tip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>44</value>
   </metadata>
