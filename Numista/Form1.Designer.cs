@@ -37,6 +37,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmb_profile_languages = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.llb_profilelink = new System.Windows.Forms.LinkLabel();
             this.chb_profile_swapcoins = new System.Windows.Forms.CheckBox();
             this.chb_profile_collectionvisible = new System.Windows.Forms.CheckBox();
@@ -67,6 +69,8 @@
             this.nud_coinID = new System.Windows.Forms.NumericUpDown();
             this.btn_randomcoin = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txb_coin_commemorativedesc = new System.Windows.Forms.TextBox();
+            this.chb_coin_isCommemorative = new System.Windows.Forms.CheckBox();
             this.llb_reverselink = new System.Windows.Forms.LinkLabel();
             this.llb_obverselink = new System.Windows.Forms.LinkLabel();
             this.label32 = new System.Windows.Forms.Label();
@@ -120,10 +124,6 @@
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.chb_coin_isCommemorative = new System.Windows.Forms.CheckBox();
-            this.txb_coin_commemorativedesc = new System.Windows.Forms.TextBox();
-            this.cmb_profile_languages = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -151,8 +151,7 @@
             // 
             // txb_output
             // 
-            this.txb_output.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txb_output.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txb_output.Location = new System.Drawing.Point(276, 28);
             this.txb_output.Multiline = true;
             this.txb_output.Name = "txb_output";
@@ -164,8 +163,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
@@ -178,7 +175,7 @@
             // 
             this.btn_coinsearch.Location = new System.Drawing.Point(129, 8);
             this.btn_coinsearch.Name = "btn_coinsearch";
-            this.btn_coinsearch.Size = new System.Drawing.Size(75, 23);
+            this.btn_coinsearch.Size = new System.Drawing.Size(83, 23);
             this.btn_coinsearch.TabIndex = 4;
             this.btn_coinsearch.TabStop = false;
             this.btn_coinsearch.Text = "Search";
@@ -187,9 +184,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -247,6 +243,29 @@
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Profile Information";
+            // 
+            // cmb_profile_languages
+            // 
+            this.cmb_profile_languages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmb_profile_languages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmb_profile_languages.FormattingEnabled = true;
+            this.cmb_profile_languages.Location = new System.Drawing.Point(81, 356);
+            this.cmb_profile_languages.Name = "cmb_profile_languages";
+            this.cmb_profile_languages.Size = new System.Drawing.Size(157, 21);
+            this.cmb_profile_languages.TabIndex = 42;
+            this.cmb_profile_languages.TabStop = false;
+            this.tlt_tip1.SetToolTip(this.cmb_profile_languages, "Click to expand");
+            this.cmb_profile_languages.SelectedIndexChanged += new System.EventHandler(this.cmb_profile_languages_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(5, 359);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 13);
+            this.label7.TabIndex = 43;
+            this.label7.Text = "Languages";
             // 
             // llb_profilelink
             // 
@@ -552,13 +571,14 @@
             // 
             // btn_randomcoin
             // 
-            this.btn_randomcoin.Location = new System.Drawing.Point(210, 8);
+            this.btn_randomcoin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_randomcoin.BackgroundImage")));
+            this.btn_randomcoin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_randomcoin.Location = new System.Drawing.Point(218, 8);
             this.btn_randomcoin.Name = "btn_randomcoin";
-            this.btn_randomcoin.Size = new System.Drawing.Size(34, 23);
+            this.btn_randomcoin.Size = new System.Drawing.Size(26, 23);
             this.btn_randomcoin.TabIndex = 7;
             this.btn_randomcoin.TabStop = false;
-            this.btn_randomcoin.Text = "rnd";
-            this.tlt_tip1.SetToolTip(this.btn_randomcoin, "Random coin search! Do not spam this button!");
+            this.tlt_tip1.SetToolTip(this.btn_randomcoin, "Random coin search!");
             this.btn_randomcoin.UseVisualStyleBackColor = true;
             this.btn_randomcoin.Click += new System.EventHandler(this.btn_randomcoin_Click);
             // 
@@ -604,6 +624,32 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Coin Information";
+            // 
+            // txb_coin_commemorativedesc
+            // 
+            this.txb_coin_commemorativedesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txb_coin_commemorativedesc.Location = new System.Drawing.Point(113, 277);
+            this.txb_coin_commemorativedesc.Name = "txb_coin_commemorativedesc";
+            this.txb_coin_commemorativedesc.ReadOnly = true;
+            this.txb_coin_commemorativedesc.Size = new System.Drawing.Size(116, 20);
+            this.txb_coin_commemorativedesc.TabIndex = 36;
+            this.txb_coin_commemorativedesc.TabStop = false;
+            this.tlt_tip1.SetToolTip(this.txb_coin_commemorativedesc, "Commemorative description");
+            // 
+            // chb_coin_isCommemorative
+            // 
+            this.chb_coin_isCommemorative.AutoSize = true;
+            this.chb_coin_isCommemorative.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chb_coin_isCommemorative.Enabled = false;
+            this.chb_coin_isCommemorative.Location = new System.Drawing.Point(6, 279);
+            this.chb_coin_isCommemorative.Name = "chb_coin_isCommemorative";
+            this.chb_coin_isCommemorative.Size = new System.Drawing.Size(101, 17);
+            this.chb_coin_isCommemorative.TabIndex = 31;
+            this.chb_coin_isCommemorative.TabStop = false;
+            this.chb_coin_isCommemorative.Text = "Commemorative";
+            this.tlt_tip1.SetToolTip(this.chb_coin_isCommemorative, "Commemorative");
+            this.chb_coin_isCommemorative.UseVisualStyleBackColor = true;
             // 
             // llb_reverselink
             // 
@@ -938,7 +984,7 @@
             this.btn_cntr_getlist.Size = new System.Drawing.Size(244, 23);
             this.btn_cntr_getlist.TabIndex = 1;
             this.btn_cntr_getlist.TabStop = false;
-            this.btn_cntr_getlist.Text = "Get list of all countries (May take serval minutes)";
+            this.btn_cntr_getlist.Text = "Get list of all countries";
             this.tlt_tip1.SetToolTip(this.btn_cntr_getlist, "May take serval minutes");
             this.btn_cntr_getlist.UseVisualStyleBackColor = true;
             this.btn_cntr_getlist.Click += new System.EventHandler(this.btn_cntr_getlist_Click);
@@ -1107,16 +1153,17 @@
             // 
             // label24
             // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label24.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(276, 12);
+            this.label24.Location = new System.Drawing.Point(273, 12);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(285, 13);
+            this.label24.Size = new System.Drawing.Size(290, 13);
             this.label24.TabIndex = 29;
-            this.label24.Text = "JSON Output from server - http://qmegas.info/numista-api/";
+            this.label24.Text = "JSON Output from server - https://qmegas.info/numista-api/";
             // 
             // label28
             // 
+            this.label28.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label28.AutoSize = true;
             this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label28.Location = new System.Drawing.Point(276, 610);
@@ -1125,72 +1172,23 @@
             this.label28.TabIndex = 30;
             this.label28.Text = "Note: At the moment, this data is cached for 30 days";
             // 
-            // chb_coin_isCommemorative
-            // 
-            this.chb_coin_isCommemorative.AutoSize = true;
-            this.chb_coin_isCommemorative.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chb_coin_isCommemorative.Enabled = false;
-            this.chb_coin_isCommemorative.Location = new System.Drawing.Point(6, 279);
-            this.chb_coin_isCommemorative.Name = "chb_coin_isCommemorative";
-            this.chb_coin_isCommemorative.Size = new System.Drawing.Size(101, 17);
-            this.chb_coin_isCommemorative.TabIndex = 31;
-            this.chb_coin_isCommemorative.TabStop = false;
-            this.chb_coin_isCommemorative.Text = "Commemorative";
-            this.tlt_tip1.SetToolTip(this.chb_coin_isCommemorative, "Commemorative");
-            this.chb_coin_isCommemorative.UseVisualStyleBackColor = true;
-            // 
-            // txb_coin_commemorativedesc
-            // 
-            this.txb_coin_commemorativedesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txb_coin_commemorativedesc.Location = new System.Drawing.Point(113, 277);
-            this.txb_coin_commemorativedesc.Name = "txb_coin_commemorativedesc";
-            this.txb_coin_commemorativedesc.ReadOnly = true;
-            this.txb_coin_commemorativedesc.Size = new System.Drawing.Size(116, 20);
-            this.txb_coin_commemorativedesc.TabIndex = 36;
-            this.txb_coin_commemorativedesc.TabStop = false;
-            this.tlt_tip1.SetToolTip(this.txb_coin_commemorativedesc, "Commemorative description");
-            // 
-            // cmb_profile_languages
-            // 
-            this.cmb_profile_languages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmb_profile_languages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmb_profile_languages.FormattingEnabled = true;
-            this.cmb_profile_languages.Location = new System.Drawing.Point(81, 356);
-            this.cmb_profile_languages.Name = "cmb_profile_languages";
-            this.cmb_profile_languages.Size = new System.Drawing.Size(157, 21);
-            this.cmb_profile_languages.TabIndex = 42;
-            this.cmb_profile_languages.TabStop = false;
-            this.tlt_tip1.SetToolTip(this.cmb_profile_languages, "Click to expand");
-            this.cmb_profile_languages.SelectedIndexChanged += new System.EventHandler(this.cmb_profile_languages_SelectedIndexChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 359);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 13);
-            this.label7.TabIndex = 43;
-            this.label7.Text = "Languages";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 639);
             this.Controls.Add(this.label28);
-            this.Controls.Add(this.label24);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txb_output);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Controls.Add(this.label24);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(584, 628);
+            this.MaximumSize = new System.Drawing.Size(584, 677);
+            this.MinimumSize = new System.Drawing.Size(290, 677);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.3.1.";
+            this.Text = "Numista v.1.3.2.";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);

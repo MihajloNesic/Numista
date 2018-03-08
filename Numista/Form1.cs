@@ -60,7 +60,7 @@ namespace Numista
 
             using (var webClient = new WebClient())
             {
-                var json = webClient.DownloadString("http://qmegas.info/numista-api/coin/" + coinID);
+                var json = webClient.DownloadString("https://qmegas.info/numista-api/coin/" + coinID);
                 dynamic array = JsonConvert.DeserializeObject(json);
 
                 Coin coin = new Coin();
@@ -156,6 +156,7 @@ namespace Numista
                 }
 
                 txb_output.Text = formatJson(json);
+                
             }
             llb_coinlink.Enabled = true;
 
@@ -174,7 +175,7 @@ namespace Numista
 
             using (var webClient = new WebClient())
             {
-                var json = webClient.DownloadString("http://qmegas.info/numista-api/user/" + profileID);
+                var json = webClient.DownloadString("https://qmegas.info/numista-api/user?user_id=" + profileID + "&force_cache=1");
                 dynamic array = JsonConvert.DeserializeObject(json);
 
                 Profile profile = new Profile();
@@ -251,11 +252,15 @@ namespace Numista
         {
             using (var webClient = new WebClient())
             {
-                var json = webClient.DownloadString("http://qmegas.info/numista-api/country/list/");
+                var json = webClient.DownloadString("https://qmegas.info/numista-api/country/list/");
                 dynamic array = JsonConvert.DeserializeObject(json);
 
                 foreach (dynamic cntr in array["countries"])
-                    lsb_cntr_countrieslist.Items.Add(cntr["name"].ToString());
+                {
+                    string temp = cntr["name"].ToString();
+                    if (!lsb_cntr_countrieslist.Items.Contains(temp))
+                        lsb_cntr_countrieslist.Items.Add(temp);
+                }
                 txb_output.Text = formatJson(json);
             }
             btn_cntr_copy.Enabled = true;
@@ -274,17 +279,27 @@ namespace Numista
 
         private void btn_log_login_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("I can ensure you, I am NOT stealing your account in any way.\nYou can check out source code for this software on GitHub. \nhttps://github.com/MihajloNesic/Numista", "Message from the developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Message from the developer\n\nI can ensure you, I am NOT stealing your account in any way.\n\nYou can check out source code for this software on GitHub. \nhttps://github.com/MihajloNesic/Numista\n\n\nMessage from the API author\n\nWe guarantee that your Numista login and password will NOT be stored or transferred to any third party.\nAnyway, use of that function on your own risk only.\n\nSee more: http://qmegas.info/numista-api/", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("I can ensure you, I am NOT stealing your account in any way.\n\nYou can check out source code for this software on GitHub. \nhttps://github.com/MihajloNesic/Numista", "Message from the developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("We guarantee that your Numista login and password will NOT be stored or transferred to any third party.\nAnyway, use of that function on your own risk only.\n\nSee more: http://qmegas.info/numista-api/", "Message from the API author", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult dialogResult = MessageBox.Show("Do you wish to continue?", "Final call", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            login(txb_log_user.Text, txb_log_pass.Text);
-
-            if (this.accessToken != "")
+            if (dialogResult == DialogResult.Yes)
             {
-                btn_log_login.Enabled = false;
-                btn_log_logout.Enabled = true;
-                txb_log_user.Text = "";
-                txb_log_pass.Text = "";
-                grb_log_account.Enabled = true;
+                login(txb_log_user.Text, txb_log_pass.Text);
+
+                if (this.accessToken != "")
+                {
+                    btn_log_login.Enabled = false;
+                    btn_log_logout.Enabled = true;
+                    txb_log_user.Text = "";
+                    txb_log_pass.Text = "";
+                    grb_log_account.Enabled = true;
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                
             }
         }
 
@@ -305,7 +320,7 @@ namespace Numista
         {
             using (var webClient = new WebClient())
             {
-                var json = webClient.DownloadString("http://qmegas.info/numista-api/authorize?login="+user+"&password="+pass);
+                var json = webClient.DownloadString("https://qmegas.info/numista-api/authorize?login="+user+"&password="+pass);
                 dynamic array = JsonConvert.DeserializeObject(json);
 
                 var accessToken = "";
@@ -316,6 +331,8 @@ namespace Numista
                 txb_output.Text = formatJson(json);
 
                 this.accessToken = accessToken;
+
+                // MessageBox.Show(this.accessToken, "Token");
             }
         }
 
@@ -323,31 +340,39 @@ namespace Numista
         {
             using (var webClient = new WebClient())
             {
-                var json = webClient.DownloadString("http://qmegas.info/numista-api/authorize/destroy?access_token="+access_token);
+                var json = webClient.DownloadString("https://qmegas.info/numista-api/authorize/destroy?access_token="+access_token);
                 txb_output.Text = formatJson(json);
             }
         }
 
         private void btn_log_getmessages_Click(object sender, EventArgs e)
         {
-            lsb_log_messages.Items.Clear();
-            using (var webClient = new WebClient())
+            try
             {
-                var json = webClient.DownloadString("http://qmegas.info/numista-api/messages/inbox?access_token="+this.accessToken);
-                dynamic array = JsonConvert.DeserializeObject(json);
-                
-                foreach (dynamic message in array["messages"])
+                lsb_log_messages.Items.Clear();
+                using (var webClient = new WebClient())
                 {
-                    lsb_log_messages.Items.Add(message["title"].ToString());
-                    lsb_log_messages.Items.Add(message["sender"]["name"].ToString());
-                    lsb_log_messages.Items.Add(message["time"].ToString());
-                    lsb_log_messages.Items.Add(message["is_new"].ToString());
-                    lsb_log_messages.Items.Add(message["is_replied"].ToString());
+                    var json = webClient.DownloadString("https://qmegas.info/numista-api/messages/inbox?access_token=" + this.accessToken);
+                    dynamic array = JsonConvert.DeserializeObject(json);
+
+                    foreach (dynamic message in array["messages"])
+                    {
+                        lsb_log_messages.Items.Add(message["title"].ToString());
+                        lsb_log_messages.Items.Add(message["sender"]["name"].ToString());
+                        lsb_log_messages.Items.Add(message["time"].ToString());
+                        lsb_log_messages.Items.Add(message["is_new"].ToString());
+                        lsb_log_messages.Items.Add(message["is_replied"].ToString());
+                    }
+
+                    txb_output.Text = formatJson(json);
                 }
-                
-                txb_output.Text = formatJson(json);
+                addMessagesToList();
             }
-            addMessagesToList();
+            catch(NullReferenceException)
+            {
+                // MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not get messages. \nTry again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void addMessagesToList()
