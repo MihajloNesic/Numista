@@ -6,12 +6,12 @@ Numist API provided by Migos (http://qmegas.info/numista-api/)
 
 Profile search by ID
 
-![Profile search](https://i.imgur.com/z5o7Sgi.png)
+![Profile search](https://i.imgur.com/1hovBCo.png)
 
 Coin search by ID
 
-![Coin search](https://i.imgur.com/nSI3bbA.png)
+![Coin search](https://i.imgur.com/BjiMydl.png)
 
 Country listing
 
-![Country listing](https://i.imgur.com/mLL55sJ.png)
+![Country listing](https://i.imgur.com/cPwgrZ1.png)
