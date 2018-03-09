@@ -16,6 +16,8 @@ namespace Numista
     {
         private string accessToken;
         private string obversePhotoUrl, reversePhotoUrl;
+        private bool isLogout = false;
+        private static string NUMISTAAPI = "https://qmegas.info/numista-api/";
 
         public Form1()
         {
@@ -56,8 +58,6 @@ namespace Numista
 
         private void searchCoinOOP(String coinID)
         {
-
-
             try
             {
                 cmb_coin_years.Items.Clear();
@@ -65,7 +65,7 @@ namespace Numista
 
                 using (var webClient = new WebClient())
                 {
-                    var json = webClient.DownloadString("https://qmegas.info/numista-api/coin/" + coinID);
+                    var json = webClient.DownloadString(NUMISTAAPI + "coin/" + coinID);
                     dynamic array = JsonConvert.DeserializeObject(json);
 
                     Coin coin = new Coin();
@@ -187,7 +187,7 @@ namespace Numista
 
                 using (var webClient = new WebClient())
                 {
-                    var json = webClient.DownloadString("https://qmegas.info/numista-api/user?user_id=" + profileID + "&force_cache=1");
+                    var json = webClient.DownloadString(NUMISTAAPI+"user?user_id=" + profileID + "&force_cache=1");
                     dynamic array = JsonConvert.DeserializeObject(json);
 
                     Profile profile = new Profile();
@@ -254,24 +254,13 @@ namespace Numista
             }
         }
 
-        // Handle items to not be selectable in combobox
-        private void cmb_coin_years_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmb_coin_years.SelectedIndex = -1;
-        }
-
-        private void cmb_profile_languages_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmb_profile_languages.SelectedIndex = -1;
-        }
-
         private void btn_cntr_getlist_Click(object sender, EventArgs e)
         {
             try
             {
                 using (var webClient = new WebClient())
                 {
-                    var json = webClient.DownloadString("https://qmegas.info/numista-api/country/list/");
+                    var json = webClient.DownloadString(NUMISTAAPI + "country/list/");
                     dynamic array = JsonConvert.DeserializeObject(json);
 
                     foreach (dynamic cntr in array["countries"])
@@ -321,6 +310,7 @@ namespace Numista
                     txb_log_user.Enabled = false;
                     txb_log_pass.Enabled = false;
                     grb_log_account.Enabled = true;
+                    MessageBox.Show("Successfully logged in", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             else if (dialogResult == DialogResult.No)
@@ -334,15 +324,18 @@ namespace Numista
         {
             logout(this.accessToken);
 
-            btn_log_login.Enabled = true;
-            btn_log_logout.Enabled = false;
-            txb_log_user.Text = "";
-            txb_log_pass.Text = "";
-            txb_log_user.Enabled = true;
-            txb_log_pass.Enabled = true;
-            grb_log_account.Enabled = false;
-            lsb_log_messages.Items.Clear();
-            lsv_log_messages.Items.Clear();
+            if (isLogout)
+            {
+                btn_log_login.Enabled = true;
+                btn_log_logout.Enabled = false;
+                txb_log_user.Text = "";
+                txb_log_pass.Text = "";
+                txb_log_user.Enabled = true;
+                txb_log_pass.Enabled = true;
+                grb_log_account.Enabled = false;
+                lsb_log_messages.Items.Clear();
+                lsv_log_messages.Items.Clear();
+            }
         }
 
         private void login(string user, string pass)
@@ -351,13 +344,18 @@ namespace Numista
             {
                 using (var webClient = new WebClient())
                 {
-                    var json = webClient.DownloadString("https://qmegas.info/numista-api/authorize?login=" + user + "&password=" + pass);
+                    var json = webClient.DownloadString(NUMISTAAPI + "authorize?login=" + user + "&password=" + pass);
                     dynamic array = JsonConvert.DeserializeObject(json);
 
                     var accessToken = "";
 
                     if (array.access_token != null)
+                    {
                         accessToken = array.access_token.ToString();
+                        isLogout = false;
+                    }
+                    else if (array.error == "Wrong login or password")
+                        MessageBox.Show("Wrong username or password", "Login", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 
                     txb_output.Text = formatJson(json);
 
@@ -378,7 +376,20 @@ namespace Numista
             {
                 using (var webClient = new WebClient())
                 {
-                    var json = webClient.DownloadString("https://qmegas.info/numista-api/authorize/destroy?access_token=" + access_token);
+                    var json = webClient.DownloadString(NUMISTAAPI + "authorize/destroy?access_token=" + access_token);
+                    dynamic array = JsonConvert.DeserializeObject(json);
+
+                    if (array.destryed == "true")
+                    {
+                        isLogout = true;
+                        MessageBox.Show("Successfully logged out", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else if (array.error == "Wrong access token")
+                    {
+                        isLogout = false;
+                        MessageBox.Show("An error has occurred", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                     txb_output.Text = formatJson(json);
                 }
             }
@@ -395,7 +406,7 @@ namespace Numista
                 lsb_log_messages.Items.Clear();
                 using (var webClient = new WebClient())
                 {
-                    var json = webClient.DownloadString("https://qmegas.info/numista-api/messages/inbox?access_token=" + this.accessToken);
+                    var json = webClient.DownloadString(NUMISTAAPI + "messages/inbox?access_token=" + this.accessToken);
                     dynamic array = JsonConvert.DeserializeObject(json);
 
                     foreach (dynamic message in array["messages"])
@@ -431,6 +442,32 @@ namespace Numista
             }
         }
 
+        private void llb_obverselink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.obversePhotoUrl);
+        }
+
+        private void llb_reverselink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(this.reversePhotoUrl);
+        }
+
+        // Handle items to not be selectable in combobox
+        private void cmb_coin_refnum_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_coin_refnum.SelectedIndex = -1;
+        }
+
+        private void cmb_coin_years_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_coin_years.SelectedIndex = -1;
+        }
+
+        private void cmb_profile_languages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmb_profile_languages.SelectedIndex = -1;
+        }
+
         private int DropDownWidth(ComboBox myCombo)
         {
             int maxWidth = 0;
@@ -462,24 +499,29 @@ namespace Numista
             System.Diagnostics.Process.Start(link);
         }
 
-        private void llb_obverselink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(this.obversePhotoUrl);
-        }
-
-        private void cmb_coin_refnum_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cmb_coin_refnum.SelectedIndex = -1;
-        }
-
         private void link_lbl_apilink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://qmegas.info/numista-api/");
+            System.Diagnostics.Process.Start(NUMISTAAPI);
         }
 
-        private void llb_reverselink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void link_lbl_githubnumista_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(this.reversePhotoUrl);
+            System.Diagnostics.Process.Start("https://github.com/MihajloNesic/Numista");
+        }
+
+        private void link_lbl_numista_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://numista.com/");
+        }
+
+        private void link_lbl_mnnumista_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://en.numista.com/echanges/profil.php?id=60438");
+        }
+
+        private void link_lbl_mnesiccoins_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://mnesiccoins.ml");
         }
 
         /*private void btn_test_findnotpublished_Click(object sender, EventArgs e)

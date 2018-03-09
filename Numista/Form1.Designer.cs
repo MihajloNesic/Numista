@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.txb_output = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_coinsearch = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -41,8 +40,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.llb_profilelink = new System.Windows.Forms.LinkLabel();
             this.chb_profile_swapcoins = new System.Windows.Forms.CheckBox();
-            this.chb_profile_collectionvisible = new System.Windows.Forms.CheckBox();
             this.label27 = new System.Windows.Forms.Label();
+            this.chb_profile_collectionvisible = new System.Windows.Forms.CheckBox();
             this.txb_profile_forum = new System.Windows.Forms.TextBox();
             this.pcb_profile_avatar = new System.Windows.Forms.PictureBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -121,11 +120,28 @@
             this.txb_log_pass = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.txb_log_user = new System.Windows.Forms.TextBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label41 = new System.Windows.Forms.Label();
+            this.link_lbl_mnesiccoins = new System.Windows.Forms.LinkLabel();
+            this.label40 = new System.Windows.Forms.Label();
+            this.link_lbl_mnnumista = new System.Windows.Forms.LinkLabel();
+            this.label39 = new System.Windows.Forms.Label();
+            this.link_lbl_numista = new System.Windows.Forms.LinkLabel();
+            this.link_lbl_githubnumista = new System.Windows.Forms.LinkLabel();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label36 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.link_lbl_apilink = new System.Windows.Forms.LinkLabel();
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.link_lbl_apilink = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -139,6 +155,9 @@
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.grb_log_account.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -162,16 +181,6 @@
             this.txb_output.TabIndex = 2;
             this.txb_output.TabStop = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(258, 101);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // btn_coinsearch
             // 
             this.btn_coinsearch.Location = new System.Drawing.Point(129, 8);
@@ -191,6 +200,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(12, 119);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
@@ -271,8 +281,9 @@
             // llb_profilelink
             // 
             this.llb_profilelink.AutoSize = true;
+            this.llb_profilelink.BackColor = System.Drawing.SystemColors.Window;
             this.llb_profilelink.Enabled = false;
-            this.llb_profilelink.Location = new System.Drawing.Point(173, 0);
+            this.llb_profilelink.Location = new System.Drawing.Point(170, -1);
             this.llb_profilelink.Name = "llb_profilelink";
             this.llb_profilelink.Size = new System.Drawing.Size(71, 13);
             this.llb_profilelink.TabIndex = 31;
@@ -292,6 +303,15 @@
             this.chb_profile_swapcoins.Text = "Swap coins visible";
             this.chb_profile_swapcoins.UseVisualStyleBackColor = true;
             // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(5, 310);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(64, 13);
+            this.label27.TabIndex = 39;
+            this.label27.Text = "Forum posts";
+            // 
             // chb_profile_collectionvisible
             // 
             this.chb_profile_collectionvisible.AutoSize = true;
@@ -303,15 +323,6 @@
             this.chb_profile_collectionvisible.TabIndex = 40;
             this.chb_profile_collectionvisible.Text = "Collection visible";
             this.chb_profile_collectionvisible.UseVisualStyleBackColor = true;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(5, 310);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(64, 13);
-            this.label27.TabIndex = 39;
-            this.label27.Text = "Forum posts";
             // 
             // txb_profile_forum
             // 
@@ -579,7 +590,7 @@
             this.btn_randomcoin.Size = new System.Drawing.Size(26, 23);
             this.btn_randomcoin.TabIndex = 7;
             this.btn_randomcoin.TabStop = false;
-            this.tlt_tip1.SetToolTip(this.btn_randomcoin, "Random coin search!");
+            this.tlt_tip1.SetToolTip(this.btn_randomcoin, "Random coin!");
             this.btn_randomcoin.UseVisualStyleBackColor = true;
             this.btn_randomcoin.Click += new System.EventHandler(this.btn_randomcoin_Click);
             // 
@@ -701,8 +712,9 @@
             // llb_coinlink
             // 
             this.llb_coinlink.AutoSize = true;
+            this.llb_coinlink.BackColor = System.Drawing.SystemColors.Window;
             this.llb_coinlink.Enabled = false;
-            this.llb_coinlink.Location = new System.Drawing.Point(164, 0);
+            this.llb_coinlink.Location = new System.Drawing.Point(161, 0);
             this.llb_coinlink.Name = "llb_coinlink";
             this.llb_coinlink.Size = new System.Drawing.Size(71, 13);
             this.llb_coinlink.TabIndex = 31;
@@ -1152,6 +1164,207 @@
             this.txb_log_user.Size = new System.Drawing.Size(177, 20);
             this.txb_log_user.TabIndex = 0;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.label41);
+            this.tabPage5.Controls.Add(this.link_lbl_mnesiccoins);
+            this.tabPage5.Controls.Add(this.label40);
+            this.tabPage5.Controls.Add(this.link_lbl_mnnumista);
+            this.tabPage5.Controls.Add(this.label39);
+            this.tabPage5.Controls.Add(this.link_lbl_numista);
+            this.tabPage5.Controls.Add(this.link_lbl_githubnumista);
+            this.tabPage5.Controls.Add(this.label38);
+            this.tabPage5.Controls.Add(this.label37);
+            this.tabPage5.Controls.Add(this.linkLabel1);
+            this.tabPage5.Controls.Add(this.label36);
+            this.tabPage5.Controls.Add(this.pictureBox2);
+            this.tabPage5.Controls.Add(this.label35);
+            this.tabPage5.Controls.Add(this.label34);
+            this.tabPage5.Controls.Add(this.label33);
+            this.tabPage5.Controls.Add(this.label8);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(250, 482);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "About";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(6, 444);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(60, 13);
+            this.label41.TabIndex = 43;
+            this.label41.Text = "My website";
+            // 
+            // link_lbl_mnesiccoins
+            // 
+            this.link_lbl_mnesiccoins.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.link_lbl_mnesiccoins.AutoSize = true;
+            this.link_lbl_mnesiccoins.Location = new System.Drawing.Point(6, 457);
+            this.link_lbl_mnesiccoins.Name = "link_lbl_mnesiccoins";
+            this.link_lbl_mnesiccoins.Size = new System.Drawing.Size(114, 13);
+            this.link_lbl_mnesiccoins.TabIndex = 42;
+            this.link_lbl_mnesiccoins.TabStop = true;
+            this.link_lbl_mnesiccoins.Text = "http://mnesiccoins.ml/";
+            this.tlt_tip1.SetToolTip(this.link_lbl_mnesiccoins, "Click to navigate");
+            this.link_lbl_mnesiccoins.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_mnesiccoins_LinkClicked);
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(6, 392);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(126, 13);
+            this.label40.TabIndex = 41;
+            this.label40.Text = "Mihajlo Nesic on Numista";
+            // 
+            // link_lbl_mnnumista
+            // 
+            this.link_lbl_mnnumista.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.link_lbl_mnnumista.Location = new System.Drawing.Point(6, 405);
+            this.link_lbl_mnnumista.Name = "link_lbl_mnnumista";
+            this.link_lbl_mnnumista.Size = new System.Drawing.Size(238, 27);
+            this.link_lbl_mnnumista.TabIndex = 40;
+            this.link_lbl_mnnumista.TabStop = true;
+            this.link_lbl_mnnumista.Text = "https://numista.com/echanges/profil.php?id=60438";
+            this.tlt_tip1.SetToolTip(this.link_lbl_mnnumista, "Click to navigate");
+            this.link_lbl_mnnumista.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_mnnumista_LinkClicked);
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(6, 350);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(45, 13);
+            this.label39.TabIndex = 39;
+            this.label39.Text = "Numista";
+            // 
+            // link_lbl_numista
+            // 
+            this.link_lbl_numista.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.link_lbl_numista.AutoSize = true;
+            this.link_lbl_numista.Location = new System.Drawing.Point(6, 363);
+            this.link_lbl_numista.Name = "link_lbl_numista";
+            this.link_lbl_numista.Size = new System.Drawing.Size(107, 13);
+            this.link_lbl_numista.TabIndex = 38;
+            this.link_lbl_numista.TabStop = true;
+            this.link_lbl_numista.Text = "https://numista.com/";
+            this.tlt_tip1.SetToolTip(this.link_lbl_numista, "Click to navigate");
+            this.link_lbl_numista.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_numista_LinkClicked);
+            // 
+            // link_lbl_githubnumista
+            // 
+            this.link_lbl_githubnumista.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.link_lbl_githubnumista.AutoSize = true;
+            this.link_lbl_githubnumista.Location = new System.Drawing.Point(6, 282);
+            this.link_lbl_githubnumista.Name = "link_lbl_githubnumista";
+            this.link_lbl_githubnumista.Size = new System.Drawing.Size(203, 13);
+            this.link_lbl_githubnumista.TabIndex = 37;
+            this.link_lbl_githubnumista.TabStop = true;
+            this.link_lbl_githubnumista.Text = "https://github.com/MihajloNesic/Numista";
+            this.tlt_tip1.SetToolTip(this.link_lbl_githubnumista, "Click to navigate");
+            this.link_lbl_githubnumista.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_githubnumista_LinkClicked);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(6, 269);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(84, 13);
+            this.label38.TabIndex = 36;
+            this.label38.Text = "Software source";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(6, 309);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(65, 13);
+            this.label37.TabIndex = 35;
+            this.label37.Text = "Numista API";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(6, 322);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(163, 13);
+            this.linkLabel1.TabIndex = 32;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "https://qmegas.info/numista-api/";
+            this.tlt_tip1.SetToolTip(this.linkLabel1, "Click to navigate");
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_apilink_LinkClicked);
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(6, 245);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(37, 13);
+            this.label36.TabIndex = 34;
+            this.label36.Text = "Links";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(130, 177);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(19, 19);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label35
+            // 
+            this.label35.Location = new System.Drawing.Point(6, 183);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(238, 38);
+            this.label35.TabIndex = 33;
+            this.label35.Text = "The Numista name, icon         , and logo are copyright of Numista SAS.";
+            // 
+            // label34
+            // 
+            this.label34.Location = new System.Drawing.Point(6, 101);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(238, 63);
+            this.label34.TabIndex = 2;
+            this.label34.Text = "The purpose of this software is for users, and non users, to explore Numista coin" +
+    " catalogue, search for users and get other information from Numista.";
+            // 
+            // label33
+            // 
+            this.label33.Location = new System.Drawing.Point(6, 47);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(238, 35);
+            this.label33.TabIndex = 1;
+            this.label33.Text = "The software uses unofficial Numista API kindly provided by Migos.";
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(6, 12);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(238, 35);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "This is a small software written by Mihajlo Nesic in C#.";
+            // 
+            // link_lbl_apilink
+            // 
+            this.link_lbl_apilink.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.link_lbl_apilink.AutoSize = true;
+            this.link_lbl_apilink.Location = new System.Drawing.Point(406, 12);
+            this.link_lbl_apilink.Name = "link_lbl_apilink";
+            this.link_lbl_apilink.Size = new System.Drawing.Size(163, 13);
+            this.link_lbl_apilink.TabIndex = 31;
+            this.link_lbl_apilink.TabStop = true;
+            this.link_lbl_apilink.Text = "https://qmegas.info/numista-api/";
+            this.tlt_tip1.SetToolTip(this.link_lbl_apilink, "Click to navigate");
+            this.link_lbl_apilink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_apilink_LinkClicked);
+            // 
             // label24
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1173,26 +1386,25 @@
             this.label28.TabIndex = 30;
             this.label28.Text = "Note: At the moment, this data is cached for 30 days";
             // 
-            // link_lbl_apilink
+            // pictureBox3
             // 
-            this.link_lbl_apilink.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.link_lbl_apilink.AutoSize = true;
-            this.link_lbl_apilink.Location = new System.Drawing.Point(406, 12);
-            this.link_lbl_apilink.Name = "link_lbl_apilink";
-            this.link_lbl_apilink.Size = new System.Drawing.Size(163, 13);
-            this.link_lbl_apilink.TabIndex = 31;
-            this.link_lbl_apilink.Text = "https://qmegas.info/numista-api/";
-            this.link_lbl_apilink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_apilink_LinkClicked);
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(258, 101);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 32;
+            this.pictureBox3.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 639);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.link_lbl_apilink);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txb_output);
             this.Controls.Add(this.label24);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1201,9 +1413,8 @@
             this.MinimumSize = new System.Drawing.Size(296, 677);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.3.3.";
+            this.Text = "Numista v.1.3.4.";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -1223,6 +1434,10 @@
             this.tabPage4.PerformLayout();
             this.grb_log_account.ResumeLayout(false);
             this.grb_log_account.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1231,7 +1446,6 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txb_output;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_coinsearch;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -1324,6 +1538,24 @@
         private System.Windows.Forms.ComboBox cmb_profile_languages;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.LinkLabel link_lbl_apilink;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.LinkLabel link_lbl_githubnumista;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.LinkLabel link_lbl_numista;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.LinkLabel link_lbl_mnnumista;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.LinkLabel link_lbl_mnesiccoins;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 
