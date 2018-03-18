@@ -293,25 +293,14 @@ namespace Numista
         private void btn_log_login_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Message from the developer\n\nI can ensure you, I am NOT stealing your account in any way.\n\nYou can check out source code for this software on GitHub. \nhttps://github.com/MihajloNesic/Numista\n\n\nMessage from the API author\n\nWe guarantee that your Numista login and password will NOT be stored or transferred to any third party.\nAnyway, use of that function on your own risk only.\n\nSee more: http://qmegas.info/numista-api/", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             MessageBox.Show("I can ensure you, I am NOT stealing your account in any way.\n\nYou can check out source code for this software on GitHub. \nhttps://github.com/MihajloNesic/Numista", "Message from the developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            MessageBox.Show("We guarantee that your Numista login and password will NOT be stored or transferred to any third party.\nAnyway, use of that function on your own risk only.\n\nSee more: http://qmegas.info/numista-api/", "Message from the API author", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("We guarantee that your Numista login and password will NOT be stored or transferred to any third party.\nAnyway, use of that function on your own risk only.\n\nSee more: https://qmegas.info/numista-api/", "Message from the API author", MessageBoxButtons.OK, MessageBoxIcon.Information);
             DialogResult dialogResult = MessageBox.Show("Do you wish to continue?", "Final call", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.Yes)
             {
                 login(txb_log_user.Text, txb_log_pass.Text);
-
-                if (this.accessToken != "")
-                {
-                    btn_log_login.Enabled = false;
-                    btn_log_logout.Enabled = true;
-                    //txb_log_user.Text = "";
-                    //txb_log_pass.Text = "";
-                    txb_log_user.Enabled = false;
-                    txb_log_pass.Enabled = false;
-                    grb_log_account.Enabled = true;
-                    MessageBox.Show("Successfully logged in", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -344,7 +333,7 @@ namespace Numista
             {
                 using (var webClient = new WebClient())
                 {
-                    var json = webClient.DownloadString(NUMISTAAPI + "authorize?login=" + user + "&password=" + pass);
+                    var json = webClient.DownloadString(NUMISTAAPI + "authorize/?login=" + user + "&password=" + pass);
                     dynamic array = JsonConvert.DeserializeObject(json);
 
                     var accessToken = "";
@@ -356,12 +345,25 @@ namespace Numista
                     }
                     else if (array.error == "Wrong login or password")
                         MessageBox.Show("Wrong username or password", "Login", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    else MessageBox.Show("An error has occurred \nTry again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     txb_output.Text = formatJson(json);
 
                     this.accessToken = accessToken;
 
                     // MessageBox.Show(this.accessToken, "Token");
+
+                    if (this.accessToken != "")
+                    {
+                        btn_log_login.Enabled = false;
+                        btn_log_logout.Enabled = true;
+                        //txb_log_user.Text = "";
+                        //txb_log_pass.Text = "";
+                        txb_log_user.Enabled = false;
+                        txb_log_pass.Enabled = false;
+                        grb_log_account.Enabled = true;
+                        MessageBox.Show("Successfully logged in", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception)
@@ -376,10 +378,10 @@ namespace Numista
             {
                 using (var webClient = new WebClient())
                 {
-                    var json = webClient.DownloadString(NUMISTAAPI + "authorize/destroy?access_token=" + access_token);
+                    var json = webClient.DownloadString(NUMISTAAPI + "authorize/destroy/?access_token=" + access_token);
                     dynamic array = JsonConvert.DeserializeObject(json);
 
-                    if (array.destryed == "true")
+                    if (array.destroyed == "true")
                     {
                         isLogout = true;
                         MessageBox.Show("Successfully logged out", "Logout", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -404,9 +406,11 @@ namespace Numista
             try
             {
                 lsb_log_messages.Items.Clear();
+                lsv_log_messages.Items.Clear();
+
                 using (var webClient = new WebClient())
                 {
-                    var json = webClient.DownloadString(NUMISTAAPI + "messages/inbox?access_token=" + this.accessToken);
+                    var json = webClient.DownloadString(NUMISTAAPI + "messages/inbox/?access_token=" + this.accessToken);
                     dynamic array = JsonConvert.DeserializeObject(json);
 
                     foreach (dynamic message in array["messages"])
@@ -414,8 +418,16 @@ namespace Numista
                         lsb_log_messages.Items.Add(message["title"].ToString());
                         lsb_log_messages.Items.Add(message["sender"]["name"].ToString());
                         lsb_log_messages.Items.Add(message["time"].ToString());
-                        lsb_log_messages.Items.Add(message["is_new"].ToString());
-                        lsb_log_messages.Items.Add(message["is_replied"].ToString());
+
+                        if(message["is_new"].ToString() == "True")
+                            lsb_log_messages.Items.Add("Yes");
+                        else lsb_log_messages.Items.Add("No");
+                        //lsb_log_messages.Items.Add(message["is_new"].ToString());
+
+                        if(message["is_replied"].ToString() == "True")
+                            lsb_log_messages.Items.Add("Yes");
+                        else lsb_log_messages.Items.Add("No");
+                        //lsb_log_messages.Items.Add(message["is_replied"].ToString());
                     }
 
                     txb_output.Text = formatJson(json);
