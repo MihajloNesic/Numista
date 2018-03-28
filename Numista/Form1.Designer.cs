@@ -142,6 +142,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btn_savecoin = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -183,9 +184,9 @@
             // 
             // btn_coinsearch
             // 
-            this.btn_coinsearch.Location = new System.Drawing.Point(129, 8);
+            this.btn_coinsearch.Location = new System.Drawing.Point(121, 8);
             this.btn_coinsearch.Name = "btn_coinsearch";
-            this.btn_coinsearch.Size = new System.Drawing.Size(83, 23);
+            this.btn_coinsearch.Size = new System.Drawing.Size(64, 23);
             this.btn_coinsearch.TabIndex = 4;
             this.btn_coinsearch.TabStop = false;
             this.btn_coinsearch.Text = "Search";
@@ -531,6 +532,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_savecoin);
             this.tabPage1.Controls.Add(this.cmb_coin_refnum);
             this.tabPage1.Controls.Add(this.nud_coinID);
             this.tabPage1.Controls.Add(this.btn_randomcoin);
@@ -573,7 +575,7 @@
             0,
             0});
             this.nud_coinID.Name = "nud_coinID";
-            this.nud_coinID.Size = new System.Drawing.Size(69, 20);
+            this.nud_coinID.Size = new System.Drawing.Size(62, 20);
             this.nud_coinID.TabIndex = 6;
             this.nud_coinID.Value = new decimal(new int[] {
             1,
@@ -585,7 +587,7 @@
             // 
             this.btn_randomcoin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_randomcoin.BackgroundImage")));
             this.btn_randomcoin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_randomcoin.Location = new System.Drawing.Point(218, 8);
+            this.btn_randomcoin.Location = new System.Drawing.Point(188, 8);
             this.btn_randomcoin.Name = "btn_randomcoin";
             this.btn_randomcoin.Size = new System.Drawing.Size(26, 23);
             this.btn_randomcoin.TabIndex = 7;
@@ -1396,6 +1398,20 @@
             this.pictureBox3.TabIndex = 32;
             this.pictureBox3.TabStop = false;
             // 
+            // btn_savecoin
+            // 
+            this.btn_savecoin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_savecoin.BackgroundImage")));
+            this.btn_savecoin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_savecoin.Enabled = false;
+            this.btn_savecoin.Location = new System.Drawing.Point(218, 8);
+            this.btn_savecoin.Name = "btn_savecoin";
+            this.btn_savecoin.Size = new System.Drawing.Size(26, 23);
+            this.btn_savecoin.TabIndex = 37;
+            this.btn_savecoin.TabStop = false;
+            this.tlt_tip1.SetToolTip(this.btn_savecoin, "Save coin");
+            this.btn_savecoin.UseVisualStyleBackColor = true;
+            this.btn_savecoin.Click += new System.EventHandler(this.btn_savecoin_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1413,7 +1429,7 @@
             this.MinimumSize = new System.Drawing.Size(296, 677);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.3.4.";
+            this.Text = "Numista v.1.3.5.";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -1556,6 +1572,7 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.LinkLabel link_lbl_mnesiccoins;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button btn_savecoin;
     }
 }
 

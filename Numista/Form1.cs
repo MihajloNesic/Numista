@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace Numista
 {
@@ -18,15 +19,35 @@ namespace Numista
         private string obversePhotoUrl, reversePhotoUrl;
         private bool isLogout = false;
         private static string NUMISTAAPI = "https://qmegas.info/numista-api/";
+        private string coinExt = null;
+        private Coin coin = new Coin();
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        public Form1(String[] coinID)
+        {
+            InitializeComponent();
+            if (coinID.Length != 0 && coinID.Length == 1)
+            {
+                //MessageBox.Show(coinID[0]);
+                coinExt = coinID[0];
+                tabControl1.SelectedIndex = 1;
+                //searchCoinOOP(coinID[0]);
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            //btn_randomcoin.Text = "";
+            if(coinExt != null)
+            {
+                string c = System.IO.File.ReadAllText(coinExt);
+                //MessageBox.Show(c);
+                nud_coinID.Value = Convert.ToDecimal(c);
+                searchCoinOOP(c);
+            }
         }
 
         private void btn_coinsearch_Click(object sender, EventArgs e)
@@ -67,32 +88,30 @@ namespace Numista
                 {
                     var json = webClient.DownloadString(NUMISTAAPI + "coin/" + coinID);
                     dynamic array = JsonConvert.DeserializeObject(json);
-
-                    Coin coin = new Coin();
-
+                    
                     if (array.title != null)
-                        coin.setTitle(array.title.ToString());
+                        this.coin.setTitle(array.title.ToString());
                     if (array.country != null)
-                        coin.setCountry(array.country.ToString());
+                        this.coin.setCountry(array.country.ToString());
                     if (array.diameter != null)
-                        coin.setDiameter(array.diameter.ToString());
+                        this.coin.setDiameter(array.diameter.ToString());
                     if (array.weight != null)
-                        coin.setWeight(array.weight.ToString());
+                        this.coin.setWeight(array.weight.ToString());
                     if (array.metal != null)
-                        coin.setMetal(array.metal.ToString());
+                        this.coin.setMetal(array.metal.ToString());
                     if (array.orientation != null)
-                        coin.setOrientation(array.orientation.ToString());
+                        this.coin.setOrientation(array.orientation.ToString());
                     if (array.thickness != null)
-                        coin.setThickness(array.thickness.ToString());
+                        this.coin.setThickness(array.thickness.ToString());
                     if (array.shape != null)
-                        coin.setShape(array.shape.ToString());
+                        this.coin.setShape(array.shape.ToString());
                     if (array.is_commemorative != null)
-                        coin.setCommemorative(array.is_commemorative.ToString());
+                        this.coin.setCommemorative(array.is_commemorative.ToString());
                     if (array.commemorative_description != null)
-                        coin.setCommemorativeDescription(array.commemorative_description.ToString());
+                        this.coin.setCommemorativeDescription(array.commemorative_description.ToString());
                     if (array.years_range != null)
                     {
-                        coin.setYearsRange(array.years_range.ToString());
+                        this.coin.setYearsRange(array.years_range.ToString());
                         foreach (dynamic year in array["years"])
                         {
                             cmb_coin_years.Items.Add(year["year"].ToString() + " " + year["remark"].ToString());
@@ -102,7 +121,7 @@ namespace Numista
                     {
                         if (array.km.ToString() != "[]")
                         {
-                            coin.setRefNumber(array["km"][0].ToString());
+                            this.coin.setRefNumber(array["km"][0].ToString());
                             foreach (dynamic refN in array["km"])
                             {
                                 cmb_coin_refnum.Items.Add(refN.ToString());
@@ -112,7 +131,7 @@ namespace Numista
 
                     if (array.images != null)
                     {
-                        coin.setObversePhoto(array.images.obverse.preview.ToString());
+                        this.coin.setObversePhoto(array.images.obverse.preview.ToString());
                         if (array.images.obverse.fullsize != "")
                         {
                             obversePhotoUrl = array.images.obverse.fullsize.ToString();
@@ -124,7 +143,7 @@ namespace Numista
                             llb_obverselink.Enabled = false;
                         }
 
-                        coin.setReversePhoto(array.images.reverse.preview.ToString());
+                        this.coin.setReversePhoto(array.images.reverse.preview.ToString());
                         if (array.images.reverse.fullsize != "")
                         {
                             reversePhotoUrl = array.images.reverse.fullsize.ToString();
@@ -137,22 +156,22 @@ namespace Numista
                         }
                     }
 
-                    txb_coin_title.Text = coin.getTitle();
-                    txb_coin_country.Text = coin.getCountry();
-                    txb_coin_diameter.Text = coin.getDiameter();
-                    txb_coin_weight.Text = coin.getWeight();
-                    txb_coin_metal.Text = coin.getMetal();
-                    txb_coin_orient.Text = coin.getOrientation();
-                    txb_coin_thickness.Text = coin.getThickness();
-                    txb_coin_shape.Text = coin.getShape();
-                    txb_coin_yearsrange.Text = coin.getYearsRange();
+                    txb_coin_title.Text = this.coin.getTitle();
+                    txb_coin_country.Text = this.coin.getCountry();
+                    txb_coin_diameter.Text = this.coin.getDiameter();
+                    txb_coin_weight.Text = this.coin.getWeight();
+                    txb_coin_metal.Text = this.coin.getMetal();
+                    txb_coin_orient.Text = this.coin.getOrientation();
+                    txb_coin_thickness.Text = this.coin.getThickness();
+                    txb_coin_shape.Text = this.coin.getShape();
+                    txb_coin_yearsrange.Text = this.coin.getYearsRange();
                     //txb_coin_refnumber.Text = coin.getRefNumber();
-                    pcb_coin_obverse.Load(coin.getObversePhoto());
-                    pcb_coin_reverse.Load(coin.getReversePhoto());
-                    if (coin.isItCommemorative())
+                    pcb_coin_obverse.Load(this.coin.getObversePhoto());
+                    pcb_coin_reverse.Load(this.coin.getReversePhoto());
+                    if (this.coin.isItCommemorative())
                     {
                         chb_coin_isCommemorative.Checked = true;
-                        txb_coin_commemorativedesc.Text = coin.getCommemorativeDescription();
+                        txb_coin_commemorativedesc.Text = this.coin.getCommemorativeDescription();
                     }
                     else
                     {
@@ -161,6 +180,7 @@ namespace Numista
                     }
 
                     txb_output.Text = formatJson(json);
+                    btn_savecoin.Enabled = true;
 
                 }
                 llb_coinlink.Enabled = true;
@@ -249,6 +269,34 @@ namespace Numista
                 }
             }
             catch (Exception)
+            {
+                MessageBox.Show("An error has occurred \nTry again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_savecoin_Click(object sender, EventArgs e)
+        {
+            save();
+        }
+
+        private void save()
+        {
+            try
+            {
+                using (var sfd = new SaveFileDialog())
+                {
+                    sfd.Filter = "Numista|*.num";
+
+                    sfd.FileName = this.coin.getCountry() + " - " + this.coin.getTitle();
+
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        File.WriteAllText(sfd.FileName, nud_coinID.Value.ToString());
+                        MessageBox.Show("Saved successfully", "Save coin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch(Exception ex)
             {
                 MessageBox.Show("An error has occurred \nTry again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
