@@ -290,18 +290,40 @@ namespace Numista
                     string info = "Title: " + this.coin.getTitle() + Environment.NewLine +
                                  "Country: " + this.coin.getCountry() + Environment.NewLine +
                                  "Years Range: " + this.coin.getYearsRange() + Environment.NewLine +
+                                 "Reference number: " + this.coin.getRefNumber() + Environment.NewLine +
                                  "Metal: " + this.coin.getMetal() + Environment.NewLine +
                                  "Weight: " + this.coin.getWeight() + Environment.NewLine +
                                  "Diameter: " + this.coin.getDiameter() + Environment.NewLine +
                                  "Thickness: " + this.coin.getThickness() + Environment.NewLine +
-                                 "Shape: " + this.coin.getThickness() + Environment.NewLine +
-                                 "Orientation: " + this.coin.getOrientation();
+                                 "Shape: " + this.coin.getShape() + Environment.NewLine +
+                                 "Orientation: " + this.coin.getOrientation()+ Environment.NewLine + Environment.NewLine +
+                                 "Saved: " + Convert.ToString(DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year) + " " + Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second);
 
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
-                        File.WriteAllText(sfd.FileName, nud_coinID.Value.ToString()+Environment.NewLine+info);
+                        File.WriteAllText(sfd.FileName, nud_coinID.Value.ToString()+Environment.NewLine + Environment.NewLine + info);
                         MessageBox.Show("Saved successfully", "Save coin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
+                    //binary write test
+                    /*FileStream fs = new FileStream("test.bin", FileMode.CreateNew);
+                    BinaryWriter bw = new BinaryWriter(fs);
+
+                    bw.Write(nud_coinID.Value.ToString());
+
+                    bw.Close();
+                    fs.Close();
+
+                    //binary read test
+                    FileStream fsr = new FileStream("test.bin", FileMode.Open);
+                    BinaryReader br = new BinaryReader(fsr);
+
+                    string content = br.ReadString();
+                    MessageBox.Show(content, "Binary file");
+
+                    br.Close();
+                    fsr.Close();*/
+
                 }
             }
             catch (Exception ex)
