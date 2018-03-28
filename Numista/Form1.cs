@@ -43,7 +43,8 @@ namespace Numista
         {
             if(coinExt != null)
             {
-                string c = System.IO.File.ReadAllText(coinExt);
+                //string c = System.IO.File.ReadAllText(coinExt);
+                string c = File.ReadLines(coinExt).First();
                 //MessageBox.Show(c);
                 nud_coinID.Value = Convert.ToDecimal(c);
                 searchCoinOOP(c);
@@ -286,10 +287,19 @@ namespace Numista
                     sfd.Filter = "Numista|*.num";
 
                     sfd.FileName = this.coin.getCountry() + " - " + this.coin.getTitle();
+                    string info = "Title: " + this.coin.getTitle() + Environment.NewLine +
+                                 "Country: " + this.coin.getCountry() + Environment.NewLine +
+                                 "Years Range: " + this.coin.getYearsRange() + Environment.NewLine +
+                                 "Metal: " + this.coin.getMetal() + Environment.NewLine +
+                                 "Weight: " + this.coin.getWeight() + Environment.NewLine +
+                                 "Diameter: " + this.coin.getDiameter() + Environment.NewLine +
+                                 "Thickness: " + this.coin.getThickness() + Environment.NewLine +
+                                 "Shape: " + this.coin.getThickness() + Environment.NewLine +
+                                 "Orientation: " + this.coin.getOrientation();
 
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
-                        File.WriteAllText(sfd.FileName, nud_coinID.Value.ToString());
+                        File.WriteAllText(sfd.FileName, nud_coinID.Value.ToString()+Environment.NewLine+info);
                         MessageBox.Show("Saved successfully", "Save coin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
