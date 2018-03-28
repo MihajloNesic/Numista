@@ -88,7 +88,9 @@ namespace Numista
                 {
                     var json = webClient.DownloadString(NUMISTAAPI + "coin/" + coinID);
                     dynamic array = JsonConvert.DeserializeObject(json);
-                    
+
+                    this.coin.reset();
+
                     if (array.title != null)
                         this.coin.setTitle(array.title.ToString());
                     if (array.country != null)
@@ -276,11 +278,7 @@ namespace Numista
 
         private void btn_savecoin_Click(object sender, EventArgs e)
         {
-            save();
-        }
-
-        private void save()
-        {
+            // save()
             try
             {
                 using (var sfd = new SaveFileDialog())
@@ -296,7 +294,7 @@ namespace Numista
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("An error has occurred \nTry again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

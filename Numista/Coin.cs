@@ -192,6 +192,22 @@ namespace Numista
             this.reversePhoto = reversePhoto;
         }
         
+        public void reset()
+        {
+            this.title = "";
+            this.country = "";
+            this.diameter = "";
+            this.weight = "";
+            this.metal = "";
+            this.orientation = "";
+            this.thickness = "";
+            this.shape = "";
+            this.yearsRange = "";
+            this.refNumber = "";
+            this.isCommemorative = false;
+            this.obversePhoto = "https://en.numista.com/catalogue/photos/no-obverse-en.png";
+            this.reversePhoto = "https://en.numista.com/catalogue/photos/no-reverse-en.png";
+        }
         public override String ToString()
         {
             return "";
