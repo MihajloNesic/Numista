@@ -64,6 +64,7 @@
             this.btn_profilesearch = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_savecoin = new System.Windows.Forms.Button();
             this.cmb_coin_refnum = new System.Windows.Forms.ComboBox();
             this.nud_coinID = new System.Windows.Forms.NumericUpDown();
             this.btn_randomcoin = new System.Windows.Forms.Button();
@@ -142,7 +143,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.btn_savecoin = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -546,6 +546,20 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Coin";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btn_savecoin
+            // 
+            this.btn_savecoin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_savecoin.BackgroundImage")));
+            this.btn_savecoin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_savecoin.Enabled = false;
+            this.btn_savecoin.Location = new System.Drawing.Point(218, 8);
+            this.btn_savecoin.Name = "btn_savecoin";
+            this.btn_savecoin.Size = new System.Drawing.Size(26, 23);
+            this.btn_savecoin.TabIndex = 37;
+            this.btn_savecoin.TabStop = false;
+            this.tlt_tip1.SetToolTip(this.btn_savecoin, "Save coin");
+            this.btn_savecoin.UseVisualStyleBackColor = true;
+            this.btn_savecoin.Click += new System.EventHandler(this.btn_savecoin_Click);
             // 
             // cmb_coin_refnum
             // 
@@ -1397,20 +1411,6 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 32;
             this.pictureBox3.TabStop = false;
-            // 
-            // btn_savecoin
-            // 
-            this.btn_savecoin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_savecoin.BackgroundImage")));
-            this.btn_savecoin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_savecoin.Enabled = false;
-            this.btn_savecoin.Location = new System.Drawing.Point(218, 8);
-            this.btn_savecoin.Name = "btn_savecoin";
-            this.btn_savecoin.Size = new System.Drawing.Size(26, 23);
-            this.btn_savecoin.TabIndex = 37;
-            this.btn_savecoin.TabStop = false;
-            this.tlt_tip1.SetToolTip(this.btn_savecoin, "Save coin");
-            this.btn_savecoin.UseVisualStyleBackColor = true;
-            this.btn_savecoin.Click += new System.EventHandler(this.btn_savecoin_Click);
             // 
             // Form1
             // 

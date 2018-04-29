@@ -34,7 +34,6 @@ namespace Numista
             {
                 //MessageBox.Show(coinID[0]);
                 coinExt = coinID[0];
-                tabControl1.SelectedIndex = 1;
                 //searchCoinOOP(coinID[0]);
             }
         }
@@ -48,6 +47,7 @@ namespace Numista
                 //MessageBox.Show(c);
                 nud_coinID.Value = Convert.ToDecimal(c);
                 searchCoinOOP(c);
+                tabControl1.SelectedIndex = 1;
             }
         }
 
@@ -296,13 +296,14 @@ namespace Numista
                                  "Diameter: " + this.coin.getDiameter() + Environment.NewLine +
                                  "Thickness: " + this.coin.getThickness() + Environment.NewLine +
                                  "Shape: " + this.coin.getShape() + Environment.NewLine +
-                                 "Orientation: " + this.coin.getOrientation()+ Environment.NewLine + Environment.NewLine +
+                                 "Orientation: " + this.coin.getOrientation()+ Environment.NewLine + 
+                                 Environment.NewLine +
                                  "Saved: " + Convert.ToString(DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year) + " " + Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second);
 
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
                         File.WriteAllText(sfd.FileName, nud_coinID.Value.ToString()+Environment.NewLine + Environment.NewLine + info);
-                        MessageBox.Show("Saved successfully", "Save coin", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Coin successfully saved!", "Save coin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     //binary write test
