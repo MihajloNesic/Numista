@@ -1,7 +1,7 @@
 # Numista
 Windows software for browsing Numista.com using unofficial Numista API.
 
-Numist API provided by Migos (http://qmegas.info/numista-api/)
+Numist API provided by Megas (http://qmegas.info/numista-api/)
 
 The software reads .num files!
 Be sure to associate that file extension to this software!
