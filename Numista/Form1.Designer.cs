@@ -1358,7 +1358,7 @@
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(238, 35);
             this.label33.TabIndex = 1;
-            this.label33.Text = "The software uses unofficial Numista API kindly provided by Migos.";
+            this.label33.Text = "The software uses unofficial Numista API kindly provided by Megas.";
             // 
             // label8
             // 
