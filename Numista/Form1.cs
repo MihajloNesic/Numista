@@ -95,7 +95,7 @@ namespace Numista
                     if (array.title != null)
                         this.coin.setTitle(array.title.ToString());
                     if (array.country != null)
-                        this.coin.setCountry(array.country.ToString());
+                        this.coin.setCountry(array.country.name.ToString());
                     if (array.diameter != null)
                         this.coin.setDiameter(array.diameter.ToString());
                     if (array.weight != null)
@@ -157,6 +157,10 @@ namespace Numista
                             reversePhotoUrl = coin.getReversePhoto();
                             llb_reverselink.Enabled = false;
                         }
+
+                        if (array.images.copyright != null && array.images.copyright != "")
+                            lbl_coin_image_cpy.Text = array.images.copyright.ToString();
+                        else lbl_coin_image_cpy.Text = "Coin images © Numista and their owners";
                     }
 
                     txb_coin_title.Text = this.coin.getTitle();

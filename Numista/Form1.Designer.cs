@@ -143,6 +143,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.lbl_coin_image_cpy = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -355,10 +356,10 @@
             // 
             // txb_profile_feedbackavg
             // 
-            this.txb_profile_feedbackavg.Location = new System.Drawing.Point(79, 386);
+            this.txb_profile_feedbackavg.Location = new System.Drawing.Point(81, 386);
             this.txb_profile_feedbackavg.Name = "txb_profile_feedbackavg";
             this.txb_profile_feedbackavg.ReadOnly = true;
-            this.txb_profile_feedbackavg.Size = new System.Drawing.Size(157, 20);
+            this.txb_profile_feedbackavg.Size = new System.Drawing.Size(155, 20);
             this.txb_profile_feedbackavg.TabIndex = 35;
             this.txb_profile_feedbackavg.TabStop = false;
             // 
@@ -373,10 +374,10 @@
             // 
             // txb_profile_feedbackcount
             // 
-            this.txb_profile_feedbackcount.Location = new System.Drawing.Point(79, 360);
+            this.txb_profile_feedbackcount.Location = new System.Drawing.Point(81, 360);
             this.txb_profile_feedbackcount.Name = "txb_profile_feedbackcount";
             this.txb_profile_feedbackcount.ReadOnly = true;
-            this.txb_profile_feedbackcount.Size = new System.Drawing.Size(157, 20);
+            this.txb_profile_feedbackcount.Size = new System.Drawing.Size(155, 20);
             this.txb_profile_feedbackcount.TabIndex = 33;
             this.txb_profile_feedbackcount.TabStop = false;
             // 
@@ -615,6 +616,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lbl_coin_image_cpy);
             this.groupBox1.Controls.Add(this.txb_coin_commemorativedesc);
             this.groupBox1.Controls.Add(this.chb_coin_isCommemorative);
             this.groupBox1.Controls.Add(this.llb_reverselink);
@@ -683,7 +685,7 @@
             // 
             this.llb_reverselink.AutoSize = true;
             this.llb_reverselink.Enabled = false;
-            this.llb_reverselink.Location = new System.Drawing.Point(153, 313);
+            this.llb_reverselink.Location = new System.Drawing.Point(155, 299);
             this.llb_reverselink.Name = "llb_reverselink";
             this.llb_reverselink.Size = new System.Drawing.Size(47, 13);
             this.llb_reverselink.TabIndex = 31;
@@ -696,7 +698,7 @@
             // 
             this.llb_obverselink.AutoSize = true;
             this.llb_obverselink.Enabled = false;
-            this.llb_obverselink.Location = new System.Drawing.Point(40, 313);
+            this.llb_obverselink.Location = new System.Drawing.Point(39, 299);
             this.llb_obverselink.Name = "llb_obverselink";
             this.llb_obverselink.Size = new System.Drawing.Size(47, 13);
             this.llb_obverselink.TabIndex = 35;
@@ -903,7 +905,7 @@
             // 
             this.pcb_coin_reverse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pcb_coin_reverse.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_coin_reverse.Location = new System.Drawing.Point(124, 329);
+            this.pcb_coin_reverse.Location = new System.Drawing.Point(124, 315);
             this.pcb_coin_reverse.Name = "pcb_coin_reverse";
             this.pcb_coin_reverse.Size = new System.Drawing.Size(105, 105);
             this.pcb_coin_reverse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -945,7 +947,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pcb_coin_obverse.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_coin_obverse.Location = new System.Drawing.Point(9, 329);
+            this.pcb_coin_obverse.Location = new System.Drawing.Point(9, 315);
             this.pcb_coin_obverse.Name = "pcb_coin_obverse";
             this.pcb_coin_obverse.Size = new System.Drawing.Size(105, 105);
             this.pcb_coin_obverse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1396,7 +1398,7 @@
             this.label28.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label28.AutoSize = true;
             this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label28.Location = new System.Drawing.Point(283, 610);
+            this.label28.Location = new System.Drawing.Point(283, 613);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(254, 13);
             this.label28.TabIndex = 30;
@@ -1411,6 +1413,16 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 32;
             this.pictureBox3.TabStop = false;
+            // 
+            // lbl_coin_image_cpy
+            // 
+            this.lbl_coin_image_cpy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl_coin_image_cpy.Location = new System.Drawing.Point(7, 422);
+            this.lbl_coin_image_cpy.Name = "lbl_coin_image_cpy";
+            this.lbl_coin_image_cpy.Size = new System.Drawing.Size(222, 18);
+            this.lbl_coin_image_cpy.TabIndex = 33;
+            this.lbl_coin_image_cpy.Text = "Coin images © Numista and their owners";
+            this.lbl_coin_image_cpy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form1
             // 
@@ -1429,7 +1441,7 @@
             this.MinimumSize = new System.Drawing.Size(296, 677);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.3.5.";
+            this.Text = "Numista v.1.3.6.";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -1573,6 +1585,7 @@
         private System.Windows.Forms.LinkLabel link_lbl_mnesiccoins;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btn_savecoin;
+        private System.Windows.Forms.Label lbl_coin_image_cpy;
     }
 }
 
