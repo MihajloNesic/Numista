@@ -8,6 +8,7 @@ namespace Numista
 {
     class Coin
     {
+        private int id;
         private String title, country, metal, orientation, shape, yearsRange, refNumber;
         private String obversePhoto, reversePhoto;
         private String diameter, weight, thickness;
@@ -32,8 +33,9 @@ namespace Numista
 
         }
 
-        public Coin(String title, String country, String diameter, String weight, String metal, String orientation, String thickness, String shape, String yearsRange, String refNumber, bool isCommemorative)
+        public Coin(int id, String title, String country, String diameter, String weight, String metal, String orientation, String thickness, String shape, String yearsRange, String refNumber, bool isCommemorative)
         {
+            this.id = id;
             this.title = title;
             this.country = country;
             this.diameter = diameter;
@@ -45,6 +47,16 @@ namespace Numista
             this.yearsRange = yearsRange;
             this.refNumber = refNumber;
             this.isCommemorative = isCommemorative;
+        }
+
+        public int getId()
+        {
+            return this.id;
+        }
+
+        public void setId(int id)
+        {
+            this.id = id;
         }
 
         public String getTitle()

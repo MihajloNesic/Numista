@@ -49,6 +49,7 @@ namespace Numista
                 searchCoinOOP(c);
                 tabControl1.SelectedIndex = 1;
             }
+            
         }
 
         private void btn_coinsearch_Click(object sender, EventArgs e)
@@ -91,6 +92,8 @@ namespace Numista
                     dynamic array = JsonConvert.DeserializeObject(json);
 
                     this.coin.reset();
+
+                    this.coin.setId(Int32.Parse(coinID));
 
                     if (array.title != null)
                         this.coin.setTitle(array.title.ToString());
@@ -175,6 +178,7 @@ namespace Numista
                     //txb_coin_refnumber.Text = coin.getRefNumber();
                     pcb_coin_obverse.Load(this.coin.getObversePhoto());
                     pcb_coin_reverse.Load(this.coin.getReversePhoto());
+
                     if (this.coin.isItCommemorative())
                     {
                         chb_coin_isCommemorative.Checked = true;
@@ -186,8 +190,22 @@ namespace Numista
                         txb_coin_commemorativedesc.Text = "";
                     }
 
-                    txb_output.Text = formatJson(json);
-                    btn_savecoin.Enabled = true;
+                    if (!this.coin.getTitle().Equals(""))
+                    {
+                        txb_output.Text = formatJson(json);
+                        btn_savecoin.Enabled = true;
+
+                        ListViewItem lvi = new ListViewItem(this.coin.getId() + "");
+                        lvi.SubItems.Add(this.coin.getCountry());
+                        lvi.SubItems.Add(this.coin.getTitle());
+                        lsv_history.Items.Add(lvi);
+
+                        /*DataGridViewRow row = (DataGridViewRow)dgv_history.Rows[0].Clone();
+                        row.Cells[0].Value = this.coin.getId();
+                        row.Cells[1].Value = this.coin.getCountry();
+                        row.Cells[2].Value = this.coin.getTitle();
+                        dgv_history.Rows.Add(row);*/
+                    }
 
                 }
                 llb_coinlink.Enabled = true;
@@ -335,6 +353,16 @@ namespace Numista
             {
                 MessageBox.Show("An error has occurred \nTry again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnClearHistory_Click(object sender, EventArgs e)
+        {
+            lsv_history.Items.Clear();
+        }
+
+        private void lsv_history_DoubleClick(object sender, EventArgs e)
+        {
+            this.searchCoinOOP(lsv_history.SelectedItems[0].SubItems[0].Text);
         }
 
         private void btn_cntr_getlist_Click(object sender, EventArgs e)
@@ -563,6 +591,12 @@ namespace Numista
             cmb_profile_languages.SelectedIndex = -1;
         }
 
+        private void lsv_history_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        {
+            e.Cancel = true;
+            e.NewWidth = lsv_history.Columns[e.ColumnIndex].Width;
+        }
+
         private int DropDownWidth(ComboBox myCombo)
         {
             int maxWidth = 0;
@@ -616,7 +650,7 @@ namespace Numista
 
         private void link_lbl_mnesiccoins_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://mnesiccoins.ml");
+            System.Diagnostics.Process.Start("https://mihajlonesic.github.io/mnesiccoins/");
         }
 
         /*private void btn_test_findnotpublished_Click(object sender, EventArgs e)

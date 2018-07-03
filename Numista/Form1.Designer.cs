@@ -69,6 +69,7 @@
             this.nud_coinID = new System.Windows.Forms.NumericUpDown();
             this.btn_randomcoin = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbl_coin_image_cpy = new System.Windows.Forms.Label();
             this.txb_coin_commemorativedesc = new System.Windows.Forms.TextBox();
             this.chb_coin_isCommemorative = new System.Windows.Forms.CheckBox();
             this.llb_reverselink = new System.Windows.Forms.LinkLabel();
@@ -143,7 +144,14 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.lbl_coin_image_cpy = new System.Windows.Forms.Label();
+            this.lsv_history = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.btnClearHistory = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -160,6 +168,9 @@
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.tabControl2.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -174,12 +185,12 @@
             // txb_output
             // 
             this.txb_output.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txb_output.Location = new System.Drawing.Point(283, 28);
+            this.txb_output.Location = new System.Drawing.Point(-4, 47);
             this.txb_output.Multiline = true;
             this.txb_output.Name = "txb_output";
             this.txb_output.ReadOnly = true;
             this.txb_output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txb_output.Size = new System.Drawing.Size(280, 583);
+            this.txb_output.Size = new System.Drawing.Size(276, 522);
             this.txb_output.TabIndex = 2;
             this.txb_output.TabStop = false;
             // 
@@ -654,6 +665,16 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Coin Information";
+            // 
+            // lbl_coin_image_cpy
+            // 
+            this.lbl_coin_image_cpy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl_coin_image_cpy.Location = new System.Drawing.Point(7, 422);
+            this.lbl_coin_image_cpy.Name = "lbl_coin_image_cpy";
+            this.lbl_coin_image_cpy.Size = new System.Drawing.Size(222, 18);
+            this.lbl_coin_image_cpy.TabIndex = 33;
+            this.lbl_coin_image_cpy.Text = "Coin images © Numista and their owners";
+            this.lbl_coin_image_cpy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txb_coin_commemorativedesc
             // 
@@ -1223,10 +1244,10 @@
             this.link_lbl_mnesiccoins.AutoSize = true;
             this.link_lbl_mnesiccoins.Location = new System.Drawing.Point(6, 457);
             this.link_lbl_mnesiccoins.Name = "link_lbl_mnesiccoins";
-            this.link_lbl_mnesiccoins.Size = new System.Drawing.Size(114, 13);
+            this.link_lbl_mnesiccoins.Size = new System.Drawing.Size(116, 13);
             this.link_lbl_mnesiccoins.TabIndex = 42;
             this.link_lbl_mnesiccoins.TabStop = true;
-            this.link_lbl_mnesiccoins.Text = "http://mnesiccoins.ml/";
+            this.link_lbl_mnesiccoins.Text = "http://mnesiccoins.ga/";
             this.tlt_tip1.SetToolTip(this.link_lbl_mnesiccoins, "Click to navigate");
             this.link_lbl_mnesiccoins.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_mnesiccoins_LinkClicked);
             // 
@@ -1235,9 +1256,9 @@
             this.label40.AutoSize = true;
             this.label40.Location = new System.Drawing.Point(6, 392);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(126, 13);
+            this.label40.Size = new System.Drawing.Size(104, 13);
             this.label40.TabIndex = 41;
-            this.label40.Text = "Mihajlo Nesic on Numista";
+            this.label40.Text = "My Numista account";
             // 
             // link_lbl_mnnumista
             // 
@@ -1291,9 +1312,9 @@
             this.label38.AutoSize = true;
             this.label38.Location = new System.Drawing.Point(6, 269);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(84, 13);
+            this.label38.Size = new System.Drawing.Size(111, 13);
             this.label38.TabIndex = 36;
-            this.label38.Text = "Software source";
+            this.label38.Text = "Software source code";
             // 
             // label37
             // 
@@ -1374,7 +1395,7 @@
             // 
             this.link_lbl_apilink.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.link_lbl_apilink.AutoSize = true;
-            this.link_lbl_apilink.Location = new System.Drawing.Point(406, 12);
+            this.link_lbl_apilink.Location = new System.Drawing.Point(6, 22);
             this.link_lbl_apilink.Name = "link_lbl_apilink";
             this.link_lbl_apilink.Size = new System.Drawing.Size(163, 13);
             this.link_lbl_apilink.TabIndex = 31;
@@ -1387,18 +1408,18 @@
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(280, 12);
+            this.label24.Location = new System.Drawing.Point(6, 6);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(129, 13);
+            this.label24.Size = new System.Drawing.Size(123, 13);
             this.label24.TabIndex = 29;
-            this.label24.Text = "JSON output from server -";
+            this.label24.Text = "JSON output from server";
             // 
             // label28
             // 
             this.label28.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label28.AutoSize = true;
             this.label28.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label28.Location = new System.Drawing.Point(283, 613);
+            this.label28.Location = new System.Drawing.Point(6, 572);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(254, 13);
             this.label28.TabIndex = 30;
@@ -1414,34 +1435,102 @@
             this.pictureBox3.TabIndex = 32;
             this.pictureBox3.TabStop = false;
             // 
-            // lbl_coin_image_cpy
+            // lsv_history
             // 
-            this.lbl_coin_image_cpy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbl_coin_image_cpy.Location = new System.Drawing.Point(7, 422);
-            this.lbl_coin_image_cpy.Name = "lbl_coin_image_cpy";
-            this.lbl_coin_image_cpy.Size = new System.Drawing.Size(222, 18);
-            this.lbl_coin_image_cpy.TabIndex = 33;
-            this.lbl_coin_image_cpy.Text = "Coin images © Numista and their owners";
-            this.lbl_coin_image_cpy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lsv_history.BackColor = System.Drawing.SystemColors.Window;
+            this.lsv_history.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.lsv_history.FullRowSelect = true;
+            this.lsv_history.GridLines = true;
+            this.lsv_history.Location = new System.Drawing.Point(-4, 0);
+            this.lsv_history.MultiSelect = false;
+            this.lsv_history.Name = "lsv_history";
+            this.lsv_history.Size = new System.Drawing.Size(280, 554);
+            this.lsv_history.TabIndex = 34;
+            this.lsv_history.TabStop = false;
+            this.lsv_history.UseCompatibleStateImageBehavior = false;
+            this.lsv_history.View = System.Windows.Forms.View.Details;
+            this.lsv_history.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lsv_history_ColumnWidthChanging);
+            this.lsv_history.DoubleClick += new System.EventHandler(this.lsv_history_DoubleClick);
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "ID";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Country";
+            this.columnHeader7.Width = 90;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Title";
+            this.columnHeader8.Width = 120;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Controls.Add(this.tabPage7);
+            this.tabControl2.Location = new System.Drawing.Point(284, 12);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(280, 615);
+            this.tabControl2.TabIndex = 35;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.btnClearHistory);
+            this.tabPage6.Controls.Add(this.lsv_history);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(272, 589);
+            this.tabPage6.TabIndex = 0;
+            this.tabPage6.Text = "Coin search history";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.label24);
+            this.tabPage7.Controls.Add(this.link_lbl_apilink);
+            this.tabPage7.Controls.Add(this.label28);
+            this.tabPage7.Controls.Add(this.txb_output);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(272, 589);
+            this.tabPage7.TabIndex = 1;
+            this.tabPage7.Text = "JSON Output";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // btnClearHistory
+            // 
+            this.btnClearHistory.Location = new System.Drawing.Point(6, 560);
+            this.btnClearHistory.Name = "btnClearHistory";
+            this.btnClearHistory.Size = new System.Drawing.Size(260, 23);
+            this.btnClearHistory.TabIndex = 35;
+            this.btnClearHistory.Text = "Clear history";
+            this.btnClearHistory.UseVisualStyleBackColor = true;
+            this.btnClearHistory.Click += new System.EventHandler(this.btnClearHistory_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(576, 639);
+            this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.link_lbl_apilink);
-            this.Controls.Add(this.label28);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.txb_output);
-            this.Controls.Add(this.label24);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(592, 677);
             this.MinimumSize = new System.Drawing.Size(296, 677);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.3.6.";
+            this.Text = "Numista v.1.4.0.";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -1466,8 +1555,11 @@
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1586,6 +1678,14 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button btn_savecoin;
         private System.Windows.Forms.Label lbl_coin_image_cpy;
+        private System.Windows.Forms.ListView lsv_history;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button btnClearHistory;
     }
 }
 
