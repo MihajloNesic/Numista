@@ -11,3 +11,4 @@ C:\Users\Mihajlo\source\repos\Numista\Numista\obj\Debug\Numista.exe
 C:\Users\Mihajlo\source\repos\Numista\Numista\obj\Debug\Numista.pdb
 C:\Users\Mihajlo\source\repos\Numista\Numista\obj\Debug\Numista.csprojAssemblyReference.cache
 C:\Users\Mihajlo\source\repos\Numista\Numista\obj\Debug\Numista.csproj.CopyComplete
+C:\Users\Mihajlo\source\repos\Numista\Numista\obj\Debug\Numista.csproj.ResolveComReference.cache

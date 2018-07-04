@@ -198,6 +198,7 @@ namespace Numista
                         ListViewItem lvi = new ListViewItem(this.coin.getId() + "");
                         lvi.SubItems.Add(this.coin.getCountry());
                         lvi.SubItems.Add(this.coin.getTitle());
+                        //lvi.ToolTipText = this.coin.getCountry()+" - "+ this.coin.getTitle();
                         lsv_history.Items.Add(lvi);
 
                         /*DataGridViewRow row = (DataGridViewRow)dgv_history.Rows[0].Clone();
@@ -308,7 +309,11 @@ namespace Numista
                 {
                     sfd.Filter = "Numista|*.num";
 
-                    sfd.FileName = this.coin.getCountry() + " - " + this.coin.getTitle();
+                    //21241
+                    string fname = (this.coin.getCountry() + " - " + this.coin.getTitle()).Replace('/','-');
+                    fname = fname.Replace("** ", "").Replace(" **", "").Replace("* ", "").Replace(" *", "");
+
+                    sfd.FileName = fname;
                     string info = "Title: " + this.coin.getTitle() + Environment.NewLine +
                                  "Country: " + this.coin.getCountry() + Environment.NewLine +
                                  "Years Range: " + this.coin.getYearsRange() + Environment.NewLine +
@@ -363,6 +368,59 @@ namespace Numista
         private void lsv_history_DoubleClick(object sender, EventArgs e)
         {
             this.searchCoinOOP(lsv_history.SelectedItems[0].SubItems[0].Text);
+        }
+
+        private void lsv_history_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (lsv_history.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    contextMenuStrip1.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void iDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(lsv_history.FocusedItem != null) {
+                Clipboard.SetText(lsv_history.FocusedItem.Text);
+            }
+        }
+
+        private void countryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lsv_history.FocusedItem != null)
+            {
+                string c = lsv_history.FocusedItem.SubItems[1].Text;
+                Clipboard.SetText(c);
+            }
+        }
+
+        private void titleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lsv_history.FocusedItem != null)
+            {
+                string c = lsv_history.FocusedItem.SubItems[2].Text;
+                Clipboard.SetText(c);
+            }
+        }
+
+        private void allToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lsv_history.FocusedItem != null)
+            {
+                string c = lsv_history.FocusedItem.Text + " - " + lsv_history.FocusedItem.SubItems[1].Text + " - " + lsv_history.FocusedItem.SubItems[2].Text;
+                Clipboard.SetText(c);
+            }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (lsv_history.FocusedItem != null)
+            {
+                lsv_history.FocusedItem.Remove();
+            }
         }
 
         private void btn_cntr_getlist_Click(object sender, EventArgs e)
@@ -651,6 +709,32 @@ namespace Numista
         private void link_lbl_mnesiccoins_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://mihajlonesic.github.io/mnesiccoins/");
+        }
+
+        private void btnSaveList_Click(object sender, EventArgs e)
+        {
+            if(lsv_history.Items.Count > 0)
+                ToExcel();
+        }
+
+        private void ToExcel()
+        {
+            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = true;
+            Microsoft.Office.Interop.Excel.Workbook wb = app.Workbooks.Add(1);
+            Microsoft.Office.Interop.Excel.Worksheet ws = (Microsoft.Office.Interop.Excel.Worksheet)wb.Worksheets[1];
+            int i = 1;
+            int i2 = 1;
+            foreach (ListViewItem lvi in lsv_history.Items)
+            {
+                i = 1;
+                foreach (ListViewItem.ListViewSubItem lvs in lvi.SubItems)
+                {
+                    ws.Cells[i2, i] = lvs.Text;
+                    i++;
+                }
+                i2++;
+            }
         }
 
         /*private void btn_test_findnotpublished_Click(object sender, EventArgs e)

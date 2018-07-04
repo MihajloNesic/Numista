@@ -150,8 +150,17 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
             this.btnClearHistory = new System.Windows.Forms.Button();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.titleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.countryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnOpenInExcelList = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -171,6 +180,7 @@
             this.tabControl2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -1447,6 +1457,7 @@
             this.lsv_history.Location = new System.Drawing.Point(-4, 0);
             this.lsv_history.MultiSelect = false;
             this.lsv_history.Name = "lsv_history";
+            this.lsv_history.ShowItemToolTips = true;
             this.lsv_history.Size = new System.Drawing.Size(280, 554);
             this.lsv_history.TabIndex = 34;
             this.lsv_history.TabStop = false;
@@ -1454,6 +1465,7 @@
             this.lsv_history.View = System.Windows.Forms.View.Details;
             this.lsv_history.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lsv_history_ColumnWidthChanging);
             this.lsv_history.DoubleClick += new System.EventHandler(this.lsv_history_DoubleClick);
+            this.lsv_history.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lsv_history_MouseClick);
             // 
             // columnHeader6
             // 
@@ -1482,6 +1494,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.btnOpenInExcelList);
             this.tabPage6.Controls.Add(this.btnClearHistory);
             this.tabPage6.Controls.Add(this.lsv_history);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
@@ -1491,6 +1504,16 @@
             this.tabPage6.TabIndex = 0;
             this.tabPage6.Text = "Coin search history";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // btnClearHistory
+            // 
+            this.btnClearHistory.Location = new System.Drawing.Point(6, 560);
+            this.btnClearHistory.Name = "btnClearHistory";
+            this.btnClearHistory.Size = new System.Drawing.Size(228, 23);
+            this.btnClearHistory.TabIndex = 35;
+            this.btnClearHistory.Text = "Clear history";
+            this.btnClearHistory.UseVisualStyleBackColor = true;
+            this.btnClearHistory.Click += new System.EventHandler(this.btnClearHistory_Click);
             // 
             // tabPage7
             // 
@@ -1506,15 +1529,78 @@
             this.tabPage7.Text = "JSON Output";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // btnClearHistory
+            // contextMenuStrip1
             // 
-            this.btnClearHistory.Location = new System.Drawing.Point(6, 560);
-            this.btnClearHistory.Name = "btnClearHistory";
-            this.btnClearHistory.Size = new System.Drawing.Size(260, 23);
-            this.btnClearHistory.TabIndex = 35;
-            this.btnClearHistory.Text = "Clear history";
-            this.btnClearHistory.UseVisualStyleBackColor = true;
-            this.btnClearHistory.Click += new System.EventHandler(this.btnClearHistory_Click);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem,
+            this.toolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(103, 48);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.ShowShortcutKeys = false;
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
+            this.toolStripMenuItem1.Text = "Delete";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.iDToolStripMenuItem,
+            this.countryToolStripMenuItem,
+            this.titleToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.allToolStripMenuItem});
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            // 
+            // iDToolStripMenuItem
+            // 
+            this.iDToolStripMenuItem.Name = "iDToolStripMenuItem";
+            this.iDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iDToolStripMenuItem.Text = "ID";
+            this.iDToolStripMenuItem.Click += new System.EventHandler(this.iDToolStripMenuItem_Click);
+            // 
+            // titleToolStripMenuItem
+            // 
+            this.titleToolStripMenuItem.Name = "titleToolStripMenuItem";
+            this.titleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.titleToolStripMenuItem.Text = "Title";
+            this.titleToolStripMenuItem.Click += new System.EventHandler(this.titleToolStripMenuItem_Click);
+            // 
+            // countryToolStripMenuItem
+            // 
+            this.countryToolStripMenuItem.Name = "countryToolStripMenuItem";
+            this.countryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.countryToolStripMenuItem.Text = "Country";
+            this.countryToolStripMenuItem.Click += new System.EventHandler(this.countryToolStripMenuItem_Click);
+            // 
+            // allToolStripMenuItem
+            // 
+            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.allToolStripMenuItem.Text = "All";
+            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // btnOpenInExcelList
+            // 
+            this.btnOpenInExcelList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenInExcelList.BackgroundImage")));
+            this.btnOpenInExcelList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpenInExcelList.Location = new System.Drawing.Point(240, 560);
+            this.btnOpenInExcelList.Name = "btnOpenInExcelList";
+            this.btnOpenInExcelList.Size = new System.Drawing.Size(26, 23);
+            this.btnOpenInExcelList.TabIndex = 36;
+            this.tlt_tip1.SetToolTip(this.btnOpenInExcelList, "Show list in Excel");
+            this.btnOpenInExcelList.UseVisualStyleBackColor = true;
+            this.btnOpenInExcelList.Click += new System.EventHandler(this.btnSaveList_Click);
             // 
             // Form1
             // 
@@ -1559,6 +1645,7 @@
             this.tabPage6.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1686,6 +1773,15 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Button btnClearHistory;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem iDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem countryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem titleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Button btnOpenInExcelList;
     }
 }
 
