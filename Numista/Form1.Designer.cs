@@ -141,6 +141,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.link_lbl_apilink = new System.Windows.Forms.LinkLabel();
+            this.btnOpenInExcelList = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -152,15 +153,16 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.btnClearHistory = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_copydelete = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.titleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.countryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.titleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnOpenInExcelList = new System.Windows.Forms.Button();
+            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cms_add = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -180,7 +182,8 @@
             this.tabControl2.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.cms_copydelete.SuspendLayout();
+            this.cms_add.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -1414,6 +1417,18 @@
             this.tlt_tip1.SetToolTip(this.link_lbl_apilink, "Click to navigate");
             this.link_lbl_apilink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_apilink_LinkClicked);
             // 
+            // btnOpenInExcelList
+            // 
+            this.btnOpenInExcelList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenInExcelList.BackgroundImage")));
+            this.btnOpenInExcelList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpenInExcelList.Location = new System.Drawing.Point(240, 560);
+            this.btnOpenInExcelList.Name = "btnOpenInExcelList";
+            this.btnOpenInExcelList.Size = new System.Drawing.Size(26, 23);
+            this.btnOpenInExcelList.TabIndex = 36;
+            this.tlt_tip1.SetToolTip(this.btnOpenInExcelList, "Show list in Excel");
+            this.btnOpenInExcelList.UseVisualStyleBackColor = true;
+            this.btnOpenInExcelList.Click += new System.EventHandler(this.btnSaveList_Click);
+            // 
             // label24
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1529,21 +1544,13 @@
             this.tabPage7.Text = "JSON Output";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // contextMenuStrip1
+            // cms_copydelete
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cms_copydelete.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem,
             this.toolStripMenuItem1});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(103, 48);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.ShowShortcutKeys = false;
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
-            this.toolStripMenuItem1.Text = "Delete";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.cms_copydelete.Name = "contextMenuStrip1";
+            this.cms_copydelete.Size = new System.Drawing.Size(103, 48);
             // 
             // copyToolStripMenuItem
             // 
@@ -1560,47 +1567,56 @@
             // iDToolStripMenuItem
             // 
             this.iDToolStripMenuItem.Name = "iDToolStripMenuItem";
-            this.iDToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iDToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.iDToolStripMenuItem.Text = "ID";
             this.iDToolStripMenuItem.Click += new System.EventHandler(this.iDToolStripMenuItem_Click);
-            // 
-            // titleToolStripMenuItem
-            // 
-            this.titleToolStripMenuItem.Name = "titleToolStripMenuItem";
-            this.titleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.titleToolStripMenuItem.Text = "Title";
-            this.titleToolStripMenuItem.Click += new System.EventHandler(this.titleToolStripMenuItem_Click);
             // 
             // countryToolStripMenuItem
             // 
             this.countryToolStripMenuItem.Name = "countryToolStripMenuItem";
-            this.countryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.countryToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.countryToolStripMenuItem.Text = "Country";
             this.countryToolStripMenuItem.Click += new System.EventHandler(this.countryToolStripMenuItem_Click);
             // 
-            // allToolStripMenuItem
+            // titleToolStripMenuItem
             // 
-            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.allToolStripMenuItem.Text = "All";
-            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
+            this.titleToolStripMenuItem.Name = "titleToolStripMenuItem";
+            this.titleToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.titleToolStripMenuItem.Text = "Title";
+            this.titleToolStripMenuItem.Click += new System.EventHandler(this.titleToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(114, 6);
             // 
-            // btnOpenInExcelList
+            // allToolStripMenuItem
             // 
-            this.btnOpenInExcelList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenInExcelList.BackgroundImage")));
-            this.btnOpenInExcelList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnOpenInExcelList.Location = new System.Drawing.Point(240, 560);
-            this.btnOpenInExcelList.Name = "btnOpenInExcelList";
-            this.btnOpenInExcelList.Size = new System.Drawing.Size(26, 23);
-            this.btnOpenInExcelList.TabIndex = 36;
-            this.tlt_tip1.SetToolTip(this.btnOpenInExcelList, "Show list in Excel");
-            this.btnOpenInExcelList.UseVisualStyleBackColor = true;
-            this.btnOpenInExcelList.Click += new System.EventHandler(this.btnSaveList_Click);
+            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.allToolStripMenuItem.Text = "All";
+            this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.ShowShortcutKeys = false;
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
+            this.toolStripMenuItem1.Text = "Delete";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // cms_add
+            // 
+            this.cms_add.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem});
+            this.cms_add.Name = "cms_add";
+            this.cms_add.Size = new System.Drawing.Size(181, 48);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Text = "Add";
             // 
             // Form1
             // 
@@ -1645,7 +1661,8 @@
             this.tabPage6.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.cms_copydelete.ResumeLayout(false);
+            this.cms_add.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1773,7 +1790,7 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Button btnClearHistory;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ContextMenuStrip cms_copydelete;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iDToolStripMenuItem;
@@ -1782,6 +1799,8 @@
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button btnOpenInExcelList;
+        private System.Windows.Forms.ContextMenuStrip cms_add;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
     }
 }
 

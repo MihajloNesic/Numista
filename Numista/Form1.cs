@@ -376,10 +376,16 @@ namespace Numista
             {
                 if (lsv_history.FocusedItem.Bounds.Contains(e.Location) == true)
                 {
-                    contextMenuStrip1.Show(Cursor.Position);
+                    cms_copydelete.Show(Cursor.Position);
+                }
+                else if(lsv_history.Bounds.Contains(e.Location) == true)
+                {
+                    cms_add.Show(Cursor.Position);
                 }
             }
         }
+
+
 
         private void iDToolStripMenuItem_Click(object sender, EventArgs e)
         {
