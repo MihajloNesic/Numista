@@ -141,7 +141,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tlt_tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.link_lbl_apilink = new System.Windows.Forms.LinkLabel();
-            this.btnOpenInExcelList = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -163,6 +162,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cms_add = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openInExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1417,18 +1417,6 @@
             this.tlt_tip1.SetToolTip(this.link_lbl_apilink, "Click to navigate");
             this.link_lbl_apilink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_apilink_LinkClicked);
             // 
-            // btnOpenInExcelList
-            // 
-            this.btnOpenInExcelList.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOpenInExcelList.BackgroundImage")));
-            this.btnOpenInExcelList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnOpenInExcelList.Location = new System.Drawing.Point(240, 560);
-            this.btnOpenInExcelList.Name = "btnOpenInExcelList";
-            this.btnOpenInExcelList.Size = new System.Drawing.Size(26, 23);
-            this.btnOpenInExcelList.TabIndex = 36;
-            this.tlt_tip1.SetToolTip(this.btnOpenInExcelList, "Show list in Excel");
-            this.btnOpenInExcelList.UseVisualStyleBackColor = true;
-            this.btnOpenInExcelList.Click += new System.EventHandler(this.btnSaveList_Click);
-            // 
             // label24
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1481,6 +1469,7 @@
             this.lsv_history.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lsv_history_ColumnWidthChanging);
             this.lsv_history.DoubleClick += new System.EventHandler(this.lsv_history_DoubleClick);
             this.lsv_history.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lsv_history_MouseClick);
+            this.lsv_history.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lsv_history_MouseDown);
             // 
             // columnHeader6
             // 
@@ -1509,7 +1498,6 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.btnOpenInExcelList);
             this.tabPage6.Controls.Add(this.btnClearHistory);
             this.tabPage6.Controls.Add(this.lsv_history);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
@@ -1524,7 +1512,7 @@
             // 
             this.btnClearHistory.Location = new System.Drawing.Point(6, 560);
             this.btnClearHistory.Name = "btnClearHistory";
-            this.btnClearHistory.Size = new System.Drawing.Size(228, 23);
+            this.btnClearHistory.Size = new System.Drawing.Size(260, 23);
             this.btnClearHistory.TabIndex = 35;
             this.btnClearHistory.Text = "Clear history";
             this.btnClearHistory.UseVisualStyleBackColor = true;
@@ -1560,8 +1548,9 @@
             this.titleToolStripMenuItem,
             this.toolStripSeparator1,
             this.allToolStripMenuItem});
+            this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             // 
             // iDToolStripMenuItem
@@ -1599,24 +1588,36 @@
             // 
             // toolStripMenuItem1
             // 
+            this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.ShowShortcutKeys = false;
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(102, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem1.Text = "Delete";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // cms_add
             // 
             this.cms_add.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem});
+            this.addToolStripMenuItem,
+            this.openInExcelToolStripMenuItem});
             this.cms_add.Name = "cms_add";
-            this.cms_add.Size = new System.Drawing.Size(181, 48);
+            this.cms_add.Size = new System.Drawing.Size(146, 48);
             // 
             // addToolStripMenuItem
             // 
+            this.addToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addToolStripMenuItem.Image")));
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.addToolStripMenuItem.Text = "Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // openInExcelToolStripMenuItem
+            // 
+            this.openInExcelToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openInExcelToolStripMenuItem.Image")));
+            this.openInExcelToolStripMenuItem.Name = "openInExcelToolStripMenuItem";
+            this.openInExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openInExcelToolStripMenuItem.Text = "Open in Excel";
+            this.openInExcelToolStripMenuItem.Click += new System.EventHandler(this.openInExcelToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -1632,7 +1633,7 @@
             this.MinimumSize = new System.Drawing.Size(296, 677);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.4.0.";
+            this.Text = "Numista v.1.4.1.";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -1798,9 +1799,9 @@
         private System.Windows.Forms.ToolStripMenuItem titleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.Button btnOpenInExcelList;
         private System.Windows.Forms.ContextMenuStrip cms_add;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openInExcelToolStripMenuItem;
     }
 }
 

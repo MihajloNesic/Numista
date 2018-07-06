@@ -21,6 +21,7 @@ namespace Numista
         private static string NUMISTAAPI = "https://qmegas.info/numista-api/";
         private string coinExt = null;
         private Coin coin = new Coin();
+        private Stream stream;
 
         public Form1()
         {
@@ -195,17 +196,7 @@ namespace Numista
                         txb_output.Text = formatJson(json);
                         btn_savecoin.Enabled = true;
 
-                        ListViewItem lvi = new ListViewItem(this.coin.getId() + "");
-                        lvi.SubItems.Add(this.coin.getCountry());
-                        lvi.SubItems.Add(this.coin.getTitle());
-                        //lvi.ToolTipText = this.coin.getCountry()+" - "+ this.coin.getTitle();
-                        lsv_history.Items.Add(lvi);
-
-                        /*DataGridViewRow row = (DataGridViewRow)dgv_history.Rows[0].Clone();
-                        row.Cells[0].Value = this.coin.getId();
-                        row.Cells[1].Value = this.coin.getCountry();
-                        row.Cells[2].Value = this.coin.getTitle();
-                        dgv_history.Rows.Add(row);*/
+                        addToCoinList(this.coin.getId()+"", this.coin.getCountry(), this.coin.getTitle());
                     }
 
                 }
@@ -368,6 +359,8 @@ namespace Numista
         private void lsv_history_DoubleClick(object sender, EventArgs e)
         {
             this.searchCoinOOP(lsv_history.SelectedItems[0].SubItems[0].Text);
+            nud_coinID.Value = Convert.ToDecimal(lsv_history.SelectedItems[0].SubItems[0].Text);
+            tabControl1.SelectedIndex = 1;
         }
 
         private void lsv_history_MouseClick(object sender, MouseEventArgs e)
@@ -378,14 +371,51 @@ namespace Numista
                 {
                     cms_copydelete.Show(Cursor.Position);
                 }
-                else if(lsv_history.Bounds.Contains(e.Location) == true)
-                {
-                    cms_add.Show(Cursor.Position);
-                }
             }
         }
 
+        private void lsv_history_MouseDown(object sender, MouseEventArgs e)
+        {
+            ListViewHitTestInfo hit = lsv_history.HitTest(e.Location);
+            if(e.Button == MouseButtons.Right)
+                if (hit.Location == ListViewHitTestLocations.None)
+                    cms_add.Show(Cursor.Position);
+        }
 
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var ofd = new OpenFileDialog())
+                {
+                    ofd.Filter = "Numista|*.num";
+                    ofd.Multiselect = true;
+
+                    if (ofd.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach(String file in ofd.FileNames) {
+                            try
+                            {
+                                if((stream = ofd.OpenFile()) != null)
+                                {
+                                    using (stream)
+                                    {
+                                        string idc = File.ReadLines(file).First();
+                                        string cnt = File.ReadLines(file).Skip(3).Take(1).First().Substring(9);
+                                        string titl = File.ReadLines(file).Skip(2).Take(1).First().Substring(7);
+
+                                        addToCoinList(idc, cnt, titl);
+                                    }
+                                }
+                            }
+                            catch (Exception ex) {}
+                        }
+                    }
+
+                }
+            }
+            catch(Exception ex) {}
+       }
 
         private void iDToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -717,9 +747,9 @@ namespace Numista
             System.Diagnostics.Process.Start("https://mihajlonesic.github.io/mnesiccoins/");
         }
 
-        private void btnSaveList_Click(object sender, EventArgs e)
+        private void openInExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(lsv_history.Items.Count > 0)
+            if (lsv_history.Items.Count > 0)
                 ToExcel();
         }
 
@@ -741,6 +771,14 @@ namespace Numista
                 }
                 i2++;
             }
+        }
+
+        private void addToCoinList(string id, string country, string title)
+        {
+            ListViewItem lvi = new ListViewItem(id + "");
+            lvi.SubItems.Add(country);
+            lvi.SubItems.Add(title);
+            lsv_history.Items.Add(lvi);
         }
 
         /*private void btn_test_findnotpublished_Click(object sender, EventArgs e)

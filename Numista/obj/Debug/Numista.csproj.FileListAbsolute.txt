@@ -12,3 +12,15 @@ C:\Users\Mihajlo\source\repos\Numista\Numista\obj\Debug\Numista.pdb
 C:\Users\Mihajlo\source\repos\Numista\Numista\obj\Debug\Numista.csprojAssemblyReference.cache
 C:\Users\Mihajlo\source\repos\Numista\Numista\obj\Debug\Numista.csproj.CopyComplete
 C:\Users\Mihajlo\source\repos\Numista\Numista\obj\Debug\Numista.csproj.ResolveComReference.cache
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\bin\Debug\Numista.exe.config
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\obj\Debug\Numista.csproj.ResolveComReference.cache
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\obj\Debug\Numista.exe
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\obj\Debug\Numista.pdb
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\bin\Debug\Numista.exe
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\bin\Debug\Numista.pdb
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\obj\Debug\Numista.csprojResolveAssemblyReference.cache
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\obj\Debug\Numista.Form1.resources
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\obj\Debug\Numista.Properties.Resources.resources
+C:\Users\Mihajlo\Documents\Visual Studio 2015\Projects\Numista\Numista\obj\Debug\Numista.csproj.GenerateResource.Cache
