@@ -6,6 +6,8 @@ Numist API provided by Megas (http://qmegas.info/numista-api/)
 The software reads .num files!
 Be sure to associate that file extension to this software!
 
+old photos
+
 Profile search by ID
 
 ![Profile search](https://i.imgur.com/auf5Y6V.png)
