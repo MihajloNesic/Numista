@@ -393,22 +393,34 @@ namespace Numista
 
                     if (ofd.ShowDialog() == DialogResult.OK)
                     {
-                        foreach(String file in ofd.FileNames) {
-                            try
+                        if (ofd.FileNames.Count() == 1)
+                        {
+                            string idc = File.ReadLines(ofd.FileName).First();
+                            string cnt = File.ReadLines(ofd.FileName).Skip(3).Take(1).First().Substring(9);
+                            string titl = File.ReadLines(ofd.FileName).Skip(2).Take(1).First().Substring(7);
+                            searchCoinOOP(idc);
+                            tabControl1.SelectedIndex = 1;
+                        }
+                        else
+                        {
+                            foreach (String file in ofd.FileNames)
                             {
-                                if((stream = ofd.OpenFile()) != null)
+                                try
                                 {
-                                    using (stream)
+                                    if ((stream = ofd.OpenFile()) != null)
                                     {
-                                        string idc = File.ReadLines(file).First();
-                                        string cnt = File.ReadLines(file).Skip(3).Take(1).First().Substring(9);
-                                        string titl = File.ReadLines(file).Skip(2).Take(1).First().Substring(7);
+                                        using (stream)
+                                        {
+                                            string idc = File.ReadLines(file).First();
+                                            string cnt = File.ReadLines(file).Skip(3).Take(1).First().Substring(9);
+                                            string titl = File.ReadLines(file).Skip(2).Take(1).First().Substring(7);
 
-                                        addToCoinList(idc, cnt, titl);
+                                            addToCoinList(idc, cnt, titl);
+                                        }
                                     }
                                 }
+                                catch (Exception ex) { }
                             }
-                            catch (Exception ex) {}
                         }
                     }
 
