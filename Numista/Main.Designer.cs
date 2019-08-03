@@ -1,6 +1,6 @@
 ﻿namespace Numista
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.label1 = new System.Windows.Forms.Label();
             this.txb_output = new System.Windows.Forms.TextBox();
             this.btn_coinsearch = new System.Windows.Forms.Button();
@@ -198,12 +198,12 @@
             // txb_output
             // 
             this.txb_output.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txb_output.Location = new System.Drawing.Point(-4, 47);
+            this.txb_output.Location = new System.Drawing.Point(0, 29);
             this.txb_output.Multiline = true;
             this.txb_output.Name = "txb_output";
             this.txb_output.ReadOnly = true;
             this.txb_output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txb_output.Size = new System.Drawing.Size(276, 522);
+            this.txb_output.Size = new System.Drawing.Size(272, 540);
             this.txb_output.TabIndex = 2;
             this.txb_output.TabStop = false;
             // 
@@ -853,7 +853,7 @@
             this.txb_coin_thickness.Location = new System.Drawing.Point(72, 201);
             this.txb_coin_thickness.Name = "txb_coin_thickness";
             this.txb_coin_thickness.ReadOnly = true;
-            this.txb_coin_thickness.Size = new System.Drawing.Size(123, 20);
+            this.txb_coin_thickness.Size = new System.Drawing.Size(130, 20);
             this.txb_coin_thickness.TabIndex = 25;
             this.txb_coin_thickness.TabStop = false;
             // 
@@ -953,7 +953,7 @@
             this.txb_coin_diameter.Location = new System.Drawing.Point(72, 175);
             this.txb_coin_diameter.Name = "txb_coin_diameter";
             this.txb_coin_diameter.ReadOnly = true;
-            this.txb_coin_diameter.Size = new System.Drawing.Size(123, 20);
+            this.txb_coin_diameter.Size = new System.Drawing.Size(130, 20);
             this.txb_coin_diameter.TabIndex = 7;
             this.txb_coin_diameter.TabStop = false;
             // 
@@ -1049,8 +1049,8 @@
             this.btn_cntr_getlist.Size = new System.Drawing.Size(244, 23);
             this.btn_cntr_getlist.TabIndex = 1;
             this.btn_cntr_getlist.TabStop = false;
-            this.btn_cntr_getlist.Text = "Get list of all countries";
-            this.tlt_tip1.SetToolTip(this.btn_cntr_getlist, "May take serval minutes");
+            this.btn_cntr_getlist.Text = "Get list of all countries and issuers";
+            this.tlt_tip1.SetToolTip(this.btn_cntr_getlist, "May take some time");
             this.btn_cntr_getlist.UseVisualStyleBackColor = true;
             this.btn_cntr_getlist.Click += new System.EventHandler(this.btn_cntr_getlist_Click);
             // 
@@ -1124,6 +1124,7 @@
             this.columnHeader5});
             this.lsv_log_messages.FullRowSelect = true;
             this.lsv_log_messages.GridLines = true;
+            this.lsv_log_messages.HideSelection = false;
             this.lsv_log_messages.Location = new System.Drawing.Point(6, 44);
             this.lsv_log_messages.Name = "lsv_log_messages";
             this.lsv_log_messages.Size = new System.Drawing.Size(229, 297);
@@ -1257,10 +1258,10 @@
             this.link_lbl_mnesiccoins.AutoSize = true;
             this.link_lbl_mnesiccoins.Location = new System.Drawing.Point(6, 457);
             this.link_lbl_mnesiccoins.Name = "link_lbl_mnesiccoins";
-            this.link_lbl_mnesiccoins.Size = new System.Drawing.Size(116, 13);
+            this.link_lbl_mnesiccoins.Size = new System.Drawing.Size(139, 13);
             this.link_lbl_mnesiccoins.TabIndex = 42;
             this.link_lbl_mnesiccoins.TabStop = true;
-            this.link_lbl_mnesiccoins.Text = "http://mnesiccoins.ga/";
+            this.link_lbl_mnesiccoins.Text = "https://mihajlonesic.gitlab.io";
             this.tlt_tip1.SetToolTip(this.link_lbl_mnesiccoins, "Click to navigate");
             this.link_lbl_mnesiccoins.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_lbl_mnesiccoins_LinkClicked);
             // 
@@ -1377,7 +1378,7 @@
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(238, 38);
             this.label35.TabIndex = 33;
-            this.label35.Text = "The Numista name, icon         , and logo are copyright of Numista SAS.";
+            this.label35.Text = "The Numista name, icon         , and logo are copyright of Numista.";
             // 
             // label34
             // 
@@ -1408,7 +1409,7 @@
             // 
             this.link_lbl_apilink.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.link_lbl_apilink.AutoSize = true;
-            this.link_lbl_apilink.Location = new System.Drawing.Point(6, 22);
+            this.link_lbl_apilink.Location = new System.Drawing.Point(104, 9);
             this.link_lbl_apilink.Name = "link_lbl_apilink";
             this.link_lbl_apilink.Size = new System.Drawing.Size(163, 13);
             this.link_lbl_apilink.TabIndex = 31;
@@ -1421,11 +1422,11 @@
             // 
             this.label24.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(6, 6);
+            this.label24.Location = new System.Drawing.Point(4, 9);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(123, 13);
+            this.label24.Size = new System.Drawing.Size(94, 13);
             this.label24.TabIndex = 29;
-            this.label24.Text = "JSON output from server";
+            this.label24.Text = "Output from server";
             // 
             // label28
             // 
@@ -1457,6 +1458,7 @@
             this.columnHeader8});
             this.lsv_history.FullRowSelect = true;
             this.lsv_history.GridLines = true;
+            this.lsv_history.HideSelection = false;
             this.lsv_history.Location = new System.Drawing.Point(-4, 0);
             this.lsv_history.MultiSelect = false;
             this.lsv_history.Name = "lsv_history";
@@ -1538,7 +1540,7 @@
             this.copyToolStripMenuItem,
             this.toolStripMenuItem1});
             this.cms_copydelete.Name = "contextMenuStrip1";
-            this.cms_copydelete.Size = new System.Drawing.Size(103, 48);
+            this.cms_copydelete.Size = new System.Drawing.Size(158, 48);
             // 
             // copyToolStripMenuItem
             // 
@@ -1550,7 +1552,7 @@
             this.allToolStripMenuItem});
             this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             // 
             // iDToolStripMenuItem
@@ -1591,8 +1593,8 @@
             this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.ShowShortcutKeys = false;
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem1.Text = "Delete";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
+            this.toolStripMenuItem1.Text = "Remove from list";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // cms_add
@@ -1601,13 +1603,13 @@
             this.addToolStripMenuItem,
             this.openInExcelToolStripMenuItem});
             this.cms_add.Name = "cms_add";
-            this.cms_add.Size = new System.Drawing.Size(146, 48);
+            this.cms_add.Size = new System.Drawing.Size(147, 48);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("addToolStripMenuItem.Image")));
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.addToolStripMenuItem.Text = "Add";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
@@ -1615,15 +1617,15 @@
             // 
             this.openInExcelToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openInExcelToolStripMenuItem.Image")));
             this.openInExcelToolStripMenuItem.Name = "openInExcelToolStripMenuItem";
-            this.openInExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openInExcelToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openInExcelToolStripMenuItem.Text = "Open in Excel";
             this.openInExcelToolStripMenuItem.Click += new System.EventHandler(this.openInExcelToolStripMenuItem_Click);
             // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 639);
+            this.ClientSize = new System.Drawing.Size(576, 638);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.tabControl1);
@@ -1631,9 +1633,9 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(592, 677);
             this.MinimumSize = new System.Drawing.Size(296, 677);
-            this.Name = "Form1";
+            this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Numista v.1.4.1.";
+            this.Text = "Numista v.2.0";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

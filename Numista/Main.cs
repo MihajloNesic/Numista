@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Numista
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         private string accessToken;
         private string obversePhotoUrl, reversePhotoUrl;
@@ -23,19 +23,17 @@ namespace Numista
         private Coin coin = new Coin();
         private Stream stream;
 
-        public Form1()
+        public Main()
         {
             InitializeComponent();
         }
 
-        public Form1(String[] coinID)
+        public Main(String[] coinID)
         {
             InitializeComponent();
             if (coinID.Length != 0 && coinID.Length == 1)
             {
-                //MessageBox.Show(coinID[0]);
                 coinExt = coinID[0];
-                //searchCoinOOP(coinID[0]);
             }
         }
 
@@ -43,36 +41,37 @@ namespace Numista
         {
             if(coinExt != null)
             {
-                //string c = System.IO.File.ReadAllText(coinExt);
                 string c = File.ReadLines(coinExt).First();
-                //MessageBox.Show(c);
                 nud_coinID.Value = Convert.ToDecimal(c);
-                searchCoinOOP(c);
+                SearchCoin(c);
                 tabControl1.SelectedIndex = 1;
             }
             
         }
 
+        // Coin search button handler
         private void btn_coinsearch_Click(object sender, EventArgs e)
         {
-            searchCoinOOP(nud_coinID.Value.ToString());
+            SearchCoin(nud_coinID.Value.ToString());
         }
 
+        // Random coin button handler
         private void btn_randomcoin_Click(object sender, EventArgs e)
         {
             Random r = new Random();
-            int randID = r.Next(1, 120000);
+            int randID = r.Next(1, 180000);
             nud_coinID.Value = randID;
-            searchCoinOOP(Convert.ToString(randID));
+            SearchCoin(Convert.ToString(randID));
         }
 
+        // Profile search button handler
         private void btn_profilesearch_Click(object sender, EventArgs e)
         {
-            // 101744
-            searchProfileOOP(nud_profileID.Value.ToString());
+            SearchProfile(nud_profileID.Value.ToString());
             llb_profilelink.Enabled = true;
         }
         
+        // Pretty prints the json
         private string formatJson(string json)
         {
             var obj = Newtonsoft.Json.JsonConvert.DeserializeObject(json);
@@ -80,7 +79,11 @@ namespace Numista
             return f;
         }
 
-        private void searchCoinOOP(String coinID)
+        /// <summary>
+        /// Search coin
+        /// </summary>
+        /// <param name="coinID">Numista ID of the coin</param>
+        private void SearchCoin(String coinID)
         {
             try
             {
@@ -92,33 +95,33 @@ namespace Numista
                     var json = webClient.DownloadString(NUMISTAAPI + "coin/" + coinID);
                     dynamic array = JsonConvert.DeserializeObject(json);
 
-                    this.coin.reset();
+                    coin = new Coin();
 
-                    this.coin.setId(Int32.Parse(coinID));
+                    coin.Id = Int32.Parse(coinID);
 
                     if (array.title != null)
-                        this.coin.setTitle(array.title.ToString());
+                        coin.Title = array.title.ToString();
                     if (array.country != null)
-                        this.coin.setCountry(array.country.name.ToString());
+                        coin.Country = array.country.name.ToString();
                     if (array.diameter != null)
-                        this.coin.setDiameter(array.diameter.ToString());
+                        coin.Diameter = array.diameter.ToString();
                     if (array.weight != null)
-                        this.coin.setWeight(array.weight.ToString());
+                        coin.Weight = array.weight.ToString();
                     if (array.metal != null)
-                        this.coin.setMetal(array.metal.ToString());
+                        coin.Metal = array.metal.ToString();
                     if (array.orientation != null)
-                        this.coin.setOrientation(array.orientation.ToString());
+                        coin.Orientation = array.orientation.ToString();
                     if (array.thickness != null)
-                        this.coin.setThickness(array.thickness.ToString());
+                        coin.Thickness = array.thickness.ToString();
                     if (array.shape != null)
-                        this.coin.setShape(array.shape.ToString());
+                        coin.Shape = array.shape.ToString();
                     if (array.is_commemorative != null)
-                        this.coin.setCommemorative(array.is_commemorative.ToString());
+                        coin.IsCommemorative = array.is_commemorative;
                     if (array.commemorative_description != null)
-                        this.coin.setCommemorativeDescription(array.commemorative_description.ToString());
+                        coin.CommemorativeDescription = array.commemorative_description.ToString();
                     if (array.years_range != null)
                     {
-                        this.coin.setYearsRange(array.years_range.ToString());
+                        coin.YearsRange = array.years_range.ToString();
                         foreach (dynamic year in array["years"])
                         {
                             cmb_coin_years.Items.Add(year["year"].ToString() + " " + year["remark"].ToString());
@@ -128,7 +131,7 @@ namespace Numista
                     {
                         if (array.km.ToString() != "[]")
                         {
-                            this.coin.setRefNumber(array["km"][0].ToString());
+                            coin.RefNumber = array["km"][0].ToString();
                             foreach (dynamic refN in array["km"])
                             {
                                 cmb_coin_refnum.Items.Add(refN.ToString());
@@ -138,7 +141,7 @@ namespace Numista
 
                     if (array.images != null)
                     {
-                        this.coin.setObversePhoto(array.images.obverse.preview.ToString());
+                        coin.ObversePhoto = array.images.obverse.preview.ToString();
                         if (array.images.obverse.fullsize != "")
                         {
                             obversePhotoUrl = array.images.obverse.fullsize.ToString();
@@ -146,11 +149,11 @@ namespace Numista
                         }
                         else
                         {
-                            obversePhotoUrl = coin.getObversePhoto();
+                            obversePhotoUrl = coin.ObversePhoto;
                             llb_obverselink.Enabled = false;
                         }
 
-                        this.coin.setReversePhoto(array.images.reverse.preview.ToString());
+                        coin.ReversePhoto = array.images.reverse.preview.ToString();
                         if (array.images.reverse.fullsize != "")
                         {
                             reversePhotoUrl = array.images.reverse.fullsize.ToString();
@@ -158,7 +161,7 @@ namespace Numista
                         }
                         else
                         {
-                            reversePhotoUrl = coin.getReversePhoto();
+                            reversePhotoUrl = coin.ReversePhoto;
                             llb_reverselink.Enabled = false;
                         }
 
@@ -167,23 +170,22 @@ namespace Numista
                         else lbl_coin_image_cpy.Text = "Coin images © Numista and their owners";
                     }
 
-                    txb_coin_title.Text = this.coin.getTitle();
-                    txb_coin_country.Text = this.coin.getCountry();
-                    txb_coin_diameter.Text = this.coin.getDiameter();
-                    txb_coin_weight.Text = this.coin.getWeight();
-                    txb_coin_metal.Text = this.coin.getMetal();
-                    txb_coin_orient.Text = this.coin.getOrientation();
-                    txb_coin_thickness.Text = this.coin.getThickness();
-                    txb_coin_shape.Text = this.coin.getShape();
-                    txb_coin_yearsrange.Text = this.coin.getYearsRange();
-                    //txb_coin_refnumber.Text = coin.getRefNumber();
-                    pcb_coin_obverse.Load(this.coin.getObversePhoto());
-                    pcb_coin_reverse.Load(this.coin.getReversePhoto());
+                    txb_coin_title.Text = coin.Title;
+                    txb_coin_country.Text = coin.Country;
+                    txb_coin_diameter.Text = coin.Diameter;
+                    txb_coin_weight.Text = coin.Weight;
+                    txb_coin_metal.Text = coin.Metal;
+                    txb_coin_orient.Text = coin.Orientation;
+                    txb_coin_thickness.Text = coin.Thickness;
+                    txb_coin_shape.Text = coin.Shape;
+                    txb_coin_yearsrange.Text = coin.YearsRange;
+                    pcb_coin_obverse.Load(coin.ObversePhoto);
+                    pcb_coin_reverse.Load(coin.ReversePhoto);
 
-                    if (this.coin.isItCommemorative())
+                    if (coin.IsCommemorative)
                     {
                         chb_coin_isCommemorative.Checked = true;
-                        txb_coin_commemorativedesc.Text = this.coin.getCommemorativeDescription();
+                        txb_coin_commemorativedesc.Text = coin.CommemorativeDescription;
                     }
                     else
                     {
@@ -191,12 +193,12 @@ namespace Numista
                         txb_coin_commemorativedesc.Text = "";
                     }
 
-                    if (!this.coin.getTitle().Equals(""))
+                    if (!coin.Title.Equals(""))
                     {
                         txb_output.Text = formatJson(json);
                         btn_savecoin.Enabled = true;
 
-                        addToCoinList(this.coin.getId()+"", this.coin.getCountry(), this.coin.getTitle());
+                        addToCoinList(coin.Id+"", coin.Country, coin.Title);
                     }
 
                 }
@@ -216,7 +218,11 @@ namespace Numista
             }
         }
         
-        private void searchProfileOOP(string profileID)
+        /// <summary>
+        /// Search profile
+        /// </summary>
+        /// <param name="profileID">Numista ID of the user</param>
+        private void SearchProfile(string profileID)
         {
             try
             {
@@ -230,30 +236,30 @@ namespace Numista
                     Profile profile = new Profile();
 
                     if (array.name != null)
-                        profile.setUsername(array.name.ToString());
+                        profile.Username = array.name.ToString();
                     if (array.special_status != null)
-                        profile.setTitle(array.special_status.ToString());
+                        profile.Title = array.special_status.ToString();
                     if (array.location != null)
-                        profile.setLocation(array.location.ToString());
+                        profile.Location = array.location.ToString();
                     if (array.member_since != null)
-                        profile.setMember(array.member_since.ToString());
+                        profile.Member = array.member_since.ToString() ;
                     if (array.exchange_coins_count != null)
-                        profile.setSwap(array.exchange_coins_count.ToString());
+                        profile.Swap = array.exchange_coins_count.ToString();
                     if (array.website != null)
-                        profile.setWeb(array.website.ToString());
+                        profile.Web = array.website.ToString();
                     if (array.forum_posts_count != null)
-                        profile.setForum(array.forum_posts_count.ToString());
+                        profile.Forum = array.forum_posts_count.ToString();
                     if (array.feedback != null)
                     {
-                        profile.setFeedbackNumber(array.feedback.count.ToString());
-                        profile.setFeedbackAvg(array.feedback.average.ToString());
+                        profile.FeedbackNumber = array.feedback.count.ToString();
+                        profile.FeedbackAvg = array.feedback.average.ToString();
                     }
                     if (array.is_collection_visible != null)
-                        profile.setColl(array.is_collection_visible.ToString());
+                        profile.CollectionVisible = array.is_collection_visible;
                     if (array.is_exchange_coins_visible != null)
-                        profile.setSwapColl(array.is_exchange_coins_visible.ToString());
+                        profile.SwapVisible = array.is_exchange_coins_visible;
                     if (array.image != null)
-                        profile.setAvatar(array.image.ToString());
+                        profile.Avatar = array.image.ToString();
                     if (array.languages != null)
                     {
                         foreach (dynamic lang in array["languages"])
@@ -262,23 +268,23 @@ namespace Numista
                         }
                     }
 
-                    txb_profile_username.Text = profile.getUsername();
-                    txb_profile_title.Text = profile.getTitle();
-                    txb_profile_location.Text = profile.getLocation();
-                    txb_profile_membersince.Text = profile.getMember();
-                    txb_profile_coinstoswap.Text = profile.getSwap();
-                    txb_profile_website.Text = profile.getWeb();
-                    txb_profile_forum.Text = profile.getForum();
-                    txb_profile_feedbackcount.Text = profile.getFeedbackNumber();
-                    txb_profile_feedbackavg.Text = profile.getFeedbackAvg();
+                    txb_profile_username.Text = profile.Username;
+                    txb_profile_title.Text = profile.Title;
+                    txb_profile_location.Text = profile.Location;
+                    txb_profile_membersince.Text = profile.Member;
+                    txb_profile_coinstoswap.Text = profile.Swap;
+                    txb_profile_website.Text = profile.Web;
+                    txb_profile_forum.Text = profile.Forum;
+                    txb_profile_feedbackcount.Text = profile.FeedbackNumber;
+                    txb_profile_feedbackavg.Text = profile.FeedbackAvg;
 
-                    pcb_profile_avatar.Load(profile.getAvatar());
+                    pcb_profile_avatar.Load(profile.Avatar);
 
-                    if (profile.isItColl())
+                    if (profile.CollectionVisible)
                         chb_profile_collectionvisible.Checked = true;
                     else chb_profile_collectionvisible.Checked = false;
 
-                    if (profile.isItSwapColl())
+                    if (profile.SwapVisible)
                         chb_profile_swapcoins.Checked = true;
                     else chb_profile_swapcoins.Checked = false;
 
@@ -291,30 +297,29 @@ namespace Numista
             }
         }
 
+        // Save coin button handler
         private void btn_savecoin_Click(object sender, EventArgs e)
         {
-            // save()
             try
             {
                 using (var sfd = new SaveFileDialog())
                 {
                     sfd.Filter = "Numista|*.num";
 
-                    //21241
-                    string fname = (this.coin.getCountry() + " - " + this.coin.getTitle()).Replace('/','-');
+                    string fname = (coin.Country + " - " + coin.Title).Replace('/','-');
                     fname = fname.Replace("** ", "").Replace(" **", "").Replace("* ", "").Replace(" *", "");
 
                     sfd.FileName = fname;
-                    string info = "Title: " + this.coin.getTitle() + Environment.NewLine +
-                                 "Country: " + this.coin.getCountry() + Environment.NewLine +
-                                 "Years Range: " + this.coin.getYearsRange() + Environment.NewLine +
-                                 "Reference number: " + this.coin.getRefNumber() + Environment.NewLine +
-                                 "Metal: " + this.coin.getMetal() + Environment.NewLine +
-                                 "Weight: " + this.coin.getWeight() + Environment.NewLine +
-                                 "Diameter: " + this.coin.getDiameter() + Environment.NewLine +
-                                 "Thickness: " + this.coin.getThickness() + Environment.NewLine +
-                                 "Shape: " + this.coin.getShape() + Environment.NewLine +
-                                 "Orientation: " + this.coin.getOrientation()+ Environment.NewLine + 
+                    string info = "Title: " + coin.Title + Environment.NewLine +
+                                 "Country: " + coin.Country + Environment.NewLine +
+                                 "Years Range: " + coin.YearsRange + Environment.NewLine +
+                                 "Reference number: " + coin.RefNumber + Environment.NewLine +
+                                 "Metal: " + coin.Metal + Environment.NewLine +
+                                 "Weight: " + coin.Weight + Environment.NewLine +
+                                 "Diameter: " + coin.Diameter + Environment.NewLine +
+                                 "Thickness: " + coin.Thickness + Environment.NewLine +
+                                 "Shape: " + coin.Shape + Environment.NewLine +
+                                 "Orientation: " + coin.Orientation+ Environment.NewLine + 
                                  Environment.NewLine +
                                  "Saved: " + Convert.ToString(DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year) + " " + Convert.ToString(DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second);
 
@@ -323,46 +328,29 @@ namespace Numista
                         File.WriteAllText(sfd.FileName, nud_coinID.Value.ToString()+Environment.NewLine + Environment.NewLine + info);
                         MessageBox.Show("Coin successfully saved!", "Save coin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
-                    //binary write test
-                    /*FileStream fs = new FileStream("test.bin", FileMode.CreateNew);
-                    BinaryWriter bw = new BinaryWriter(fs);
-
-                    bw.Write(nud_coinID.Value.ToString());
-
-                    bw.Close();
-                    fs.Close();
-
-                    //binary read test
-                    FileStream fsr = new FileStream("test.bin", FileMode.Open);
-                    BinaryReader br = new BinaryReader(fsr);
-
-                    string content = br.ReadString();
-                    MessageBox.Show(content, "Binary file");
-
-                    br.Close();
-                    fsr.Close();*/
-
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("An error has occurred \nTry again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // Clear coin history
         private void btnClearHistory_Click(object sender, EventArgs e)
         {
             lsv_history.Items.Clear();
         }
 
+        // Read coin data when the coin is double clicked
         private void lsv_history_DoubleClick(object sender, EventArgs e)
         {
-            this.searchCoinOOP(lsv_history.SelectedItems[0].SubItems[0].Text);
+            SearchCoin(lsv_history.SelectedItems[0].SubItems[0].Text);
             nud_coinID.Value = Convert.ToDecimal(lsv_history.SelectedItems[0].SubItems[0].Text);
             tabControl1.SelectedIndex = 1;
         }
 
+        // Open content menu on coin right click in history list
         private void lsv_history_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -374,6 +362,7 @@ namespace Numista
             }
         }
 
+        // Open content menu on right click in history list
         private void lsv_history_MouseDown(object sender, MouseEventArgs e)
         {
             ListViewHitTestInfo hit = lsv_history.HitTest(e.Location);
@@ -382,6 +371,8 @@ namespace Numista
                     cms_add.Show(Cursor.Position);
         }
 
+        // Adds a .num file to the coin history list.
+        // If you select only one file, it will read the data. Otherwise it will jush add them to the list.
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -398,7 +389,7 @@ namespace Numista
                             string idc = File.ReadLines(ofd.FileName).First();
                             string cnt = File.ReadLines(ofd.FileName).Skip(3).Take(1).First().Substring(9);
                             string titl = File.ReadLines(ofd.FileName).Skip(2).Take(1).First().Substring(7);
-                            searchCoinOOP(idc);
+                            SearchCoin(idc);
                             tabControl1.SelectedIndex = 1;
                         }
                         else
@@ -419,16 +410,16 @@ namespace Numista
                                         }
                                     }
                                 }
-                                catch (Exception ex) { }
+                                catch (Exception) { }
                             }
                         }
                     }
-
                 }
             }
-            catch(Exception ex) {}
-       }
+            catch(Exception) {}
+        }
 
+        // Copy coin id
         private void iDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(lsv_history.FocusedItem != null) {
@@ -436,6 +427,7 @@ namespace Numista
             }
         }
 
+        // Copy coin country information
         private void countryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lsv_history.FocusedItem != null)
@@ -445,6 +437,7 @@ namespace Numista
             }
         }
 
+        // Copy coin title information
         private void titleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lsv_history.FocusedItem != null)
@@ -454,6 +447,7 @@ namespace Numista
             }
         }
 
+        // Copy all coin information
         private void allToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lsv_history.FocusedItem != null)
@@ -471,6 +465,7 @@ namespace Numista
             }
         }
 
+        // Gets a list of all Numsita countries and issuers
         private void btn_cntr_getlist_Click(object sender, EventArgs e)
         {
             try
@@ -490,6 +485,7 @@ namespace Numista
                 }
                 btn_cntr_copy.Enabled = true;
                 btn_cntr_getlist.Enabled = false;
+                MessageBox.Show(lsb_cntr_countrieslist.Items.Count + " countries and issuers found", "Issuers", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
             {
@@ -497,6 +493,7 @@ namespace Numista
             }
         }
 
+        // Copy country list
         private void btn_cntr_copy_Click(object sender, EventArgs e)
         {
             string temp = "";
@@ -507,10 +504,9 @@ namespace Numista
             Clipboard.SetText(temp);
         }
 
+        // Login button handler. Password is not saved anywhere.
         private void btn_log_login_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Message from the developer\n\nI can ensure you, I am NOT stealing your account in any way.\n\nYou can check out source code for this software on GitHub. \nhttps://github.com/MihajloNesic/Numista\n\n\nMessage from the API author\n\nWe guarantee that your Numista login and password will NOT be stored or transferred to any third party.\nAnyway, use of that function on your own risk only.\n\nSee more: http://qmegas.info/numista-api/", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             MessageBox.Show("I can ensure you, I am NOT stealing your account in any way.\n\nYou can check out source code for this software on GitHub. \nhttps://github.com/MihajloNesic/Numista", "Message from the developer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             MessageBox.Show("We guarantee that your Numista login and password will NOT be stored or transferred to any third party.\nAnyway, use of that function on your own risk only.\n\nSee more: https://qmegas.info/numista-api/", "Message from the API author", MessageBoxButtons.OK, MessageBoxIcon.Information);
             DialogResult dialogResult = MessageBox.Show("Do you wish to continue?", "Final call", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -526,6 +522,7 @@ namespace Numista
             }
         }
 
+        // Logout button handler
         private void btn_log_logout_Click(object sender, EventArgs e)
         {
             logout(this.accessToken);
@@ -544,6 +541,11 @@ namespace Numista
             }
         }
 
+        /// <summary>
+        /// Logs in the user. Password is not saved anywhere.
+        /// </summary>
+        /// <param name="user">Username</param>
+        /// <param name="pass">Password</param>
         private void login(string user, string pass)
         {
             try
@@ -568,14 +570,10 @@ namespace Numista
 
                     this.accessToken = accessToken;
 
-                    // MessageBox.Show(this.accessToken, "Token");
-
                     if (this.accessToken != "")
                     {
                         btn_log_login.Enabled = false;
                         btn_log_logout.Enabled = true;
-                        //txb_log_user.Text = "";
-                        //txb_log_pass.Text = "";
                         txb_log_user.Enabled = false;
                         txb_log_pass.Enabled = false;
                         grb_log_account.Enabled = true;
@@ -589,6 +587,10 @@ namespace Numista
             }
         }
 
+        /// <summary>
+        /// Logs out the user
+        /// </summary>
+        /// <param name="access_token">User access token fro mthe API</param>
         private void logout(String access_token)
         {
             try
@@ -618,6 +620,7 @@ namespace Numista
             }
         }
 
+        // Gets user messages. Adds them to the list box first, then in list view.
         private void btn_log_getmessages_Click(object sender, EventArgs e)
         {
             try
@@ -639,12 +642,10 @@ namespace Numista
                         if(message["is_new"].ToString() == "True")
                             lsb_log_messages.Items.Add("Yes");
                         else lsb_log_messages.Items.Add("No");
-                        //lsb_log_messages.Items.Add(message["is_new"].ToString());
 
                         if(message["is_replied"].ToString() == "True")
                             lsb_log_messages.Items.Add("Yes");
                         else lsb_log_messages.Items.Add("No");
-                        //lsb_log_messages.Items.Add(message["is_replied"].ToString());
                     }
 
                     txb_output.Text = formatJson(json);
@@ -653,11 +654,13 @@ namespace Numista
             }
             catch(Exception)
             {
-                // MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 MessageBox.Show("Could not get messages. \nTry again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Adds messages from list box to the list view
+        /// </summary>
         private void addMessagesToList()
         {
             for (int i = 0; i < (lsb_log_messages.Items.Count - 1); i += 5)
@@ -670,6 +673,8 @@ namespace Numista
                 lsv_log_messages.Items.Add(lvi);
             }
         }
+
+        // Photo links
 
         private void llb_obverselink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -687,22 +692,30 @@ namespace Numista
             cmb_coin_refnum.SelectedIndex = -1;
         }
 
+        // Handle items to not be selectable in combobox
         private void cmb_coin_years_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmb_coin_years.SelectedIndex = -1;
         }
 
+        // Handle items to not be selectable in combobox
         private void cmb_profile_languages_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmb_profile_languages.SelectedIndex = -1;
         }
 
+        // Disable history list headers resizing
         private void lsv_history_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             e.Cancel = true;
             e.NewWidth = lsv_history.Columns[e.ColumnIndex].Width;
         }
 
+        /// <summary>
+        /// Sets a width of a combo box to fit it's items
+        /// </summary>
+        /// <param name="myCombo"></param>
+        /// <returns>width</returns>
         private int DropDownWidth(ComboBox myCombo)
         {
             int maxWidth = 0;
@@ -721,6 +734,8 @@ namespace Numista
             label1.Dispose();
             return maxWidth;
         }
+
+        // Various links 
 
         private void llb_coinlink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -756,15 +771,19 @@ namespace Numista
 
         private void link_lbl_mnesiccoins_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://mihajlonesic.github.io/mnesiccoins/");
+            System.Diagnostics.Process.Start("https://mihajlonesic.gitlab.io");
         }
 
+        // 'Open in Excel' option from the content menu strip 'cms_add'
         private void openInExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lsv_history.Items.Count > 0)
                 ToExcel();
         }
 
+        /// <summary>
+        /// Opens a history list to Microsoft Excel
+        /// </summary>
         private void ToExcel()
         {
             Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
@@ -785,6 +804,12 @@ namespace Numista
             }
         }
 
+        /// <summary>
+        /// Adds a coin to the history list
+        /// </summary>
+        /// <param name="id">Numsita ID of the coin</param>
+        /// <param name="country">Coin country</param>
+        /// <param name="title">Coin title</param>
         private void addToCoinList(string id, string country, string title)
         {
             ListViewItem lvi = new ListViewItem(id + "");
@@ -792,31 +817,5 @@ namespace Numista
             lvi.SubItems.Add(title);
             lsv_history.Items.Add(lvi);
         }
-
-        /*private void btn_test_findnotpublished_Click(object sender, EventArgs e)
-        {
-            txb_output.Text = "=== Found used coin ID's ===" + Environment.NewLine;
-
-            using (var webClient = new WebClient())
-            {
-                // "/1" is to disable cache
-                for (int i = 89300; i < 89400; i++)
-                {
-                    var json = webClient.DownloadString("http://qmegas.info/numista-api/coin/" + i);
-                    dynamic array = JsonConvert.DeserializeObject(json);
-
-                    var error = "";
-
-                    if (array.error != null)
-                        error = array.error.ToString();
-
-                    if (error == "Coin not published")
-                        txb_test_notpublished.Text += i + Environment.NewLine;
-                    else if(error == "Coin not found")
-                        txb_test_notfound.Text += i + Environment.NewLine;
-                    else txb_output.Text += i + Environment.NewLine;
-                }
-            }
-        }*/
     }
  }
